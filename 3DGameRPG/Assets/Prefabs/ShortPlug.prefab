@@ -343,9 +343,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 993238695089515675}
-  - component: {fileID: 4762521596051243226}
+  - component: {fileID: 571212850548579469}
   m_Layer: 0
-  m_Name: Short
+  m_Name: ShortPlug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -366,9 +366,9 @@ Transform:
   - {fileID: 8683648110137754018}
   - {fileID: 5331849006969966229}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4762521596051243226
+--- !u!114 &571212850548579469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -377,12 +377,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1561564105511734292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e567097cd3e691468f82b71fe19d30d, type: 3}
+  m_Script: {fileID: 11500000, guid: 914a7ae6925675e42aca6fe62926efd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameChar: Two Short
-  damage: 1
-  maxHP: 10
+  stat: {fileID: 11400000, guid: dc821389159784b48aa7fcd8e008bb87, type: 2}
 --- !u!1 &1571524842017722727
 GameObject:
   m_ObjectHideFlags: 0
