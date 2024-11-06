@@ -27,4 +27,10 @@ public class AHitSkillBtn : MonoBehaviour, ICanUseSkill
         //hp = hp - (def - ([atk doi phuong] + [power doi phuong])
         opp.HPRemain -= (user.ATKTemp + skill.power) - opp.DEFTemp;
     }
+
+    public string MessageUsedSkill(RobotStat user, RobotStat opp = null)
+    {
+        return $"{user.NameStat()} use {skill.skillName}! " +
+            $"\n{opp.NameStat()} take {(user.ATKTemp + skill.power) - opp.DEFTemp} damage.";
+    }
 }

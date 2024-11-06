@@ -9,7 +9,7 @@ public class RobotStat : MonoBehaviour
     int atk, def, sed;
 
     [Header("Skill Set")]
-    [SerializeField] internal Toggle[] actionToggle;
+    [SerializeField] List<SkillConfig> hasSkills;
 
     #region Callout Stat
     //public StatConfig RobotStats() { return stat; }
@@ -17,6 +17,7 @@ public class RobotStat : MonoBehaviour
     //read only
     public string NameStat() { return stat.nameChar; }
     public string DescriptionStat() { return stat.description; }
+    public List<SkillConfig> ListOfAction() { return hasSkills; }
 
     //read, only write when meet condition
     public int AttackStat() { return stat.attack; }
@@ -87,5 +88,16 @@ public class RobotStat : MonoBehaviour
         atk = stat.attack;
         def = stat.defense;
         sed = stat.speed;
+        ScanExistSkill();
+    }
+
+    void ScanExistSkill()
+    {
+        hasSkills = new List<SkillConfig>();
+        for (int i = 0; i < stat.learnableSkills.Length; i++)
+        {
+            if(stat.learnableSkills[i].atLevel == stat.lv)
+                hasSkills.Add(stat.learnableSkills[i].learnableSkill);
+        }
     }
 }

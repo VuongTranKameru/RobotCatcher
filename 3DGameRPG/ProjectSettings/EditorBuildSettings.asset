@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattleMechanicCalc.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/FreeToUse/ObjectModel/Junkyard models/Demo.unity
+    guid: c52d8ffc24371a241ac4c07b51646ad9
+  - enabled: 1
+    path: Assets/Scenes/SpawnRoute.unity
+    guid: c8778ae594375c347acf7c4f47d66906
   m_configObjects: {}

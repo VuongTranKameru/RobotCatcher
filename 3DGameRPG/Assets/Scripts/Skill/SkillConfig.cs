@@ -19,4 +19,5 @@ public class SkillConfig : ScriptableObject
 
     [Header("Png")]
     [SerializeField] internal Sprite[] listBtnClr;
+    [SerializeField] internal GameObject skillBtn;
 }

@@ -12,12 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e567097cd3e691468f82b71fe19d30d, type: 3}
   m_Name: test1pl
   m_EditorClassIdentifier: 
+  itself: {fileID: 2408108307968510352, guid: 1f36d936fa7f1f3449448fd26a23f3c4, type: 3}
   charID: 999
   nameChar: CameaTall
   description: player_sampl
-  maxHP: 10
-  attack: 5
-  denfese: 3
-  speed: 2
+  maxHP: 12
+  attack: 3
+  defense: 0
+  speed: 4
   lv: 1
-  maxSP: 0
+  maxSP: 15
+  learnableSkills:
+  - learnableSkill: {fileID: 11400000, guid: dc6194c2d5c37c242bb3429da27ab815, type: 2}
+    atLevel: 1
+  - learnableSkill: {fileID: 11400000, guid: da3d4579d1409f74b8631e6d409e625e, type: 2}
+    atLevel: 2
