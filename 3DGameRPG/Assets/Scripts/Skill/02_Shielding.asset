@@ -21,3 +21,4 @@ MonoBehaviour:
   listBtnClr:
   - {fileID: 21300000, guid: 442dfe5080264474793f8cf03fd6dc44, type: 3}
   - {fileID: 21300000, guid: 432e1f052ce5b5146ad91b0394a5be15, type: 3}
+  skillBtn: {fileID: 7314824642156943573, guid: 50dc5a91c04da774a8df473272986bf6, type: 3}

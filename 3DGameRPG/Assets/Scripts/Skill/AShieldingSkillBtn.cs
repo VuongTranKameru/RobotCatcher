@@ -23,4 +23,9 @@ public class AShieldingSkillBtn : MonoBehaviour, ICanUseSkill
         //buff defense tam thoi len
         user.DEFTemp = skill.power;
     }
+
+    public string MessageUsedSkill(RobotStat user, RobotStat opp = null)
+    {
+        return $"{user.NameStat()} used {skill.skillName}!";
+    }
 }
