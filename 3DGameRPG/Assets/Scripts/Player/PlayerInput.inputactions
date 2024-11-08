@@ -24,6 +24,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Jumping",
+                    "type": "Button",
+                    "id": "82b0026f-81b5-453c-8781-cf5d3530fa9c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "SkipDialogue",
                     "type": "Button",
                     "id": "ec1c585c-7dfe-4765-9301-dd5a6049d494",
@@ -119,6 +128,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Running",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b08ebe4e-831a-4a16-afd5-4cd348bf7fe2",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jumping",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

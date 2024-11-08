@@ -29,7 +29,7 @@ public class SpawnZone : MonoBehaviour
         if (player.CompareTag("Player"))
         {
             Debug.Log(randomSpawnRate);
-            if (randomSpawnRate % 3 == 0)
+            if (randomSpawnRate % 3 == 0 && randomSpawnRate != 0)
             {
                 mesh.material = mode[1];
 
