@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca3465f4d09c0745aa3d50b1fa149d9, type: 3}
+  m_Name: 03_Rockthrow
+  m_EditorClassIdentifier: 
+  skillID: 03
+  skillName: Rockthrow
+  type: 0
+  sDesc: "Khi b\u1EA1o l\u1EF1c l\xE0 c\xE1ch duy nh\u1EA5t \u0111\u1EC3 gi\u1EA3i
+    quy\u1EBFt v\u1EA5n \u0111\u1EC1 v\xE0 c\u1EE5c \u0111\xE1 l\xE0 th\u1EE9 l\u1EE5m
+    \u0111\u01B0\u1EE3c \u1EDF trong tay."
+  power: 1
+  listBtnClr:
+  - {fileID: 21300000, guid: 48b31682022be67489476db0f3027cd6, type: 3}
+  - {fileID: 21300000, guid: 1d869a07ae57b804f806ca05d8053e54, type: 3}
+  skillBtn: {fileID: 0}

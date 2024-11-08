@@ -46,6 +46,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Jumping"",
+                    ""type"": ""Button"",
+                    ""id"": ""82b0026f-81b5-453c-8781-cf5d3530fa9c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""SkipDialogue"",
                     ""type"": ""Button"",
                     ""id"": ""ec1c585c-7dfe-4765-9301-dd5a6049d494"",
@@ -143,6 +152,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Running"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b08ebe4e-831a-4a16-afd5-4cd348bf7fe2"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jumping"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -192,6 +212,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Running = m_Player.FindAction("Running", throwIfNotFound: true);
+        m_Player_Jumping = m_Player.FindAction("Jumping", throwIfNotFound: true);
         m_Player_SkipDialogue = m_Player.FindAction("SkipDialogue", throwIfNotFound: true);
         // OnBattle
         m_OnBattle = asset.FindActionMap("OnBattle", throwIfNotFound: true);
@@ -259,6 +280,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Running;
+    private readonly InputAction m_Player_Jumping;
     private readonly InputAction m_Player_SkipDialogue;
     public struct PlayerActions
     {
@@ -266,6 +288,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Running => m_Wrapper.m_Player_Running;
+        public InputAction @Jumping => m_Wrapper.m_Player_Jumping;
         public InputAction @SkipDialogue => m_Wrapper.m_Player_SkipDialogue;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -282,6 +305,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Running.started += instance.OnRunning;
             @Running.performed += instance.OnRunning;
             @Running.canceled += instance.OnRunning;
+            @Jumping.started += instance.OnJumping;
+            @Jumping.performed += instance.OnJumping;
+            @Jumping.canceled += instance.OnJumping;
             @SkipDialogue.started += instance.OnSkipDialogue;
             @SkipDialogue.performed += instance.OnSkipDialogue;
             @SkipDialogue.canceled += instance.OnSkipDialogue;
@@ -295,6 +321,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Running.started -= instance.OnRunning;
             @Running.performed -= instance.OnRunning;
             @Running.canceled -= instance.OnRunning;
+            @Jumping.started -= instance.OnJumping;
+            @Jumping.performed -= instance.OnJumping;
+            @Jumping.canceled -= instance.OnJumping;
             @SkipDialogue.started -= instance.OnSkipDialogue;
             @SkipDialogue.performed -= instance.OnSkipDialogue;
             @SkipDialogue.canceled -= instance.OnSkipDialogue;
@@ -365,6 +394,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnRunning(InputAction.CallbackContext context);
+        void OnJumping(InputAction.CallbackContext context);
         void OnSkipDialogue(InputAction.CallbackContext context);
     }
     public interface IOnBattleActions
