@@ -48,7 +48,8 @@ public class BattleManager : MonoBehaviour
 
     private void OnEnable()
     {
-        input.Enable();
+        input.OnBattle.Enable();
+        input.Player.Disable();
     }
 
     private void OnDisable()
@@ -141,12 +142,12 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator EnemyAttack()
     {
-        if (input.Player.SkipDialogue.triggered && donePTurn)
+        if (input.OnBattle.SkipDialogue.triggered && donePTurn)
         {
             messange.text = $"{eStats.NameStat()} turns.";
             donePTurn = false;
         }
-        else if (input.Player.SkipDialogue.triggered && state == BattleState.EnemyTurn && !doneETurn)
+        else if (input.OnBattle.SkipDialogue.triggered && state == BattleState.EnemyTurn && !doneETurn)
         {
             SkillConfig usedSkill = eStats.ListOfAction()[0];
             usedSkill.skillBtn.GetComponent<ICanUseSkill>().SkillUsed(eStats, pStats);
@@ -158,7 +159,7 @@ public class BattleManager : MonoBehaviour
             doneETurn = true;
         }
 
-        if (input.Player.SkipDialogue.triggered && state == BattleState.EnemyTurn && doneETurn)
+        if (input.OnBattle.SkipDialogue.triggered && state == BattleState.EnemyTurn && doneETurn)
         {
             yield return new WaitForSeconds(1f);
 
@@ -187,7 +188,7 @@ public class BattleManager : MonoBehaviour
     //Annoucement Script
     void ControllingMessages()
     {
-        if (input.Player.SkipDialogue.triggered && state == BattleState.BeginBattle)
+        if (input.OnBattle.SkipDialogue.triggered && state == BattleState.BeginBattle)
         {
             if (pStats.SpeedStat() < eStats.SpeedStat())
             {
@@ -200,7 +201,7 @@ public class BattleManager : MonoBehaviour
                 state = BattleState.PlayerTurn;
             }
         }
-        else if (input.Player.SkipDialogue.triggered && state == BattleState.PlayerTurn)
+        else if (input.OnBattle.SkipDialogue.triggered && state == BattleState.PlayerTurn)
             if (!playerBoard.activeInHierarchy)
                 TurnPlayerBoard();
     }

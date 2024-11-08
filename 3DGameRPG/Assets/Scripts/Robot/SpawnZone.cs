@@ -23,24 +23,25 @@ public class SpawnZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider player)
     {
+        if (player.CompareTag("Respawn"))
+            randomSpawnRate = 1;
+
         if (player.CompareTag("Player"))
         {
             Debug.Log(randomSpawnRate);
             if (randomSpawnRate % 3 == 0)
             {
-                StartCoroutine(ChangingScene());
+                mesh.material = mode[1];
+
+                if (!FindAnyObjectByType<RobotStat>()) //already exist once
+                {
+                    int i = Random.Range(0, robotSpawn.Length);
+                    GameObject robotEngage = Instantiate(robotSpawn[i].Itself(), spawnAppear.position, Quaternion.identity);
+                    DontDestroyOnLoad(robotEngage);
+
+                    SceneManager.LoadScene("BattleMechanicCalc");
+                }
             }
         }
-    }
-
-    IEnumerator ChangingScene()
-    {
-        mesh.material = mode[1];
-        yield return new WaitForSeconds(3f);
-
-        int i = Random.Range(0, robotSpawn.Length);
-        GameObject robotEngage = Instantiate(robotSpawn[i].Itself(), spawnAppear.position, Quaternion.identity);
-        DontDestroyOnLoad(robotEngage);
-        SceneManager.LoadScene("BattleMechanicCalc");
     }
 }
