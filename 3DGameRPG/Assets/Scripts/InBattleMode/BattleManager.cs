@@ -19,12 +19,18 @@ public class BattleManager : MonoBehaviour
     [SerializeField] GameObject playerPrefab;
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] Transform playerStand, enemyStand;
-    RobotStat pStats, eStats;
+    RobotStat rPStats, eStats;
+    PlayerStat pStats;
 
     [Header("Player Info Screen")]
     [SerializeField] TMP_Text playerNameScr;
     [SerializeField] TMP_Text maxhpScr, hpRemainScr, spRemainScr, levelScr;
     [SerializeField] Image hpBar, spBar;
+
+    [Header("Enemy Info Screen")]
+    [SerializeField] TMP_Text enemyNameScr;
+    [SerializeField] TMP_Text eMaxhpScr, eHpRemainScr, eLevelScr;
+    [SerializeField] Image eHpBar;
 
     [Header("Skill")]
     [SerializeField] ToggleGroup groupSkill;
@@ -65,34 +71,48 @@ public class BattleManager : MonoBehaviour
 
     void PreparingWrapCharactersIn()
     {
+        playerPrefab = FindObjectOfType<PlayerStat>().gameObject;
+        playerPrefab.transform.position = playerStand.position;
+        pStats = playerPrefab.GetComponent<PlayerStat>();
+
         enemyPrefab = FindObjectOfType<RobotStat>().gameObject;
         enemyPrefab.transform.position = enemyStand.position;
         eStats = enemyPrefab.GetComponent<RobotStat>();
 
-        GameObject playerInfo = Instantiate(playerPrefab, playerStand);
-        pStats = playerInfo.GetComponent<RobotStat>();
-
-        /*GameObject enemyInfo = Instantiate(enemyPrefab, enemyStand);
-        eStats = enemyInfo.GetComponent<RobotStat>();*/
+        /*GameObject playerInfo = Instantiate(playerPrefab, playerStand);
+        pStats = playerInfo.GetComponent<RobotStat>();*/
 
         pStats.HPRemain = pStats.MaxHPStat();
         eStats.HPRemain = eStats.MaxHPStat();
 
-        //stats first update
+        //stats first update, player
         playerNameScr.text = pStats.NameStat();
         levelScr.text = pStats.LvStat().ToString();
         maxhpScr.text = "/" + pStats.MaxHPStat().ToString();
+
+        //stats first update, enemy
+        enemyNameScr.text = eStats.NameStat();
+        eLevelScr.text = eStats.LvStat().ToString();
+        eMaxhpScr.text = "/" + eStats.MaxHPStat().ToString();
+
         UpdatingStatOnScreen();
     }
 
     void UpdatingStatOnScreen()
     {
-        //Updating Health Bar
+        //Updating Player's Health Bar
         float ratio = (float) pStats.HPRemain / pStats.MaxHPStat(); //tim % mau sau khi mat hp
         hpBar.rectTransform.localPosition = new Vector3(hpBar.rectTransform.rect.width * ratio - hpBar.rectTransform.rect.width,
             0, 0); //day thanh image qua trai, bang (tong thanh image * 0.so mau mat - tong thanh image hien tai)
 
         hpRemainScr.text = pStats.HPRemain.ToString();
+
+        //Updating Enemy's Health Bar
+        float eRatio = (float) eStats.HPRemain / eStats.MaxHPStat(); //tim % mau sau khi mat hp
+        eHpBar.rectTransform.localPosition = new Vector3(eHpBar.rectTransform.rect.width * eRatio - eHpBar.rectTransform.rect.width,
+            0, 0); //day thanh image qua trai, bang (tong thanh image * 0.so mau mat - tong thanh image hien tai)
+
+        eHpRemainScr.text = eStats.HPRemain.ToString();
     }
 
     void PreparingCallSkill()
@@ -121,7 +141,7 @@ public class BattleManager : MonoBehaviour
                     break;
                 }
 
-            Debug.Log($"{eStats.NameStat()} drop down from {eStats.MaxHPStat()} to {eStats.HPRemain}.");
+            UpdatingStatOnScreen();
 
             if (eStats.HPRemain <= 0)
             {
@@ -219,7 +239,7 @@ public class BattleManager : MonoBehaviour
     }
 
     #region Unused
-    IEnumerator HPBarGoDownAnimation(float ratio)
+    /*IEnumerator HPBarGoDownAnimation(float ratio)
     {
         float barDownMax = hpBar.rectTransform.rect.width * ratio - hpBar.rectTransform.rect.width;
         float i = hpBar.rectTransform.localPosition.x; //current hp
@@ -228,12 +248,12 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(0f);
             hpBar.rectTransform.localPosition = new Vector3(i, 0, 0);
         }
-    }
+    }*/
 
-    public void OnLevelUp()
+    /*public void OnLevelUp()
     {
-        pStats.LevelUp();
+        pRStats.LevelUp();
         Debug.Log($"{pStats.MaxHPStat()} up");
-    }
+    }*/
     #endregion
 }

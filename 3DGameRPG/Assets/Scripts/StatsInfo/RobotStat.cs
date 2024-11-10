@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RobotStat : MonoBehaviour
+public class RobotStat : MonoBehaviour, IHaveSameStat
 {
     [SerializeField] StatConfig stat;
     int atk, def, sed;
+    int sp;
 
     [Header("Skill Set")]
     [SerializeField] List<SkillConfig> hasSkills;
@@ -72,13 +73,22 @@ public class RobotStat : MonoBehaviour
         }
     }
 
-    public int SEDTemp
+    public int SPETemp
     {
         get { return sed; }
         set
         {
             if (value + sed != stat.speed)
                 sed += value;
+        }
+    }
+
+    public int SPRemain
+    {
+        get { return stat.specialPoint; }
+        set
+        {
+            stat.specialPoint = value;
         }
     }
     #endregion
@@ -96,7 +106,7 @@ public class RobotStat : MonoBehaviour
         hasSkills = new List<SkillConfig>();
         for (int i = 0; i < stat.learnableSkills.Length; i++)
         {
-            if(stat.learnableSkills[i].atLevel == stat.lv)
+            if(stat.learnableSkills[i].atLevel <= stat.lv)
                 hasSkills.Add(stat.learnableSkills[i].learnableSkill);
         }
     }

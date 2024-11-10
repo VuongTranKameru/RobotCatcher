@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStat : MonoBehaviour
+public class PlayerStat : MonoBehaviour, IHaveSameStat
 {
+    static PlayerStat instance;
     [SerializeField] StatConfig stat;
     int atk, def, sed;
 
     [Header("Skill Set")]
-    List<SkillConfig> hasSkills;
+    [SerializeField] List<SkillConfig> hasSkills;
 
     #region Callout Stat
     //read only
@@ -55,7 +56,7 @@ public class PlayerStat : MonoBehaviour
         }
     }
 
-    public int SEDTemp
+    public int SPETemp
     {
         get { return sed; }
         set
@@ -74,12 +75,24 @@ public class PlayerStat : MonoBehaviour
         ScanExistSkill();
     }
 
+    private void Start()
+    {
+        //dung static de xac dinh duy nhat 1 player ton tai, ko bi nhan len
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+
+        //ko huy player khi chuyen scene
+        DontDestroyOnLoad(gameObject);
+    }
+
     void ScanExistSkill()
     {
         hasSkills = new List<SkillConfig>();
         for (int i = 0; i < stat.learnableSkills.Length; i++)
         {
-            if (stat.learnableSkills[i].atLevel == stat.lv)
+            if (stat.learnableSkills[i].atLevel <= stat.lv)
                 hasSkills.Add(stat.learnableSkills[i].learnableSkill);
         }
     }

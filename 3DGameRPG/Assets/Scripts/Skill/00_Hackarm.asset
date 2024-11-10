@@ -19,6 +19,6 @@ MonoBehaviour:
     virus \u0111\u1EC3 kh\u1ED1ng ch\u1EBF robot."
   power: 0
   listBtnClr:
-  - {fileID: 21300000, guid: 984fe6d07ef7a0549ada1b97e9c0e4ae, type: 3}
   - {fileID: 21300000, guid: 41b0af84177decd449262ec5a20ec957, type: 3}
+  - {fileID: 21300000, guid: 984fe6d07ef7a0549ada1b97e9c0e4ae, type: 3}
   skillBtn: {fileID: 9150288850929585669, guid: 7c727e802cb417740ae8016cdaf31567, type: 3}
