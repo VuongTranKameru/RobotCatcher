@@ -14,7 +14,6 @@ internal interface IHaveSameStat
     public int DefenseStat();
     public int SpeedStat();
     public int MaxHPStat();
-    public int MaxSPStat();
     public int LvStat();
 
     //read and write

@@ -9,19 +9,30 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     int atk, def, sed;
 
     [Header("Skill Set")]
-    [SerializeField] List<SkillConfig> hasSkills;
+    List<SkillConfig> hasSkills;
+
+    [Header("Robotcatched")]
+    [SerializeField] RobotStat[] robotsList = new RobotStat[5];
 
     #region Callout Stat
     //read only
     public string NameStat() { return stat.nameChar; }
     public List<SkillConfig> ListOfAction() { return hasSkills; }
+    public int ListOfRobots() { return robotsList.Length; }
+    public bool CheckAvailableRobot()
+    {
+        for (int i = 0; i < ListOfRobots(); i++)
+            if (robotsList[i] != null && robotsList[i].HPRemain > 0)
+                return true;
+
+        return false;
+    }
 
     //read, only write when meet condition
     public int AttackStat() { return stat.attack; }
     public int DefenseStat() { return stat.defense; }
     public int SpeedStat() { return stat.speed; }
     public int MaxHPStat() { return stat.maxHP; }
-    public int MaxSPStat() { return stat.maxSP; }
     public int LvStat() { return stat.lv; }
 
     //read and write
@@ -95,5 +106,14 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
             if (stat.learnableSkills[i].atLevel <= stat.lv)
                 hasSkills.Add(stat.learnableSkills[i].learnableSkill);
         }
+    }
+
+    public RobotStat UsedThatRobot()
+    {
+        /*for (int i = 0; i < ListOfRobots(); i++)
+            if (robotsList[i] != null)
+                return robotsList[i];*/
+
+        return robotsList[0];
     }
 }
