@@ -88,6 +88,8 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
         get { return stat.specialPoint; }
         set
         {
+            if (value > stat.maxSP)
+                stat.specialPoint = stat.maxSP;
             stat.specialPoint = value;
         }
     }

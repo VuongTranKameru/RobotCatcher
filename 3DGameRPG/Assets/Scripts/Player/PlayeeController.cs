@@ -30,16 +30,19 @@ public class PlayeeController : MonoBehaviour
 
     void Update()
     {
-        movementInput = inputAction.Player.Movement.ReadValue<Vector2>();
-        movementInput.Normalize();
+        if (inputAction.Player.enabled)
+        {
+            movementInput = inputAction.Player.Movement.ReadValue<Vector2>();
+            movementInput.Normalize();
 
-        Moving();
-        Running();
+            Moving();
+            Running();
 
-        if (speed > 2)
-            anim.SetFloat("isSpeeding", movementInput.sqrMagnitude + 1);
-        else
-            anim.SetFloat("isSpeeding", movementInput.sqrMagnitude); //sqrMag tra lai do dai cua vector
+            if (speed > 2)
+                anim.SetFloat("isSpeeding", movementInput.sqrMagnitude + 1);
+            else
+                anim.SetFloat("isSpeeding", movementInput.sqrMagnitude); //sqrMag tra lai do dai cua vector
+        }
     }
 
     void Moving()
