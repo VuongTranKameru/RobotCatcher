@@ -18,13 +18,13 @@ public class AShieldingSkillBtn : MonoBehaviour, ICanUseSkill
         actChk.sprite = skill.listBtnClr[1]; //darker color
     }
 
-    public void SkillUsed(RobotStat user, RobotStat opp)
+    void ICanUseSkill.SkillUsed(IHaveSameStat user, IHaveSameStat opp)
     {
         //buff defense tam thoi len
         user.DEFTemp = skill.power;
     }
 
-    public string MessageUsedSkill(RobotStat user, RobotStat opp = null)
+    string ICanUseSkill.MessageUsedSkill(IHaveSameStat user, IHaveSameStat opp)
     {
         return $"{user.NameStat()} used {skill.skillName}!";
     }

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AHitSkillBtn : MonoBehaviour, ICanUseSkill
+public class ARockthrowSkillBtn : MonoBehaviour, ICanUseSkill
 {
     [Header("Skill Setup")]
     [SerializeField] SkillConfig skill;
@@ -22,7 +22,10 @@ public class AHitSkillBtn : MonoBehaviour, ICanUseSkill
 
     void ICanUseSkill.SkillUsed(IHaveSameStat user, IHaveSameStat opp)
     {
-        tempDamg = (user.ATKTemp + skill.power) - opp.DEFTemp;
+        int totalATK = Random.Range(0, 6) * skill.power;
+        //Debug.Log("rock: " + totalATK);
+
+        tempDamg = (totalATK + user.ATKTemp) - opp.DEFTemp;
         //hp = hp - (def - ([atk doi phuong] + [power doi phuong])
         if (tempDamg > 0)
             opp.HPRemain -= tempDamg;
@@ -34,6 +37,6 @@ public class AHitSkillBtn : MonoBehaviour, ICanUseSkill
             tempDamg = 0;
 
         return $"{user.NameStat()} use {skill.skillName}! " +
-           $"\n{opp.NameStat()} take {tempDamg} damage.";
+            $"\n{opp.NameStat()} take {tempDamg} damage.";
     }
 }

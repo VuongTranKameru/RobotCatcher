@@ -4,6 +4,6 @@ using UnityEngine;
 
 internal interface ICanUseSkill
 {
-    public void SkillUsed(RobotStat user, RobotStat opp);
-    public string MessageUsedSkill(RobotStat user, RobotStat opp = null);
+    public void SkillUsed(IHaveSameStat user, IHaveSameStat opp);
+    public string MessageUsedSkill(IHaveSameStat user, IHaveSameStat opp = null);
 }

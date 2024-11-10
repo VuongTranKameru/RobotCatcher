@@ -4,14 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AHitSkillBtn : MonoBehaviour, ICanUseSkill
+public class AHackarmSkillBtn : MonoBehaviour, ICanUseSkill
 {
     [Header("Skill Setup")]
     [SerializeField] SkillConfig skill;
     [SerializeField] Image actBtnClr, actChk;
     [SerializeField] TMP_Text actName;
-
-    int tempDamg;
 
     void Awake()
     {
@@ -22,18 +20,19 @@ public class AHitSkillBtn : MonoBehaviour, ICanUseSkill
 
     void ICanUseSkill.SkillUsed(IHaveSameStat user, IHaveSameStat opp)
     {
-        tempDamg = (user.ATKTemp + skill.power) - opp.DEFTemp;
-        //hp = hp - (def - ([atk doi phuong] + [power doi phuong])
-        if (tempDamg > 0)
-            opp.HPRemain -= tempDamg;
+        CatchingRobot();
+
+        opp.HPRemain = 0;
     }
 
     string ICanUseSkill.MessageUsedSkill(IHaveSameStat user, IHaveSameStat opp)
     {
-        if (tempDamg < 0)
-            tempDamg = 0;
-
         return $"{user.NameStat()} use {skill.skillName}! " +
-           $"\n{opp.NameStat()} take {tempDamg} damage.";
+            $"\n{user.NameStat()} capturing {opp.NameStat()}.";
+    }
+
+    void CatchingRobot()
+    {
+
     }
 }

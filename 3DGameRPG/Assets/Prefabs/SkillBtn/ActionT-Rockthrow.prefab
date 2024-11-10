@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 1541219707405867318}
   - component: {fileID: 3233790800908508790}
   - component: {fileID: 5970807769591451419}
-  - component: {fileID: 6315201369373159469}
+  - component: {fileID: 7691094362200567028}
   m_Layer: 5
   m_Name: ActionT-Rockthrow
   m_TagString: Untagged
@@ -339,7 +339,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
---- !u!114 &6315201369373159469
+--- !u!114 &7691094362200567028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9150288850929585669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9bf375f4a7e0a14db3134417598fdab, type: 3}
+  m_Script: {fileID: 11500000, guid: 81dd19d1eb4738c4a9f29d3f2e33bd5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skill: {fileID: 11400000, guid: 3e6644024c0b6a846a73199ebd4a569c, type: 2}

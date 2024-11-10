@@ -17,9 +17,11 @@ MonoBehaviour:
   type: 0
   sDesc: "Khi b\u1EA1o l\u1EF1c l\xE0 c\xE1ch duy nh\u1EA5t \u0111\u1EC3 gi\u1EA3i
     quy\u1EBFt v\u1EA5n \u0111\u1EC1 v\xE0 c\u1EE5c \u0111\xE1 l\xE0 th\u1EE9 l\u1EE5m
-    \u0111\u01B0\u1EE3c \u1EDF trong tay."
+    \u0111\u01B0\u1EE3c \u1EDF trong tay. N\xE9m \u0111\xE1 v\xE0o \u0111\u1ED1i
+    ph\u01B0\u01A1ng v\u1EDBi l\u1EF1c \u0111\xE1nh t\u1ED1i \u0111a c\u1EF1c m\u1EA1nh
+    ho\u1EB7c kh\xF4ng t\u1EA1o ra s\u1EE9c \u1EA3nh h\u01B0\u1EDFng g\xEC."
   power: 1
   listBtnClr:
   - {fileID: 21300000, guid: 48b31682022be67489476db0f3027cd6, type: 3}
   - {fileID: 21300000, guid: 1d869a07ae57b804f806ca05d8053e54, type: 3}
-  skillBtn: {fileID: 0}
+  skillBtn: {fileID: 9150288850929585669, guid: 2b9ebfe7cf2b1464ea0f869313a5688e, type: 3}
