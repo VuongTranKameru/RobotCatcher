@@ -26,6 +26,12 @@ public class AShieldingSkillBtn : MonoBehaviour, ICanUseSkill
 
     string ICanUseSkill.MessageUsedSkill(IHaveSameStat user, IHaveSameStat opp)
     {
-        return $"{user.NameStat()} used {skill.skillName}!";
+        return $"{user.NameStat()} used {skill.skillName}! " +
+            $"\n{user.NameStat()} is increasing defense slightly.";
+    }
+
+    string ICanUseSkill.MessageActionOnly(IHaveSameStat user)
+    {
+        return $"{user.NameStat()} used {skill.skillName}! ";
     }
 }

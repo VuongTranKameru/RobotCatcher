@@ -39,4 +39,9 @@ public class ARockthrowSkillBtn : MonoBehaviour, ICanUseSkill
         return $"{user.NameStat()} use {skill.skillName}! " +
             $"\n{opp.NameStat()} take {tempDamg} damage.";
     }
+
+    string ICanUseSkill.MessageActionOnly(IHaveSameStat user)
+    {
+        return $"{user.NameStat()} use {skill.skillName}! ";
+    }
 }

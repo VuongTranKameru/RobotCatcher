@@ -16,13 +16,12 @@ public class BattleManager : MonoBehaviour
     bool donePTurn, doneETurn;
 
     [Header("Location Spawn")]
-    [SerializeField] GameObject playerPrefab;
-    [SerializeField] GameObject enemyPrefab;
-    [SerializeField] Transform playerStand, rPobotStand, enemyStand;
+    [SerializeField] Transform playerStand;
+    [SerializeField] Transform rPobotStand, enemyStand;
+    [SerializeField] GameObject playerPrefab, robotPPrefab, enemyPrefab;
     IHaveSameStat chosen;
     RobotStat rPobots, eStats;
     PlayerStat pStats;
-    GameObject robotInfo;
 
     [Header("Player Info Screen")]
     [SerializeField] TMP_Text playerNameScr;
@@ -72,7 +71,7 @@ public class BattleManager : MonoBehaviour
     void Update()
     {
         ControllingMessages();
-        StartCoroutine(EnemyAttack());
+        StartCoroutine(EnemyAction());
     }
 
     void PreparingWrapCharactersIn()
@@ -87,32 +86,12 @@ public class BattleManager : MonoBehaviour
 
         eStats.HPRemain = eStats.MaxHPStat();
 
-        //check if player have robot. if have, stats first update, player robot
-        robotInfo = Instantiate(pStats.UsedThatRobot().gameObject, rPobotStand.position, rPobotStand.rotation);
-        rPobots = robotInfo.GetComponent<RobotStat>();
-
-        playerNameScr.text = rPobots.NameStat();
-        levelScr.text = rPobots.LvStat().ToString();
-
-        chosen = rPobots;
-        hOr = true;
-        maxHP = rPobots.MaxHPStat();
-        maxhpScr.text = "/" + maxHP.ToString();
-        spUsed = true;
-        spAvailable.SetActive(true);
-
-        rPobots.SPRemain = 0;
-        rPobots.HPRemain = rPobots.MaxHPStat();
-
-        PreparingCallSkill(rPobots);
-
         //stats first update, enemy
         enemyNameScr.text = eStats.NameStat();
         eLevelScr.text = eStats.LvStat().ToString();
         eMaxhpScr.text = "/" + eStats.MaxHPStat().ToString();
 
-        UpdatingStatOnScreen();
-        //ChoosingCharacterToPlay();
+        ChoosingCharacterToPlay();
     }
 
     void ChoosingCharacterToPlay()
@@ -120,8 +99,8 @@ public class BattleManager : MonoBehaviour
         if (pStats.CheckAvailableRobot())
         {
             //check if player have robot. if have, stats first update, player robot
-            robotInfo = Instantiate(pStats.UsedThatRobot().gameObject, rPobotStand.position, rPobotStand.rotation);
-            rPobots = robotInfo.GetComponent<RobotStat>();
+            robotPPrefab = Instantiate(pStats.UsedThatRobot().gameObject, rPobotStand.position, rPobotStand.rotation);
+            rPobots = robotPPrefab.GetComponent<RobotStat>();
 
             playerNameScr.text = rPobots.NameStat();
             levelScr.text = rPobots.LvStat().ToString();
@@ -149,8 +128,6 @@ public class BattleManager : MonoBehaviour
             maxhpScr.text = "/" + maxHP.ToString();
             spUsed = false;
             spAvailable.SetActive(false);
-
-            pStats.HPRemain = pStats.MaxHPStat();
 
             PreparingCallSkill(pStats);
         }
@@ -214,28 +191,14 @@ public class BattleManager : MonoBehaviour
                     TurnAnnouceBoard();
                     MessageReceive(emptySkills[i].GetComponent<ICanUseSkill>().MessageUsedSkill(chosen, eStats));
 
+                    input.Disable();
+                    StartCoroutine(FinishingAction(emptySkills[i].GetComponent<ICanUseSkill>(), chosen, eStats));
+
                     break;
                 }
 
-            UpdatingStatOnScreen();
-
             if (spUsed)
                 rPobots.SPRemain += 20;
-
-            if (eStats.HPRemain <= 0)
-            {
-                state = BattleState.WonBattle;
-                if (state == BattleState.WonBattle)
-                    MessageReceive($"{pStats.NameStat()} won the battle!");
-
-                Destroy(enemyPrefab);
-                SceneManager.LoadScene("SpawnRoute");
-            }
-            else
-            {
-                donePTurn = true;
-                state = BattleState.EnemyTurn;
-            }
         }
         else
         {
@@ -244,7 +207,46 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator EnemyAttack()
+    IEnumerator FinishingAction(ICanUseSkill skill, IHaveSameStat user, IHaveSameStat opp)
+    {
+        MessageReceive(skill.MessageActionOnly(user));
+        yield return new WaitForSeconds(1f); 
+
+        TurnStatusBoard();
+        UpdatingStatOnScreen();
+
+        //for animation, wait how long to perform it?
+        AttackAnimation();
+        yield return new WaitForSeconds(1f);
+
+        MessageReceive(skill.MessageUsedSkill(user, opp));
+        TurnAnnouceBoard();
+
+        if (state == BattleState.PlayerTurn)
+            PlayerAction();
+
+        input.OnBattle.Enable();
+    }
+
+    void PlayerAction()
+    {
+        if (eStats.HPRemain <= 0)
+        {
+            state = BattleState.WonBattle;
+            if (state == BattleState.WonBattle)
+                MessageReceive($"{pStats.NameStat()} won the battle!");
+
+            Destroy(enemyPrefab);
+            SceneManager.LoadScene("SpawnRoute");
+        }
+        else
+        {
+            donePTurn = true;
+            state = BattleState.EnemyTurn;
+        }
+    }
+
+    IEnumerator EnemyAction()
     {
         if (input.OnBattle.SkipDialogue.triggered && donePTurn)
         {
@@ -257,32 +259,25 @@ public class BattleManager : MonoBehaviour
             SkillConfig usedSkill = eStats.ListOfAction()[0];
             usedSkill.skillBtn.GetComponent<ICanUseSkill>().SkillUsed(eStats, chosen);
 
-            MessageReceive(usedSkill.skillBtn.GetComponent<ICanUseSkill>().MessageUsedSkill(eStats, chosen));
-            yield return new WaitForSeconds(1f);
-
-            TurnStatusBoard();
-            UpdatingStatOnScreen();
-
+            StartCoroutine(FinishingAction(usedSkill.skillBtn.GetComponent<ICanUseSkill>(), eStats, chosen));
             doneETurn = true;
-            input.OnBattle.Enable();
         }
-
-        if (input.OnBattle.SkipDialogue.triggered && state == BattleState.EnemyTurn && doneETurn)
+        else if (input.OnBattle.SkipDialogue.triggered && state == BattleState.EnemyTurn && doneETurn)
         {
-            TurnAnnouceBoard();
-
             if (pStats.HPRemain <= 0)
             {
                 state = BattleState.LoseBattle;
                 if (state == BattleState.LoseBattle)
-                    MessageReceive($"{chosen.NameStat()} lost the battle!");
+                    MessageReceive($"{pStats.NameStat()} lost the battle!");
+
+                yield return new WaitForSeconds(0.3f);
                 Destroy(playerPrefab);
             }
             else if (chosen.HPRemain <= 0)
             {
                 doneETurn = false;
                 MessageReceive($"{chosen.NameStat()} lost the battle! {pStats.NameStat()} using another one.");
-                Destroy(robotInfo);
+                Destroy(robotPPrefab);
 
                 ChoosingCharacterToPlay();
                 state = BattleState.PlayerTurn;
@@ -302,14 +297,13 @@ public class BattleManager : MonoBehaviour
         SceneManager.LoadScene("SpawnRoute");
     }
 
-    //Annoucement Script
+    //Annoucement function
     void ControllingMessages()
     {
         if (input.OnBattle.SkipDialogue.triggered && state == BattleState.BeginBattle)
         {
             if (chosen.SpeedStat() < eStats.SpeedStat())
             {
-                MessageReceive($"{eStats.NameStat()} turns.");
                 donePTurn = true;
                 state = BattleState.EnemyTurn;
             }
@@ -343,6 +337,40 @@ public class BattleManager : MonoBehaviour
         annouceBoard.SetActive(false);
         statusBoard.SetActive(true);
         playerBoard.SetActive(false);
+    }
+
+    //Effect function
+    void AttackAnimation()
+    {
+        if (state == BattleState.PlayerTurn)
+        {
+            if (robotPPrefab != null)
+                KindOfAttackAnimation(robotPPrefab);
+            else KindOfAttackAnimation(playerPrefab);
+
+            StartCoroutine(BeingHitAnimation(enemyPrefab));
+        }
+        else if (state == BattleState.EnemyTurn)
+        {
+            KindOfAttackAnimation(enemyPrefab);
+
+            if (robotPPrefab != null)
+                StartCoroutine(BeingHitAnimation(robotPPrefab));
+            else StartCoroutine(BeingHitAnimation(playerPrefab));
+        }
+    }
+
+    void KindOfAttackAnimation(GameObject userPrefab)
+    {
+        //prob dont have animation
+        userPrefab.GetComponent<AnimationRPG>()?.RegAttackAnim();
+    }
+
+    IEnumerator BeingHitAnimation(GameObject userPrefab)
+    {
+        yield return new WaitForSeconds(1f);
+
+        userPrefab.GetComponent<AnimationRPG>()?.IsHitAnim();
     }
 
     #region Unused

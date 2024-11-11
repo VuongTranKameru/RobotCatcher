@@ -31,6 +31,11 @@ public class AHackarmSkillBtn : MonoBehaviour, ICanUseSkill
             $"\n{user.NameStat()} capturing {opp.NameStat()}.";
     }
 
+    string ICanUseSkill.MessageActionOnly(IHaveSameStat user)
+    {
+        return $"{user.NameStat()} use {skill.skillName}! ";
+    }
+
     void CatchingRobot()
     {
 
