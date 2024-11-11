@@ -464,7 +464,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat: {fileID: 11400000, guid: 784a2832536f94947b9c17741e3cdb60, type: 2}
-  hp: 0
   hasSkills: []
 --- !u!54 &8128085936248688777
 Rigidbody:

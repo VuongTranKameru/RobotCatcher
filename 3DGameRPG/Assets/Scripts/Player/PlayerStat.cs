@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour, IHaveSameStat
 {
-    static PlayerStat instance;
     [SerializeField] StatConfig stat;
     int atk, def, sed;
 
@@ -18,15 +17,6 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     //read only
     public string NameStat() { return stat.nameChar; }
     public List<SkillConfig> ListOfAction() { return hasSkills; }
-    public int ListOfRobots() { return robotsList.Length; }
-    public bool CheckAvailableRobot()
-    {
-        for (int i = 0; i < ListOfRobots(); i++)
-            if (robotsList[i] != null && robotsList[i].HPRemain > 0)
-                return true;
-
-        return false;
-    }
 
     //read, only write when meet condition
     public int AttackStat() { return stat.attack; }
@@ -86,18 +76,6 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         ScanExistSkill();
     }
 
-    private void Start()
-    {
-        //dung static de xac dinh duy nhat 1 player ton tai, ko bi nhan len
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
-
-        //ko huy player khi chuyen scene
-        DontDestroyOnLoad(gameObject);
-    }
-
     void ScanExistSkill()
     {
         hasSkills = new List<SkillConfig>();
@@ -108,6 +86,18 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         }
     }
 
+    #region Robot Management
+    //read only
+    public int ListOfRobots() { return robotsList.Length; }
+    public bool CheckAvailableRobot()
+    {
+        for (int i = 0; i < ListOfRobots(); i++)
+            if (robotsList[i] != null && robotsList[i].HPRemain > 0)
+                return true;
+
+        return false;
+    }
+
     public RobotStat UsedThatRobot()
     {
         /*for (int i = 0; i < ListOfRobots(); i++)
@@ -116,4 +106,5 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
 
         return robotsList[0];
     }
+    #endregion
 }
