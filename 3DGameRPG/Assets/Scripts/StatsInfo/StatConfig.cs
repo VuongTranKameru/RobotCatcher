@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class LearnableSkills
@@ -14,7 +15,9 @@ public class StatConfig : ScriptableObject
 {
     [Header("Prefab")]
     [SerializeField] GameObject itself;
+    [SerializeField] Sprite portrait;
     public GameObject Itself() { return itself; }
+    public Sprite Avatar() { return portrait; }
 
     [Header("Information")]
     [SerializeField] internal string charID;
