@@ -1541,9 +1541,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat: {fileID: 11400000, guid: e07a98a3669091e4da60bea8004fed35, type: 2}
-  robotsList:
-  - {fileID: 3989760791159602934, guid: 1f36d936fa7f1f3449448fd26a23f3c4, type: 3}
-  - {fileID: 0}
+  robotList:
+  - {fileID: 11400000, guid: 48f7da8d423718346963fba8f7815898, type: 2}
+  - {fileID: 11400000, guid: 784a2832536f94947b9c17741e3cdb60, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

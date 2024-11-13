@@ -11,10 +11,11 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     List<SkillConfig> hasSkills;
 
     [Header("Robotcatched")]
-    [SerializeField] RobotStat[] robotsList = new RobotStat[5];
+    [SerializeField] StatConfig[] robotList = new StatConfig[5]; //DO NOT USE PLAYER STAT
 
     #region Callout Stat
     //read only
+    public StatConfig PlayerStats() { return stat; }
     public string NameStat() { return stat.nameChar; }
     public List<SkillConfig> ListOfAction() { return hasSkills; }
 
@@ -68,7 +69,7 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     }
     #endregion
 
-    private void Awake()
+    private void OnEnable()
     {
         atk = stat.attack;
         def = stat.defense;
@@ -88,23 +89,31 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
 
     #region Robot Management
     //read only
-    public int ListOfRobots() { return robotsList.Length; }
+    public int AmountOfRobots() 
+    {
+        int count = 0;
+        for (int i = 0; i < robotList.Length; i++)
+            if (robotList[i] != null)
+                count++;
+        //result is how many robotcatcher, in human count
+        return count; 
+    }
     public bool CheckAvailableRobot()
     {
-        for (int i = 0; i < ListOfRobots(); i++)
-            if (robotsList[i] != null && robotsList[i].HPRemain > 0)
+        for (int i = 0; i < AmountOfRobots(); i++)
+            if (robotList[i] != null && robotList[i].health > 0)
                 return true;
 
         return false;
     }
-
-    public RobotStat UsedThatRobot()
+    public StatConfig ChooseRobot(int num)
     {
-        /*for (int i = 0; i < ListOfRobots(); i++)
-            if (robotsList[i] != null)
-                return robotsList[i];*/
+        return robotList[num];
+    }
 
-        return robotsList[0];
+    public StatConfig TestRobot()
+    {
+        return robotList[0];
     }
     #endregion
 }

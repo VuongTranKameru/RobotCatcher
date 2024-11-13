@@ -42,6 +42,7 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
     }
 
     //read and write
+    public StatConfig RobotStats { get { return null; } set { stat = value; } }
     public int HPRemain 
     { 
         get { return stat.health; } 
@@ -96,6 +97,11 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
     #endregion
 
     private void Awake()
+    {
+        
+    }
+
+    public void CallOutTempStat() //only in battle
     {
         atk = stat.attack;
         def = stat.defense;

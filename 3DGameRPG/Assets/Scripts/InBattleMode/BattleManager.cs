@@ -19,7 +19,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] Transform playerStand;
     [SerializeField] Transform rPobotStand, enemyStand;
     [SerializeField] GameObject playerPrefab, robotPPrefab, enemyPrefab;
-    IHaveSameStat chosen;
+    IHaveSameStat chosen; //what kind of robot is on battle
     RobotStat rPobots, eStats;
     PlayerStat pStats;
 
@@ -83,6 +83,7 @@ public class BattleManager : MonoBehaviour
         enemyPrefab = FindObjectOfType<RobotStat>().gameObject;
         enemyPrefab.transform.position = enemyStand.position;
         eStats = enemyPrefab.GetComponent<RobotStat>();
+        eStats.CallOutTempStat(); //Call the skill and temp stat
 
         eStats.HPRemain = eStats.MaxHPStat();
 
@@ -99,8 +100,13 @@ public class BattleManager : MonoBehaviour
         if (pStats.CheckAvailableRobot())
         {
             //check if player have robot. if have, stats first update, player robot
-            robotPPrefab = Instantiate(pStats.UsedThatRobot().gameObject, rPobotStand.position, rPobotStand.rotation);
+            /*robotPPrefab = Instantiate(pStats.UsedThatRobot().gameObject, rPobotStand.position, rPobotStand.rotation);
+            rPobots = robotPPrefab.GetComponent<RobotStat>();*/
+
+            robotPPrefab = Instantiate(pStats.TestRobot().Itself(), rPobotStand.position, rPobotStand.rotation);
             rPobots = robotPPrefab.GetComponent<RobotStat>();
+            rPobots.RobotStats = pStats.TestRobot();
+            rPobots.CallOutTempStat(); //Call the skill and temp stat
 
             playerNameScr.text = rPobots.NameStat();
             levelScr.text = rPobots.LvStat().ToString();

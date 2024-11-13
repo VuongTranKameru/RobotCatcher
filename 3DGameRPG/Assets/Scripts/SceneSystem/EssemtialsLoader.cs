@@ -25,7 +25,8 @@ public class EssemtialsLoader : MonoBehaviour
     #region For TestManager Only
     void FullHPRobotOwned(PlayerStat stat)
     {
-        stat.UsedThatRobot().HPRemain = stat.UsedThatRobot().MaxHPStat();
+        //stat.UsedThatRobot().HPRemain = stat.UsedThatRobot().MaxHPStat();
+        stat.TestRobot().health = stat.TestRobot().maxHP;
     }
     #endregion
 }

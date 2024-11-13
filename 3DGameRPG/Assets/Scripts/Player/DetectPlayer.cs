@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class DetectPlayer : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
         gameObject.tag = "Respawn";
-        Invoke(nameof(SwitchToPlayerTag), 1f);
+        StartCoroutine(SwitchToPlayerTag());
     }
 
-    void SwitchToPlayerTag()
+    IEnumerator SwitchToPlayerTag()
     {
+        yield return new WaitForSeconds(1f);
         gameObject.tag = "Player";
     }
 }
