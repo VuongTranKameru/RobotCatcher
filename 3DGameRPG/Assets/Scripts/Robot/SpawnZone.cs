@@ -17,7 +17,7 @@ public class SpawnZone : MonoBehaviour
 
     void Start()
     {
-        randomSpawnRate = Random.Range(0, 10);
+        randomSpawnRate = Random.Range(0, 9);
         //text.text = randomSpawnRate.ToString();
     }
 
