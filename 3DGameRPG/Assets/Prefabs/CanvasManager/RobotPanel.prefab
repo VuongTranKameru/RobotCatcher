@@ -1279,7 +1279,6 @@ MonoBehaviour:
   nameTag: {fileID: 3691360650558773267}
   levelHolder: {fileID: 6250353734385361794}
   hpNum: {fileID: 5815661943784972207}
-  hpMaxNum: {fileID: 0}
   spNum: {fileID: 3730241165945894050}
-  spMaxNum: {fileID: 0}
   charAva: {fileID: 2389364924942163720}
+  playableStatus: {fileID: 8447631307307886207}

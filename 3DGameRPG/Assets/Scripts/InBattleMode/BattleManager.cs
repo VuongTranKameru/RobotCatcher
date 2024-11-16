@@ -77,7 +77,7 @@ public class BattleManager : MonoBehaviour
     void PreparingWrapCharactersIn()
     {
         playerPrefab = FindObjectOfType<PlayerStat>().gameObject;
-        playerPrefab.transform.position = playerStand.position;
+        playerPrefab.transform.SetPositionAndRotation(playerStand.position, playerStand.rotation);
         pStats = playerPrefab.GetComponent<PlayerStat>();
 
         enemyPrefab = FindObjectOfType<RobotStat>().gameObject;
@@ -98,45 +98,8 @@ public class BattleManager : MonoBehaviour
     void ChoosingCharacterToPlay()
     {
         if (pStats.CheckAvailableRobot())
-        {
-            //check if player have robot. if have, stats first update, player robot
-            /*robotPPrefab = Instantiate(pStats.UsedThatRobot().gameObject, rPobotStand.position, rPobotStand.rotation);
-            rPobots = robotPPrefab.GetComponent<RobotStat>();*/
-
-            robotPPrefab = Instantiate(pStats.TestRobot().Itself(), rPobotStand.position, rPobotStand.rotation);
-            rPobots = robotPPrefab.GetComponent<RobotStat>();
-            rPobots.RobotStats = pStats.TestRobot();
-            rPobots.CallOutTempStat(); //Call the skill and temp stat
-
-            playerNameScr.text = rPobots.NameStat();
-            levelScr.text = rPobots.LvStat().ToString();
-
-            chosen = rPobots;
-            hOr = true;
-            maxHP = rPobots.MaxHPStat();
-            maxhpScr.text = "/" + maxHP.ToString();
-            spUsed = true;
-            spAvailable.SetActive(true);
-
-            rPobots.SPRemain = 0;
-
-            PreparingCallSkill(rPobots);
-        }
-        else
-        {
-            //stats first update, player
-            playerNameScr.text = pStats.NameStat();
-            levelScr.text = pStats.LvStat().ToString();
-
-            chosen = pStats;
-            hOr = false;
-            maxHP = pStats.MaxHPStat();
-            maxhpScr.text = "/" + maxHP.ToString();
-            spUsed = false;
-            spAvailable.SetActive(false);
-
-            PreparingCallSkill(pStats);
-        }
+            ChoosingRobot();
+        else ChoosingHuman();
 
         UpdatingStatOnScreen();
     }
@@ -295,6 +258,55 @@ public class BattleManager : MonoBehaviour
                 state = BattleState.PlayerTurn;
             }
         }
+    }
+
+    void ChoosingRobot()
+    {
+        //check if player have robot. if have, stats first update, player robot
+        robotPPrefab = Instantiate(pStats.TestRobot().Itself(), rPobotStand.position, rPobotStand.rotation);
+        rPobots = robotPPrefab.GetComponent<RobotStat>();
+        rPobots.RobotStats = pStats.TestRobot();
+        rPobots.CallOutTempStat(); //Call the skill and temp stat
+
+        playerNameScr.text = rPobots.NameStat();
+        levelScr.text = rPobots.LvStat().ToString();
+
+        chosen = rPobots;
+        hOr = true;
+        maxHP = rPobots.MaxHPStat();
+        maxhpScr.text = "/" + maxHP.ToString();
+        spUsed = true;
+        spAvailable.SetActive(true);
+
+        rPobots.SPRemain = 0;
+
+        PreparingCallSkill(rPobots);
+    }
+
+    void ChoosingHuman()
+    {
+        //stats first update, player
+        playerNameScr.text = pStats.NameStat();
+        levelScr.text = pStats.LvStat().ToString();
+
+        chosen = pStats;
+        hOr = false;
+        maxHP = pStats.MaxHPStat();
+        maxhpScr.text = "/" + maxHP.ToString();
+        spUsed = false;
+        spAvailable.SetActive(false);
+
+        PreparingCallSkill(pStats);
+    }
+
+    public void OnSwitchRobotcatcher(int num)
+    {
+        Destroy(robotPPrefab);
+        Debug.Log(num);
+        if (num == 0)
+            ChoosingHuman();
+        else ChoosingRobot();
+        UpdatingStatOnScreen();
     }
 
     public void OnRunaway()
