@@ -7,6 +7,7 @@ public class PanelOfOwnedRobot : MonoBehaviour
     [SerializeField] TMP_Text nameTag;
     [SerializeField] TMP_Text levelHolder, hpNum, spNum;
     [SerializeField] Image charAva;
+    [SerializeField] GameObject playableStatus;
 
     public TMP_Text NameTag
     {
@@ -41,5 +42,12 @@ public class PanelOfOwnedRobot : MonoBehaviour
             charAva.SetNativeSize();
             charAva.transform.position = new Vector3(0, 0, 0);
         }
+    }
+
+    public void PlayableOrDead(Sprite spriteField)
+    {
+        playableStatus.GetComponent<Image>().sprite = spriteField;
+        playableStatus.GetComponent<Toggle>().transition = Selectable.Transition.None;
+        playableStatus.GetComponent<Toggle>().interactable = false;
     }
 }
