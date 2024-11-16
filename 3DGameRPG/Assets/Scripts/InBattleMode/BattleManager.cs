@@ -311,8 +311,18 @@ public class BattleManager : MonoBehaviour
 
     public void OnRunaway()
     {
-        Destroy(enemyPrefab);
-        SceneManager.LoadScene("SpawnRoute");
+        int runawayChance = Random.Range(0, 2);
+        if(runawayChance == 1)
+        {
+            TurnAnnouceBoard();
+            MessageReceive($"You run away from the battle.");
+            state = BattleState.LeaveBattle;
+        }
+        else
+        {
+            TurnAnnouceBoard();
+            MessageReceive($"You can't run away...");
+        }
     }
 
     //Annoucement function
@@ -334,6 +344,12 @@ public class BattleManager : MonoBehaviour
         else if (input.OnBattle.SkipDialogue.triggered && state == BattleState.PlayerTurn)
             if (!playerBoard.activeInHierarchy)
                 TurnPlayerBoard();
+
+        if (input.OnBattle.SkipDialogue.triggered && state == BattleState.LeaveBattle)
+        {
+            Destroy(enemyPrefab);
+            SceneManager.LoadScene("SpawnRoute");
+        }
     }
 
     void TurnAnnouceBoard()

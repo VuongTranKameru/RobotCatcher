@@ -7,12 +7,10 @@ public class CameraDynamic : MonoBehaviour
 {
     [SerializeField] BattleManager btlState;
     CinemachineVirtualCamera cinam;
-    BattleState state;
 
     void Awake()
     {
         cinam = GetComponent<CinemachineVirtualCamera>();
-        state = BattleState.PlayerTurn;
     }
 
     void Update()
