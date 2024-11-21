@@ -22,6 +22,7 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
     public string NameStat() { return stat.nameChar; }
     public string DescriptionStat() { return stat.description; }
     public List<SkillConfig> ListOfAction() { return hasSkills; }
+    public SkillConfig UsedAction(int num) { return hasSkills[num]; }
     public float ChanceToCatch() { return chance; }
 
     //read, only write when meet condition
