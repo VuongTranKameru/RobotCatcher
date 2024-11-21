@@ -45,7 +45,7 @@ public class BattleManager : MonoBehaviour
     public BattleState CurrentState() { return state; }
     void MessageReceive(string mes) { message.text = mes; }
 
-    void Awake()
+    private void Awake()
     {
         state = BattleState.BeginBattle;
         input = new PlayerInput();
@@ -68,7 +68,7 @@ public class BattleManager : MonoBehaviour
         input.Disable();
     }
 
-    void Update()
+    private void Update()
     {
         ControllingMessages();
         StartCoroutine(EnemyAction());
@@ -98,7 +98,7 @@ public class BattleManager : MonoBehaviour
     void ChoosingCharacterToPlay()
     {
         if (pStats.CheckAvailableRobot())
-            ChoosingRobot();
+            ChoosingRobot(0); //pick first one
         else ChoosingHuman();
 
         UpdatingStatOnScreen();
@@ -136,10 +136,18 @@ public class BattleManager : MonoBehaviour
 
         if (spUsed) //Updating PlayerRobot's SP Bar
         {
-            float spRatio = (float) rPobots.SPRemain / rPobots.MaxSPStat(); //tim % nang luong sau khi tu dong hoi
-            spBar.rectTransform.localPosition = new Vector3(0, spBar.rectTransform.rect.height * spRatio - spBar.rectTransform.rect.height,
-                0); //day thanh image len tren, bang (tong thanh image * 0.so sp tang - tong thanh image hien tai)
-            spRemainScr.text = rPobots.SPRemain.ToString() + "%";
+            if (rPobots.MaxSPStat() > 0)
+            {
+                float spRatio = (float)rPobots.SPRemain / rPobots.MaxSPStat(); //tim % nang luong sau khi tu dong hoi
+                spBar.rectTransform.localPosition = new Vector3(0, spBar.rectTransform.rect.height * spRatio - spBar.rectTransform.rect.height,
+                    0); //day thanh image len tren, bang (tong thanh image * 0.so sp tang - tong thanh image hien tai)
+                spRemainScr.text = rPobots.SPRemain.ToString() + "%";
+            }
+            else if (rPobots.MaxSPStat() == 0)
+            {
+                spBar.rectTransform.localPosition = new Vector3(0, spBar.rectTransform.rect.height, 0); 
+                spRemainScr.text = rPobots.MaxSPStat().ToString() + "%";
+            }
         }
 
         //Updating Enemy's Health Bar
@@ -155,19 +163,25 @@ public class BattleManager : MonoBehaviour
             for (int i = 0; i < emptySkills.Count; i++)
                 if (emptySkills[i].isOn)
                 {
-                    emptySkills[i].GetComponent<ICanUseSkill>().SkillUsed(chosen, eStats);
+                    if (rPobots.SPRemain >= emptySkills[i].GetComponent<ICanUseSkill>().CostOfSP())
+                    {
+                        rPobots.SPRemain -= emptySkills[i].GetComponent<ICanUseSkill>().CostOfSP();
 
-                    TurnAnnouceBoard();
-                    MessageReceive(emptySkills[i].GetComponent<ICanUseSkill>().MessageUsedSkill(chosen, eStats));
+                        emptySkills[i].GetComponent<ICanUseSkill>().SkillUsed(chosen, eStats);
 
-                    input.Disable();
-                    StartCoroutine(FinishingAction(emptySkills[i].GetComponent<ICanUseSkill>(), chosen, eStats));
+                        input.Disable();
+                        TurnAnnouceBoard();
+                        StartCoroutine(FinishingAction(emptySkills[i].GetComponent<ICanUseSkill>(), chosen, eStats));
 
-                    break;
+                        break;
+                    }
+                    else
+                    {
+                        TurnAnnouceBoard();
+                        MessageReceive("Not enough SP to use this action!?");
+                        break;
+                    }
                 }
-
-            if (spUsed)
-                rPobots.SPRemain += 20;
         }
         else
         {
@@ -186,10 +200,11 @@ public class BattleManager : MonoBehaviour
 
         //for animation, wait how long to perform it?
         AttackAnimation();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.8f);
 
         MessageReceive(skill.MessageUsedSkill(user, opp));
         TurnAnnouceBoard();
+        yield return new WaitForSeconds(0.7f);
 
         if (state == BattleState.PlayerTurn)
             PlayerAction();
@@ -204,14 +219,13 @@ public class BattleManager : MonoBehaviour
             state = BattleState.WonBattle;
             if (state == BattleState.WonBattle)
                 MessageReceive($"{pStats.NameStat()} won the battle!");
-
-            Destroy(enemyPrefab);
-            SceneManager.LoadScene("SpawnRoute");
         }
         else
         {
+            if (spUsed && rPobots.SPRemain < rPobots.MaxSPStat())
+                rPobots.SPRemain += 20;
+
             donePTurn = true;
-            state = BattleState.EnemyTurn;
         }
     }
 
@@ -226,9 +240,18 @@ public class BattleManager : MonoBehaviour
         {
             input.Disable();
             SkillConfig usedSkill = eStats.ListOfAction()[0];
-            usedSkill.skillBtn.GetComponent<ICanUseSkill>().SkillUsed(eStats, chosen);
 
-            StartCoroutine(FinishingAction(usedSkill.skillBtn.GetComponent<ICanUseSkill>(), eStats, chosen));
+            if (eStats.AFF == AffectSkill.Normal)
+            {
+                usedSkill.skillBtn.GetComponent<ICanUseSkill>().SkillUsed(eStats, chosen);
+                StartCoroutine(FinishingAction(usedSkill.skillBtn.GetComponent<ICanUseSkill>(), eStats, chosen));
+            }
+            else
+            {
+                StartCoroutine(AffectAction(eStats.AFF));
+                eStats.AFF = AffectSkill.Normal;
+            }
+
             doneETurn = true;
         }
         else if (input.OnBattle.SkipDialogue.triggered && state == BattleState.EnemyTurn && doneETurn)
@@ -245,7 +268,9 @@ public class BattleManager : MonoBehaviour
             else if (chosen.HPRemain <= 0)
             {
                 doneETurn = false;
+
                 MessageReceive($"{chosen.NameStat()} lost the battle! {pStats.NameStat()} using another one.");
+                rPobots.SPRemain = 0;
                 Destroy(robotPPrefab);
 
                 ChoosingCharacterToPlay();
@@ -260,12 +285,27 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    void ChoosingRobot()
+    IEnumerator AffectAction(AffectSkill affectOne)
+    {
+        switch (affectOne)
+        {
+            case AffectSkill.Dizzy:
+                MessageReceive($"{eStats.NameStat()} too dizzy to have an action!");
+                yield return new WaitForSeconds(0.7f);
+                input.OnBattle.Enable();
+                break;
+            default:
+                Debug.Log("no skill was use, suppose to run the normal one");
+                break;
+        }
+    }
+
+    void ChoosingRobot(int num)
     {
         //check if player have robot. if have, stats first update, player robot
-        robotPPrefab = Instantiate(pStats.TestRobot().Itself(), rPobotStand.position, rPobotStand.rotation);
+        robotPPrefab = Instantiate(pStats.ChooseRobot(num, true).Itself(), rPobotStand.position, rPobotStand.rotation);
         rPobots = robotPPrefab.GetComponent<RobotStat>();
-        rPobots.RobotStats = pStats.TestRobot();
+        rPobots.RobotStats = pStats.ChooseRobot(num);
         rPobots.CallOutTempStat(); //Call the skill and temp stat
 
         playerNameScr.text = rPobots.NameStat();
@@ -278,14 +318,13 @@ public class BattleManager : MonoBehaviour
         spUsed = true;
         spAvailable.SetActive(true);
 
-        rPobots.SPRemain = 0;
-
         PreparingCallSkill(rPobots);
     }
 
     void ChoosingHuman()
     {
         //stats first update, player
+        pStats.IsInBattle(); //let isBattle know player in
         playerNameScr.text = pStats.NameStat();
         levelScr.text = pStats.LvStat().ToString();
 
@@ -299,13 +338,15 @@ public class BattleManager : MonoBehaviour
         PreparingCallSkill(pStats);
     }
 
+    #region Other option
     public void OnSwitchRobotcatcher(int num)
     {
+        rPobots.SPRemain = 0; //when retreat its temp will reset
         Destroy(robotPPrefab);
-        Debug.Log(num);
+
         if (num == 0)
             ChoosingHuman();
-        else ChoosingRobot();
+        else ChoosingRobot(num - 1);
         UpdatingStatOnScreen();
     }
 
@@ -322,13 +363,15 @@ public class BattleManager : MonoBehaviour
         {
             TurnAnnouceBoard();
             MessageReceive($"You can't run away...");
+            donePTurn = true;
         }
     }
+    #endregion
 
-    //Annoucement function
+    #region Annoucement function
     void ControllingMessages()
     {
-        if (input.OnBattle.SkipDialogue.triggered && state == BattleState.BeginBattle)
+        if (input.OnBattle.SkipDialogue.triggered && state == BattleState.BeginBattle) //begin battle only
         {
             if (chosen.SpeedStat() < eStats.SpeedStat())
             {
@@ -345,11 +388,18 @@ public class BattleManager : MonoBehaviour
             if (!playerBoard.activeInHierarchy)
                 TurnPlayerBoard();
 
-        if (input.OnBattle.SkipDialogue.triggered && state == BattleState.LeaveBattle)
+        if (input.OnBattle.SkipDialogue.triggered && donePTurn)
         {
-            Destroy(enemyPrefab);
-            SceneManager.LoadScene("SpawnRoute");
+            TurnAnnouceBoard();
+            state = BattleState.EnemyTurn;
         }
+
+        if (input.OnBattle.SkipDialogue.triggered)
+            if(state == BattleState.LeaveBattle || state == BattleState.WonBattle)
+            {
+                Destroy(enemyPrefab);
+                SceneManager.LoadScene("SpawnRoute");
+            }
     }
 
     void TurnAnnouceBoard()
@@ -372,8 +422,9 @@ public class BattleManager : MonoBehaviour
         statusBoard.SetActive(true);
         playerBoard.SetActive(false);
     }
+    #endregion
 
-    //Effect function
+    #region Animation-SFX function
     void AttackAnimation()
     {
         if (state == BattleState.PlayerTurn)
@@ -406,6 +457,7 @@ public class BattleManager : MonoBehaviour
 
         userPrefab.GetComponent<AnimationRPG>()?.IsHitAnim();
     }
+    #endregion
 
     #region Unused
     /*IEnumerator HPBarGoDownAnimation(float ratio)

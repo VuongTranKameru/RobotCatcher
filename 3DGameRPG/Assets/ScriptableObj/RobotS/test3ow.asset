@@ -14,17 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itself: {fileID: 2408108307968510352, guid: e6d1c79765f0f344dbaf90d8ab5f82e0, type: 3}
   portrait: {fileID: 21300000, guid: 6226002bb0b327b45891707d666c218c, type: 3}
-  charID: 997
+  charID: 999
+  uniqueID: ow999
   nameChar: CameraTall
   description: player_sampl
-  maxHP: 12
+  maxHP: 80
   attack: 3
   defense: 0
   speed: 4
-  lv: 1
+  lv: 3
   maxSP: 60
   learnableSkills:
   - learnableSkill: {fileID: 11400000, guid: dc6194c2d5c37c242bb3429da27ab815, type: 2}
     atLevel: 1
   - learnableSkill: {fileID: 11400000, guid: da3d4579d1409f74b8631e6d409e625e, type: 2}
+    atLevel: 2
+  - learnableSkill: {fileID: 11400000, guid: cd85659339a68514eb5266816aeec5ab, type: 2}
     atLevel: 2

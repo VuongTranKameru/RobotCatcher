@@ -13,6 +13,8 @@ public class ARockthrowSkillBtn : MonoBehaviour, ICanUseSkill
 
     int tempDamg;
 
+    public int CostOfSP() { return 0; }
+
     void Awake()
     {
         actName.text = skill.skillName;

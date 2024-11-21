@@ -11,3 +11,9 @@ public enum BattleState
     WonBattle,
     LoseBattle
 }
+
+public enum AffectSkill
+{
+    Normal,
+    Dizzy
+}

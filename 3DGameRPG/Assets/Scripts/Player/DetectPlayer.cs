@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DetectPlayer : MonoBehaviour
 {
-    private void Awake()
+    private void OnEnable()
     {
         gameObject.tag = "Respawn";
         StartCoroutine(SwitchToPlayerTag());
