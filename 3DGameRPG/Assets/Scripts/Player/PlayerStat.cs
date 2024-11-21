@@ -13,6 +13,7 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     [SerializeField] StatConfig stat;
     int atk, def, sed;
     AffectSkill affect;
+    int isBattle; //check who in battle
 
     [Header("Skill Set")]
     List<SkillConfig> hasSkills;
@@ -20,7 +21,6 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     [Header("Robotcatched")]
     [SerializeField] StatConfig[] robotList = new StatConfig[5]; //DO NOT USE PLAYER STAT
     [SerializeField] SerializableListJson<string> listJson;
-    int isBattle; //check who in battle
 
     #region Callout Stat
     //read only
@@ -78,7 +78,7 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         }
     }
 
-    public AffectSkill AFF { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public AffectSkill AFF { get => affect; set => affect = value; }
 
     public void IsInBattle() { isBattle = -1; }
     #endregion
