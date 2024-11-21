@@ -15,7 +15,7 @@ public class OwnerMenu : MonoBehaviour
     [SerializeField] GameObject panelHolder;
     PanelOfOwnedRobot robotPanel;
     List<Toggle> emptyPanel = new List<Toggle>();
-    [SerializeField] Sprite unplayable;
+    [SerializeField] Sprite unplayable, isPlaying;
 
     [Header("Call From BattleManager")]
     [SerializeField] UnityEvent<int> switchPlayer; //dynamic int
@@ -43,9 +43,14 @@ public class OwnerMenu : MonoBehaviour
     void InsertRobot()
     {
         CallCharInfoIntoPanel(owner.PlayerStats());
+        if(owner.RemainOnBattle().nameChar == owner.NameStat())
+            CheckCharAlreadyUsed();
+
         for (int i = 0; i < owner.AmountOfRobots(); i++)
         {
             CallCharInfoIntoPanel(owner.ChooseRobot(i));
+            if (owner.RemainOnBattle() == owner.ChooseRobot(i))
+                CheckCharAlreadyUsed();
         }
     }
 
@@ -66,12 +71,20 @@ public class OwnerMenu : MonoBehaviour
             robotPanel.PlayableOrDead(unplayable);
     }
 
+    void CheckCharAlreadyUsed()
+    {
+        robotPanel.PlayableOrDead(isPlaying);
+    }
+
     public void OnConfirmChosingNewRobot()
     {
         for (int i = 0; i < emptyPanel.Count; i++)
         {
             if (emptyPanel[i].isOn)
+            {
                 switchPlayer?.Invoke(i); //pull variable onto battlemanager
+                break;
+            }
         }
     }
 }

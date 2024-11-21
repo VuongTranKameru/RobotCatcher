@@ -11,6 +11,8 @@ public class AShieldingSkillBtn : MonoBehaviour, ICanUseSkill
     [SerializeField] Image actBtnClr, actChk;
     [SerializeField] TMP_Text actName;
 
+    public int CostOfSP() { return 0; }
+
     void Awake()
     {
         actName.text = skill.skillName;

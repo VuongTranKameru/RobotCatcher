@@ -385,6 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: {fileID: 11400000, guid: dc821389159784b48aa7fcd8e008bb87, type: 2}
   hasSkills: []
+  chance: 89
 --- !u!54 &7949772430287020609
 Rigidbody:
   m_ObjectHideFlags: 0
