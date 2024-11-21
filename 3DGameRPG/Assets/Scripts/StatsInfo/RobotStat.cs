@@ -7,10 +7,13 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
 {
     [SerializeField] StatConfig stat;
     int atk, def, sed;
-    int sp;
+    AffectSkill affect;
 
     [Header("Skill Set")]
     [SerializeField] List<SkillConfig> hasSkills;
+
+    [Header("Chance To Catch")]
+    [SerializeField] float chance;
 
     #region Callout Stat
     //public StatConfig RobotStats() { return stat; }
@@ -19,6 +22,8 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
     public string NameStat() { return stat.nameChar; }
     public string DescriptionStat() { return stat.description; }
     public List<SkillConfig> ListOfAction() { return hasSkills; }
+    public SkillConfig UsedAction(int num) { return hasSkills[num]; }
+    public float ChanceToCatch() { return chance; }
 
     //read, only write when meet condition
     public int AttackStat() { return stat.attack; }
@@ -42,16 +47,16 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
     }
 
     //read and write
-    public StatConfig RobotStats { get { return null; } set { stat = value; } }
-    public int HPRemain 
-    { 
-        get { return stat.health; } 
+    public StatConfig RobotStats { get => null; set => stat = value; }
+    public int HPRemain
+    {
+        get { return stat.health; }
         set 
         {
             if (value < 0)
                 stat.health = 0;
-            else stat.health = value; 
-        } 
+            else stat.health = value;
+        }
     }
 
     public int ATKTemp
@@ -89,23 +94,31 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
         get { return stat.specialPoint; }
         set
         {
-            if (value > stat.maxSP)
+            if (value >= stat.maxSP)
                 stat.specialPoint = stat.maxSP;
-            stat.specialPoint = value;
+            else stat.specialPoint = value;
         }
+    }
+
+    public AffectSkill AFF 
+    {
+        get => affect;
+        set => affect = value;
     }
     #endregion
 
-    private void Awake()
+    /*private void Awake()
     {
         
-    }
+    }*/
 
     public void CallOutTempStat() //only in battle
     {
         atk = stat.attack;
         def = stat.defense;
         sed = stat.speed;
+        affect = AffectSkill.Normal;
+        SPRemain = 0;
         ScanExistSkill();
     }
 
@@ -117,5 +130,21 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
             if(stat.learnableSkills[i].atLevel <= stat.lv)
                 hasSkills.Add(stat.learnableSkills[i].learnableSkill);
         }
+    }
+
+    public StatConfig CreatingNewRobotcatcher()
+    {
+        StatConfig newBot = ScriptableObject.CreateInstance<StatConfig>();
+        newBot.SaveRobotcatcher(stat.Itself(), stat.Avatar(), stat.charID, NameStat(), DescriptionStat(),
+            MaxHPStat(), MaxSPStat(), AttackStat(), DefenseStat(), SpeedStat(), LvStat(), stat.learnableSkills, stat.learnableSkills.Length);
+
+        /*string json = JsonUtility.ToJson(newBot, true);
+        Debug.Log(json);
+
+        StatConfig newone = ScriptableObject.CreateInstance<StatConfig>();
+        JsonUtility.FromJsonOverwrite(json, newone);
+        Debug.Log(newone.Itself() + " & skil: " + newone.learnableSkills[0].learnableSkill.skillName);*/
+
+        return newBot;
     }
 }

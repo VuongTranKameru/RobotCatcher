@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1d869a07ae57b804f806ca05d8053e54, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e1e2343522db2cb48b49093882a8655a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -223,9 +223,9 @@ GameObject:
   - component: {fileID: 1541219707405867318}
   - component: {fileID: 3233790800908508790}
   - component: {fileID: 5970807769591451419}
-  - component: {fileID: 8681938633336391907}
+  - component: {fileID: 7039634322082835406}
   m_Layer: 5
-  m_Name: SkillT-Hackam
+  m_Name: SpeciallT-Flashbang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 41b0af84177decd449262ec5a20ec957, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7df6c8ecd0c44a64eb460d278866a0de, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -339,7 +339,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
---- !u!114 &8681938633336391907
+--- !u!114 &7039634322082835406
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -348,25 +348,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9150288850929585669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69151271b0e0bed42b7cf9978a303f52, type: 3}
+  m_Script: {fileID: 11500000, guid: cbe0e5b26d217cf4a8fcd572a6ad6bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 11400000, guid: ffa590249bd5be94eb90733898f93861, type: 2}
+  skill: {fileID: 11400000, guid: cd85659339a68514eb5266816aeec5ab, type: 2}
   actBtnClr: {fileID: 3233790800908508790}
   actChk: {fileID: 2353186987310065805}
   actName: {fileID: 182748382807570018}
-  HackedRobot:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 98166933109146192, guid: 577a66f2b88ee394e83c1a98364d3d9f, type: 3}
-        m_TargetAssemblyTypeName: PlayerStat, Assembly-CSharp
-        m_MethodName: HackRobotSuccess
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
