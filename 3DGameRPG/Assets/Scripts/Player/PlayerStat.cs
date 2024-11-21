@@ -1,23 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[System.Serializable]
+
+public class SerializableListJson<T>
+{
+    public List<T> list;
+}
 
 public class PlayerStat : MonoBehaviour, IHaveSameStat
 {
     [SerializeField] StatConfig stat;
     int atk, def, sed;
+    AffectSkill affect;
 
     [Header("Skill Set")]
     List<SkillConfig> hasSkills;
 
     [Header("Robotcatched")]
     [SerializeField] StatConfig[] robotList = new StatConfig[5]; //DO NOT USE PLAYER STAT
+    [SerializeField] SerializableListJson<string> listJson;
+    int isBattle; //check who in battle
 
     #region Callout Stat
     //read only
     public StatConfig PlayerStats() { return stat; }
     public string NameStat() { return stat.nameChar; }
     public List<SkillConfig> ListOfAction() { return hasSkills; }
+    public float ChanceToCatch() { return -1; }
 
     //read, only write when meet condition
     public int AttackStat() { return stat.attack; }
@@ -67,6 +77,10 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
                 sed += value;
         }
     }
+
+    public AffectSkill AFF { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+    public void IsInBattle() { isBattle = -1; }
     #endregion
 
     private void OnEnable()
@@ -74,7 +88,10 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         atk = stat.attack;
         def = stat.defense;
         sed = stat.speed;
+        affect = AffectSkill.Normal;
         ScanExistSkill();
+
+        isBattle = -1;
     }
 
     void ScanExistSkill()
@@ -89,15 +106,16 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
 
     #region Robot Management
     //read only
-    public int AmountOfRobots() 
+    public int AmountOfRobots()
     {
         int count = 0;
         for (int i = 0; i < robotList.Length; i++)
             if (robotList[i] != null)
                 count++;
         //result is how many robotcatcher, in human count
-        return count; 
+        return count;
     }
+
     public bool CheckAvailableRobot()
     {
         for (int i = 0; i < AmountOfRobots(); i++)
@@ -106,14 +124,66 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
 
         return false;
     }
-    public StatConfig ChooseRobot(int num)
+
+    public StatConfig ChooseRobot(int num) { return robotList[num]; }
+    public StatConfig ChooseRobot(int num, bool inBattle) //use for change into battle
     {
+        if (inBattle)
+            isBattle = num;
         return robotList[num];
     }
 
-    public StatConfig TestRobot()
+    public StatConfig RemainOnBattle() //check who in battle, use for ownermenu
     {
-        return robotList[0];
+        if (AmountOfRobots() == 0 || isBattle == -1)
+            return stat;
+        else return robotList[isBattle];
+    }
+
+    //read, only write when meet condition
+    public StatConfig FirstPickRobot
+    {
+        get 
+        {
+            isBattle = 0;
+            return robotList[0]; 
+        }
+        set 
+        {
+            if (value != robotList[0])
+            {
+                StatConfig temp = robotList[0];
+                robotList[0] = value;
+                for (int i = 0; i < AmountOfRobots(); i++)
+                    if (robotList[i] != null && robotList[i].uniqueID == value.uniqueID)
+                    {
+                        robotList[i] = temp;
+                        break;
+                    }
+            }
+        }
+    }
+
+    //write only
+    public void HackRobotSuccess(StatConfig bot)
+    {
+        Debug.Log("into here " + bot.nameChar);
+        for (int i = 0; i < robotList.Length; i++)
+            if (robotList[i] == null)
+            {
+                robotList[i] = bot;
+                break;
+            }
+        string json = JsonUtility.ToJson(bot, true);
+        listJson.list.Add(json);
+        //Debug.Log(json);
+    }
+    #endregion
+
+    #region Unused
+    public StatConfig CreatingNewRobotcatcher() //DO NOT USE THIS
+    {
+        throw new System.NotImplementedException();
     }
     #endregion
 }

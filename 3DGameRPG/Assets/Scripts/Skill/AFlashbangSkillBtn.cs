@@ -4,43 +4,37 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AHitSkillBtn : MonoBehaviour, ICanUseSkill
+public class AFlashbangSkillBtn : MonoBehaviour, ICanUseSkill
 {
     [Header("Skill Setup")]
     [SerializeField] SkillConfig skill;
     [SerializeField] Image actBtnClr, actChk;
     [SerializeField] TMP_Text actName;
 
-    int tempDamg;
+    int spPoint = 25;
 
-    public int CostOfSP() { return 0; }
+    public int CostOfSP() { return spPoint; }
 
-    void Awake()
+    private void Awake()
     {
         actName.text = skill.skillName;
         actBtnClr.sprite = skill.listBtnClr[0]; //normal color
         actChk.sprite = skill.listBtnClr[1]; //darker color
     }
 
-    void ICanUseSkill.SkillUsed(IHaveSameStat user, IHaveSameStat opp)
+    string ICanUseSkill.MessageActionOnly(IHaveSameStat user)
     {
-        tempDamg = (user.ATKTemp + skill.power) - opp.DEFTemp;
-        //hp = hp - (def - ([atk doi phuong] + [power doi phuong])
-        if (tempDamg > 0)
-            opp.HPRemain -= tempDamg;
+        return $"{user.NameStat()} use {skill.skillName}!";
     }
 
     string ICanUseSkill.MessageUsedSkill(IHaveSameStat user, IHaveSameStat opp)
     {
-        if (tempDamg < 0)
-            tempDamg = 0;
-
         return $"{user.NameStat()} use {skill.skillName}! " +
-           $"\n{opp.NameStat()} take {tempDamg} damage.";
+           $"\n{opp.NameStat()} cannot see anything.";
     }
 
-    string ICanUseSkill.MessageActionOnly(IHaveSameStat user)
+    void ICanUseSkill.SkillUsed(IHaveSameStat user, IHaveSameStat opp)
     {
-        return $"{user.NameStat()} use {skill.skillName}!";
+        opp.AFF = AffectSkill.Dizzy;
     }
 }
