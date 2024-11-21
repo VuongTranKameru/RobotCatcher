@@ -36,6 +36,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] TMP_Text enemyNameScr;
     [SerializeField] TMP_Text eMaxhpScr, eHpRemainScr, eLevelScr;
     [SerializeField] Image eHpBar;
+    List<SkillConfig> eUsedSkill = new();
 
     [Header("Skill")]
     [SerializeField] ToggleGroup groupSkill;
@@ -167,13 +168,23 @@ public class BattleManager : MonoBehaviour
                     {
                         rPobots.SPRemain -= emptySkills[i].GetComponent<ICanUseSkill>().CostOfSP();
 
-                        emptySkills[i].GetComponent<ICanUseSkill>().SkillUsed(chosen, eStats);
+                        if (chosen.AFF == AffectSkill.Normal)
+                        {
+                            emptySkills[i].GetComponent<ICanUseSkill>().SkillUsed(chosen, eStats);
 
-                        input.Disable();
-                        TurnAnnouceBoard();
-                        StartCoroutine(FinishingAction(emptySkills[i].GetComponent<ICanUseSkill>(), chosen, eStats));
+                            input.Disable();
+                            TurnAnnouceBoard();
+                            StartCoroutine(FinishingAction(emptySkills[i].GetComponent<ICanUseSkill>(), chosen, eStats));
 
-                        break;
+                            break;
+                        }
+                        else
+                        {
+                            TurnAnnouceBoard();
+                            StartCoroutine(AffectAction(chosen.AFF, chosen));
+                            PlayerAction();
+                            break;
+                        }
                     }
                     else
                     {
@@ -239,18 +250,18 @@ public class BattleManager : MonoBehaviour
         else if (input.OnBattle.SkipDialogue.triggered && state == BattleState.EnemyTurn && !doneETurn)
         {
             input.Disable();
-            SkillConfig usedSkill = eStats.ListOfAction()[0];
+            EnemyAttackAI(out int num);
 
             if (eStats.AFF == AffectSkill.Normal)
             {
-                usedSkill.skillBtn.GetComponent<ICanUseSkill>().SkillUsed(eStats, chosen);
-                StartCoroutine(FinishingAction(usedSkill.skillBtn.GetComponent<ICanUseSkill>(), eStats, chosen));
+                eUsedSkill[num].skillBtn.GetComponent<ICanUseSkill>().SkillUsed(eStats, chosen);
+                eStats.SPRemain -= eUsedSkill[num].skillBtn.GetComponent<ICanUseSkill>().CostOfSP();
+                StartCoroutine(FinishingAction(eUsedSkill[num].skillBtn.GetComponent<ICanUseSkill>(), eStats, chosen));
             }
-            else
-            {
-                StartCoroutine(AffectAction(eStats.AFF));
-                eStats.AFF = AffectSkill.Normal;
-            }
+            else StartCoroutine(AffectAction(eStats.AFF, eStats));
+
+            if (eStats.SPRemain < eStats.MaxSPStat())
+                eStats.SPRemain += 20;
 
             doneETurn = true;
         }
@@ -285,12 +296,23 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator AffectAction(AffectSkill affectOne)
+    void EnemyAttackAI(out int randoAct)
+    {
+        eUsedSkill.Clear();
+        for (int i = 0; i < eStats.ListOfAction().Count; i++)
+            if (eStats.SPRemain >= eStats.UsedAction(i).skillBtn.GetComponent<ICanUseSkill>().CostOfSP())
+                eUsedSkill.Add(eStats.UsedAction(i));
+
+        randoAct = Random.Range(0, eUsedSkill.Count); 
+    }
+
+    IEnumerator AffectAction(AffectSkill affectOne, IHaveSameStat affecter)
     {
         switch (affectOne)
         {
             case AffectSkill.Dizzy:
-                MessageReceive($"{eStats.NameStat()} too dizzy to have an action!");
+                MessageReceive($"{affecter.NameStat()} is too dizzy to have an action!");
+                affecter.AFF = AffectSkill.Normal;
                 yield return new WaitForSeconds(0.7f);
                 input.OnBattle.Enable();
                 break;
@@ -347,7 +369,11 @@ public class BattleManager : MonoBehaviour
         if (num == 0)
             ChoosingHuman();
         else ChoosingRobot(num - 1);
+
         UpdatingStatOnScreen();
+        TurnAnnouceBoard();
+        MessageReceive($"{pStats.NameStat()} is changing their unit!");
+        donePTurn = true; //switch char will change turn
     }
 
     public void OnRunaway()
