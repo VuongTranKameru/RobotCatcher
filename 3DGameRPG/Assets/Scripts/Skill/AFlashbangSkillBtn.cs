@@ -14,6 +14,7 @@ public class AFlashbangSkillBtn : MonoBehaviour, ICanUseSkill
     int spPoint = 25;
 
     public int CostOfSP() { return spPoint; }
+    public TypeOfSkill Type() { return skill.type; }
 
     private void Awake()
     {
