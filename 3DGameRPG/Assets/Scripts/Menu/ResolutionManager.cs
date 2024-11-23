@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using static ResolutionManager;
 
 public class ResolutionManager : MonoBehaviour
 {
@@ -62,4 +61,5 @@ public class ResolutionManager : MonoBehaviour
         isFullScreen = fullScreenToggle.isOn;
         Screen.SetResolution(selectedResolutionList[selectedResolution].width, selectedResolutionList[selectedResolution].height, isFullScreen);
     }
+
 }
