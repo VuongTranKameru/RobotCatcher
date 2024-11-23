@@ -14,6 +14,7 @@ public class AHitSkillBtn : MonoBehaviour, ICanUseSkill
     int tempDamg;
 
     public int CostOfSP() { return 0; }
+    public TypeOfSkill Type() { return skill.type; }
 
     void Awake()
     {

@@ -210,7 +210,7 @@ public class BattleManager : MonoBehaviour
         UpdatingStatOnScreen();
 
         //for animation, wait how long to perform it?
-        AttackAnimation();
+        AttackAnimation(skill);
         yield return new WaitForSeconds(1.8f);
 
         MessageReceive(skill.MessageUsedSkill(user, opp));
@@ -274,6 +274,7 @@ public class BattleManager : MonoBehaviour
                     MessageReceive($"{pStats.NameStat()} lost the battle!");
 
                 yield return new WaitForSeconds(0.3f);
+                StartCoroutine(IsDeadAnimation(playerPrefab));
                 Destroy(playerPrefab);
             }
             else if (chosen.HPRemain <= 0)
@@ -281,6 +282,7 @@ public class BattleManager : MonoBehaviour
                 doneETurn = false;
 
                 MessageReceive($"{chosen.NameStat()} lost the battle! {pStats.NameStat()} using another one.");
+                StartCoroutine(IsDeadAnimation(robotPPrefab));
                 rPobots.SPRemain = 0;
                 Destroy(robotPPrefab);
 
@@ -301,7 +303,7 @@ public class BattleManager : MonoBehaviour
         eUsedSkill.Clear();
         for (int i = 0; i < eStats.ListOfAction().Count; i++)
             if (eStats.SPRemain >= eStats.UsedAction(i).skillBtn.GetComponent<ICanUseSkill>().CostOfSP())
-                eUsedSkill.Add(eStats.UsedAction(i));
+                eUsedSkill.Add(eStats.UsedAction(i)); //can only use skill have enough sp
 
         randoAct = Random.Range(0, eUsedSkill.Count); 
     }
@@ -423,6 +425,7 @@ public class BattleManager : MonoBehaviour
         if (input.OnBattle.SkipDialogue.triggered)
             if(state == BattleState.LeaveBattle || state == BattleState.WonBattle)
             {
+                StartCoroutine(IsDeadAnimation(enemyPrefab));
                 Destroy(enemyPrefab);
                 SceneManager.LoadScene("SpawnRoute");
             }
@@ -451,37 +454,58 @@ public class BattleManager : MonoBehaviour
     #endregion
 
     #region Animation-SFX function
-    void AttackAnimation()
+    void AttackAnimation(ICanUseSkill skill)
     {
         if (state == BattleState.PlayerTurn)
         {
             if (robotPPrefab != null)
-                KindOfAttackAnimation(robotPPrefab);
-            else KindOfAttackAnimation(playerPrefab);
+                KindOfAttackAnimation(robotPPrefab, skill);
+            else KindOfAttackAnimation(playerPrefab, skill);
 
-            StartCoroutine(BeingHitAnimation(enemyPrefab));
+            if (skill.Type() != TypeOfSkill.AffectCst)
+                StartCoroutine(BeingHitAnimation(enemyPrefab));
         }
         else if (state == BattleState.EnemyTurn)
         {
-            KindOfAttackAnimation(enemyPrefab);
+            KindOfAttackAnimation(enemyPrefab, skill);
 
-            if (robotPPrefab != null)
-                StartCoroutine(BeingHitAnimation(robotPPrefab));
-            else StartCoroutine(BeingHitAnimation(playerPrefab));
+            if (skill.Type() != TypeOfSkill.AffectCst)
+            {
+                if (robotPPrefab != null)
+                    StartCoroutine(BeingHitAnimation(robotPPrefab));
+                else StartCoroutine(BeingHitAnimation(playerPrefab));
+            }
         }
     }
 
-    void KindOfAttackAnimation(GameObject userPrefab)
+    void KindOfAttackAnimation(GameObject userPrefab, ICanUseSkill skill)
     {
         //prob dont have animation
-        userPrefab.GetComponent<AnimationRPG>()?.RegAttackAnim();
+        AnimationRPG anim = userPrefab.GetComponent<AnimationRPG>();
+        if (anim != null) 
+        {
+            switch (skill.Type())
+            { 
+                case TypeOfSkill.SpecialPointDmg:
+                    anim.SpecialAttackAnim(); break;
+                case TypeOfSkill.AffectCst:
+                    anim.CastAnim(); break;
+                default:
+                    anim.RegAttackAnim(); break;
+            }
+        }
     }
 
     IEnumerator BeingHitAnimation(GameObject userPrefab)
     {
         yield return new WaitForSeconds(1f);
-
         userPrefab.GetComponent<AnimationRPG>()?.IsHitAnim();
+    }
+
+    IEnumerator IsDeadAnimation(GameObject userPrefab)
+    {
+        userPrefab.GetComponent<AnimationRPG>()?.IsDeadAnim();
+        yield return new WaitForSeconds(1f);
     }
     #endregion
 
