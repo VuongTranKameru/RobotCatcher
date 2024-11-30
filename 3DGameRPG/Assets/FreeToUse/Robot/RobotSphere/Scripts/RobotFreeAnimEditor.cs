@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(RobotFreeAnim))]
+/*[CustomEditor(typeof(RobotFreeAnim))]
 public class RobotFreeAnimEditor : Editor
 {
 	// ** Clean Old Prefs ** To remove with Next update
@@ -76,3 +76,4 @@ public class RobotFreeAnimEditor : Editor
 		GUI.backgroundColor = defaultBgColor;
 	}
 }
+*/
