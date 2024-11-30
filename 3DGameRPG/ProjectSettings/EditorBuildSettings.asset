@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/BattleMechanicCalc.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
     path: Assets/Scenes/SpawnRoute.unity
     guid: c8778ae594375c347acf7c4f47d66906
+  - enabled: 1
+    path: Assets/Scenes/BattleMechanicCalc.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/Chap2.unity
+    guid: 6fcf8fe4e3e825846b738768c14ebfd1
   m_configObjects: {}
