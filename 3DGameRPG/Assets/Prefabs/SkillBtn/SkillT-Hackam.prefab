@@ -355,3 +355,18 @@ MonoBehaviour:
   actBtnClr: {fileID: 3233790800908508790}
   actChk: {fileID: 2353186987310065805}
   actName: {fileID: 182748382807570018}
+  HackedRobot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 98166933109146192, guid: 577a66f2b88ee394e83c1a98364d3d9f, type: 3}
+        m_TargetAssemblyTypeName: PlayerStat, Assembly-CSharp
+        m_MethodName: HackRobotSuccess
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

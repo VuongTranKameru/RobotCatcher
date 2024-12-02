@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class OwnerMenu : MonoBehaviour
@@ -8,12 +9,16 @@ public class OwnerMenu : MonoBehaviour
     [SerializeField] GameObject playerPrefab;
     PlayerStat owner;
 
-    [Header("Calling Robotcatcher")]
+    [Header("Call Robotcatcher")]
     [SerializeField] Transform contentOwnLocation;
     [SerializeField] ToggleGroup grpOwned;
     [SerializeField] GameObject panelHolder;
     PanelOfOwnedRobot robotPanel;
     List<Toggle> emptyPanel = new List<Toggle>();
+    [SerializeField] Sprite unplayable, isPlaying;
+
+    [Header("Call From BattleManager")]
+    [SerializeField] UnityEvent<int> switchPlayer; //dynamic int
 
     void Awake()
     {
@@ -38,9 +43,14 @@ public class OwnerMenu : MonoBehaviour
     void InsertRobot()
     {
         CallCharInfoIntoPanel(owner.PlayerStats());
+        if(owner.RemainOnBattle().nameChar == owner.NameStat())
+            CheckCharAlreadyUsed();
+
         for (int i = 0; i < owner.AmountOfRobots(); i++)
         {
             CallCharInfoIntoPanel(owner.ChooseRobot(i));
+            if (owner.RemainOnBattle() == owner.ChooseRobot(i))
+                CheckCharAlreadyUsed();
         }
     }
 
@@ -56,5 +66,25 @@ public class OwnerMenu : MonoBehaviour
         robotPanel.HPNum.text = robot.health.ToString() + "/" + robot.maxHP.ToString();
         robotPanel.SPNum.text = robot.specialPoint.ToString() + "/" + robot.maxSP.ToString();
         robotPanel.CharAva.sprite = robot.Avatar();
+
+        if (robot.health <= 0)
+            robotPanel.PlayableOrDead(unplayable);
+    }
+
+    void CheckCharAlreadyUsed()
+    {
+        robotPanel.PlayableOrDead(isPlaying);
+    }
+
+    public void OnConfirmChosingNewRobot()
+    {
+        for (int i = 0; i < emptyPanel.Count; i++)
+        {
+            if (emptyPanel[i].isOn)
+            {
+                switchPlayer?.Invoke(i); //pull variable onto battlemanager
+                break;
+            }
+        }
     }
 }

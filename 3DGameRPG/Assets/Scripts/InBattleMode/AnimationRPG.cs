@@ -40,6 +40,11 @@ public class AnimationRPG : MonoBehaviour
         anim.SetTrigger("checkGetHit");
     }
 
+    public void IsDeadAnim()
+    {
+        anim.SetTrigger("checkDead");
+    }
+
     void AnimationClipsTiming()
     {
         Debug.Log("anim: " + clips.Length); //can only read the clip name, not state name

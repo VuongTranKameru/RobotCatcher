@@ -38,7 +38,7 @@ public class PlayeeController : MonoBehaviour
             Moving();
             Running();
 
-            if (speed > 2)
+            if (speed > 3)
                 anim.SetFloat("isSpeeding", movementInput.sqrMagnitude + 1);
             else
                 anim.SetFloat("isSpeeding", movementInput.sqrMagnitude); //sqrMag tra lai do dai cua vector
@@ -68,7 +68,7 @@ public class PlayeeController : MonoBehaviour
         if (inputAction.Player.Running.IsPressed())
             speed = 5;
         else
-            speed = 2;
+            speed = 3;
     }
 
     /*void Jumping()

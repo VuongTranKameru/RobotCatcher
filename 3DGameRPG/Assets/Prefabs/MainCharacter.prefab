@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 5520860570031411305}
   m_Layer: 0
   m_Name: DetectPlayer
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1501,7 +1501,7 @@ Transform:
   - {fileID: 8490270833658974691}
   - {fileID: 2845518483213621379}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-4457404850168330836
 MonoBehaviour:
@@ -1527,7 +1527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 741bfb6438f822b438a94df71b7a0db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
 --- !u!114 &98166933109146192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1547,6 +1547,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  listJson:
+    list: []
 --- !u!114 &6176426234122029672
 MonoBehaviour:
   m_ObjectHideFlags: 0
