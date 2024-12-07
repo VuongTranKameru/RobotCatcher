@@ -7,6 +7,7 @@ public enum BattleState
     BeginBattle,
     PlayerTurn,
     EnemyTurn,
+    DrawBattle,
     LeaveBattle,
     WonBattle,
     LoseBattle

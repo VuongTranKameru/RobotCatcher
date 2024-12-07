@@ -18,7 +18,11 @@ public class OwnerMenu : MonoBehaviour
     [SerializeField] Sprite unplayable, isPlaying;
 
     [Header("Call From BattleManager")]
+    [SerializeField] GameObject ownerBoard;
+    [SerializeField] GameObject playerBoard;
     [SerializeField] UnityEvent<int> switchPlayer; //dynamic int
+    [SerializeField] UnityEvent notChooseYet;
+    bool isChoose;
 
     void Awake()
     {
@@ -28,6 +32,7 @@ public class OwnerMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        isChoose = false;
         InsertRobot();
     }
 
@@ -49,7 +54,8 @@ public class OwnerMenu : MonoBehaviour
         for (int i = 0; i < owner.AmountOfRobots(); i++)
         {
             CallCharInfoIntoPanel(owner.ChooseRobot(i));
-            if (owner.RemainOnBattle() == owner.ChooseRobot(i))
+
+            if (owner.RemainOnBattle() == owner.ChooseRobot(i) && owner.ChooseRobot(i).health > 0)
                 CheckCharAlreadyUsed();
         }
     }
@@ -83,8 +89,14 @@ public class OwnerMenu : MonoBehaviour
             if (emptyPanel[i].isOn)
             {
                 switchPlayer?.Invoke(i); //pull variable onto battlemanager
+                ownerBoard.SetActive(false);
+                playerBoard.SetActive(true);
+                isChoose = true;
                 break;
             }
         }
+
+        if (!isChoose)
+            notChooseYet?.Invoke();
     }
 }

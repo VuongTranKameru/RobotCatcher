@@ -1501,7 +1501,7 @@ Transform:
   - {fileID: 8490270833658974691}
   - {fileID: 2845518483213621379}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-4457404850168330836
 MonoBehaviour:
@@ -1515,6 +1515,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1d47ac6f609904781a64c78b6d9a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listRobotJson:
+    list: []
 --- !u!114 &5129260080310229673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1540,15 +1542,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83e00a8cd094ba448cd371d0e219ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Manager: {fileID: -4457404850168330836}
   stat: {fileID: 11400000, guid: e07a98a3669091e4da60bea8004fed35, type: 2}
   robotList:
-  - {fileID: 11400000, guid: 48f7da8d423718346963fba8f7815898, type: 2}
+  - {fileID: 11400000, guid: eb0334d55837aa54aaff9a69e93556a7, type: 2}
   - {fileID: 11400000, guid: 784a2832536f94947b9c17741e3cdb60, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  listJson:
-    list: []
 --- !u!114 &6176426234122029672
 MonoBehaviour:
   m_ObjectHideFlags: 0

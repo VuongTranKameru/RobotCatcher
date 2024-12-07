@@ -10,20 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e567097cd3e691468f82b71fe19d30d, type: 3}
-  m_Name: test2ey
+  m_Name: 005_Fragnade
   m_EditorClassIdentifier: 
-  itself: {fileID: 1561564105511734292, guid: 439578314c185344ab356bea57abc08e, type: 3}
+  itself: {fileID: 5550775773731724003, guid: f80a64722783bb9429fa1147d169748a, type: 3}
   portrait: {fileID: 0}
-  charID: 998
+  charID: 005
   uniqueID: 
-  nameChar: ShortPlug
-  description: enemy_sampl
-  maxHP: 10
-  attack: 3
+  nameChar: ANW
+  description: ANW
+  maxHP: 20
+  attack: 1
   defense: 1
-  speed: 5
+  speed: 1
   lv: 1
-  maxSP: 0
+  maxSP: 100
   learnableSkills:
   - learnableSkill: {fileID: 11400000, guid: dc6194c2d5c37c242bb3429da27ab815, type: 2}
-    atLevel: 1
+    atLevel: 0
+  - learnableSkill: {fileID: 11400000, guid: da3d4579d1409f74b8631e6d409e625e, type: 2}
+    atLevel: 0
+  - learnableSkill: {fileID: 11400000, guid: cd85659339a68514eb5266816aeec5ab, type: 2}
+    atLevel: 0
