@@ -12,7 +12,7 @@ public class BattleManager : MonoBehaviour
 
     [Header("Annoucement")]
     [SerializeField] TMP_Text message;
-    [SerializeField] GameObject annouceBoard, playerBoard, statusBoard;
+    [SerializeField] GameObject annouceBoard, playerBoard, statusBoard, ownerMenu;
     bool donePTurn, doneETurn;
 
     [Header("Location Spawn")]
@@ -49,7 +49,7 @@ public class BattleManager : MonoBehaviour
     private void Awake()
     {
         state = BattleState.BeginBattle;
-        input = new PlayerInput();
+        input = FindObjectOfType<PlayeeController>().inputAction;
 
         PreparingWrapCharactersIn();
 
@@ -66,7 +66,8 @@ public class BattleManager : MonoBehaviour
 
     private void OnDisable()
     {
-        input.Disable();
+        input.OnBattle.Disable();
+        input.Player.Enable();
     }
 
     private void Update()
@@ -92,16 +93,11 @@ public class BattleManager : MonoBehaviour
         enemyNameScr.text = eStats.NameStat();
         eLevelScr.text = eStats.LvStat().ToString();
         eMaxhpScr.text = "/" + eStats.MaxHPStat().ToString();
-
-        ChoosingCharacterToPlay();
-    }
-
-    void ChoosingCharacterToPlay()
-    {
+        
+        //
         if (pStats.CheckAvailableRobot())
             ChoosingRobot(0); //pick first one
         else ChoosingHuman();
-
         UpdatingStatOnScreen();
     }
 
@@ -286,8 +282,8 @@ public class BattleManager : MonoBehaviour
                 rPobots.SPRemain = 0;
                 Destroy(robotPPrefab);
 
-                ChoosingCharacterToPlay();
-                state = BattleState.PlayerTurn;
+                ownerMenu.SetActive(true);
+                state = BattleState.DrawBattle;
             }
             else
             {
@@ -375,7 +371,11 @@ public class BattleManager : MonoBehaviour
         UpdatingStatOnScreen();
         TurnAnnouceBoard();
         MessageReceive($"{pStats.NameStat()} is changing their unit!");
-        donePTurn = true; //switch char will change turn
+
+        if (state == BattleState.PlayerTurn)
+            donePTurn = true; //switch char will end turn
+        else if (state == BattleState.DrawBattle)
+            DetermineTurn();
     }
 
     public void OnRunaway()
@@ -400,18 +400,7 @@ public class BattleManager : MonoBehaviour
     void ControllingMessages()
     {
         if (input.OnBattle.SkipDialogue.triggered && state == BattleState.BeginBattle) //begin battle only
-        {
-            if (chosen.SpeedStat() < eStats.SpeedStat())
-            {
-                donePTurn = true;
-                state = BattleState.EnemyTurn;
-            }
-            else
-            {
-                MessageReceive($"{pStats.NameStat()} turns.");
-                state = BattleState.PlayerTurn;
-            }
-        }
+            DetermineTurn();
         else if (input.OnBattle.SkipDialogue.triggered && state == BattleState.PlayerTurn)
             if (!playerBoard.activeInHierarchy)
                 TurnPlayerBoard();
@@ -422,11 +411,15 @@ public class BattleManager : MonoBehaviour
             state = BattleState.EnemyTurn;
         }
 
+        if (input.OnBattle.SkipDialogue.triggered && state == BattleState.DrawBattle)
+            annouceBoard.SetActive(false);
+
         if (input.OnBattle.SkipDialogue.triggered)
             if(state == BattleState.LeaveBattle || state == BattleState.WonBattle)
             {
                 StartCoroutine(IsDeadAnimation(enemyPrefab));
                 Destroy(enemyPrefab);
+                Destroy(playerPrefab);
                 SceneManager.LoadScene("SpawnRoute");
             }
     }
@@ -450,6 +443,26 @@ public class BattleManager : MonoBehaviour
         annouceBoard.SetActive(false);
         statusBoard.SetActive(true);
         playerBoard.SetActive(false);
+    }
+
+    void DetermineTurn()
+    {
+        if (chosen.SpeedStat() < eStats.SpeedStat())
+        {
+            donePTurn = true;
+            state = BattleState.EnemyTurn;
+        }
+        else
+        {
+            MessageReceive($"{pStats.NameStat()} turns.");
+            state = BattleState.PlayerTurn;
+        }
+    }
+
+    public void CheckSwitchButtonNotWork()
+    {
+        TurnAnnouceBoard();
+        MessageReceive($"You have to choose someone to confirm it!?");
     }
     #endregion
 

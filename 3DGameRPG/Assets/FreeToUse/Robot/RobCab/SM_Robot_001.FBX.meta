@@ -1,0 +1,87 @@
+fileFormatVersion: 2
+guid: 0136e4f317ce66f4caa44b3a122fba6d
+timeCreated: 1460104790
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: SM_Robot_001
+    100004: SM_Robot_1_001
+    100006: SM_Robot_2_001
+    100008: SM_Robot_3_001
+    400000: //RootNode
+    400002: SM_Robot_001
+    400004: SM_Robot_1_001
+    400006: SM_Robot_2_001
+    400008: SM_Robot_3_001
+    2300000: SM_Robot_001
+    2300002: SM_Robot_1_001
+    2300004: SM_Robot_2_001
+    2300006: SM_Robot_3_001
+    3300000: SM_Robot_001
+    3300002: SM_Robot_1_001
+    3300004: SM_Robot_2_001
+    3300006: SM_Robot_3_001
+    4300000: SM_Robot_001
+    4300002: SM_Robot_1_001
+    4300004: SM_Robot_2_001
+    4300006: SM_Robot_3_001
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: test2ey
   m_EditorClassIdentifier: 
   itself: {fileID: 1561564105511734292, guid: 439578314c185344ab356bea57abc08e, type: 3}
+  portrait: {fileID: 0}
   charID: 998
+  uniqueID: 
   nameChar: ShortPlug
   description: enemy_sampl
   maxHP: 10
