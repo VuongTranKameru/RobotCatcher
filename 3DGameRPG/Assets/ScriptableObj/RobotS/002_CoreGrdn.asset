@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itself: {fileID: 8904359421138671320, guid: ac5ba402c17072248b6fe516eeba14d6, type: 3}
   portrait: {fileID: 0}
-  charID: 002
+  charID: 003
   uniqueID: 
   nameChar: ANW
   description: ANW
