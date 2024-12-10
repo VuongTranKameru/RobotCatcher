@@ -6,9 +6,15 @@ public class AnimationRPG : MonoBehaviour
 {
     Animator anim;
 
+    AnimationClip[] clips;
+    float clipLength;
+
+    public float ReadClipLength() { return clipLength; }
+
     void Awake()
     {
         anim = GetComponent<Animator>();
+        clips = anim.runtimeAnimatorController.animationClips;
     }
 
     public void RegAttackAnim()
@@ -32,5 +38,33 @@ public class AnimationRPG : MonoBehaviour
     public void IsHitAnim()
     {
         anim.SetTrigger("checkGetHit");
+    }
+
+    public void IsDeadAnim()
+    {
+        anim.SetTrigger("checkDead");
+    }
+
+    void AnimationClipsTiming()
+    {
+        Debug.Log("anim: " + clips.Length); //can only read the clip name, not state name
+        /*foreach (AnimationClip clip in clips)
+        {
+            switch (clip.name)
+            {
+                case "Attacking":
+                    attackTime = clip.length;
+                    break;
+                case "Damage":
+                    damageTime = clip.length;
+                    break;
+                case "Dead":
+                    deathTime = clip.length;
+                    break;
+                case "Idle":
+                    idleTime = clip.length;
+                    break;
+            }
+        }*/
     }
 }

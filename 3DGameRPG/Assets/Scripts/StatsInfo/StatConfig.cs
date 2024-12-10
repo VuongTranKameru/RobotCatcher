@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class LearnableSkills
@@ -14,11 +16,13 @@ public class StatConfig : ScriptableObject
 {
     [Header("Prefab")]
     [SerializeField] GameObject itself;
+    [SerializeField] Sprite portrait;
     public GameObject Itself() { return itself; }
+    public Sprite Avatar() { return portrait; }
 
     [Header("Information")]
     [SerializeField] internal string charID;
-    [SerializeField] internal string nameChar, description;
+    [SerializeField] internal string uniqueID, nameChar, description;
 
     [Header("Stats Number")]
     [SerializeField] internal int maxHP;
@@ -33,4 +37,28 @@ public class StatConfig : ScriptableObject
     /*Burn: lost hp each turn, defense low
       Shock: lost 1-2 turns
       Waterlogged: lost hp, got double dmg when eletric*/
+
+    public void SaveRobotcatcher(GameObject prefab, Sprite image, string id, string name, string des, int mHP, int mSP,
+        int atk, int def, int spe, int level, LearnableSkills[] learnSkils, int learnSkiLimit)
+    {
+        itself = prefab;
+        portrait = image;
+        charID = id;
+        nameChar = name;
+        description = des;
+        maxHP = mHP; health = maxHP;
+        maxSP = mSP;
+        attack = atk;
+        defense = def;
+        speed = spe;
+        lv = level;
+
+        DateTime catchTime = DateTime.Now;
+        uniqueID = id + "-" + catchTime.Year.ToString() + catchTime.Month.ToString() + catchTime.Day.ToString() + "-" +
+            catchTime.Hour.ToString() + catchTime.Minute.ToString() + catchTime.Second.ToString();
+
+        learnableSkills = new LearnableSkills[learnSkiLimit];
+        for (int i = 0; i < learnSkiLimit; i++)
+            learnableSkills[i] = learnSkils[i];
+    }
 }

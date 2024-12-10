@@ -8,6 +8,8 @@ internal interface IHaveSameStat
     //read only
     public string NameStat();
     public List<SkillConfig> ListOfAction();
+    public float ChanceToCatch();
+    public StatConfig CreatingNewRobotcatcher();
 
     //read, only write when meet condition
     public int AttackStat();
@@ -21,5 +23,6 @@ internal interface IHaveSameStat
     public int ATKTemp { get; set; }
     public int DEFTemp { get; set; }
     public int SPETemp { get; set; }
+    public AffectSkill AFF { get; set; }
     #endregion
 }

@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour, IHaveSameStat
 {
+    [SerializeField] PlayerManager Manager;
+
     [SerializeField] StatConfig stat;
     int atk, def, sed;
+    AffectSkill affect;
+    int isBattle; //check who in battle
 
     [Header("Skill Set")]
     List<SkillConfig> hasSkills;
 
     [Header("Robotcatched")]
-    [SerializeField] RobotStat[] robotsList = new RobotStat[5];
+    [SerializeField] StatConfig[] robotList = new StatConfig[5]; //DO NOT USE PLAYER STAT
 
     #region Callout Stat
     //read only
+    public StatConfig PlayerStats() { return stat; }
     public string NameStat() { return stat.nameChar; }
     public List<SkillConfig> ListOfAction() { return hasSkills; }
+    public float ChanceToCatch() { return -1; }
 
     //read, only write when meet condition
     public int AttackStat() { return stat.attack; }
@@ -66,14 +72,21 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
                 sed += value;
         }
     }
+
+    public AffectSkill AFF { get => affect; set => affect = value; }
+
+    public void IsInBattle() { isBattle = -1; }
     #endregion
 
-    private void Awake()
+    private void OnEnable()
     {
         atk = stat.attack;
         def = stat.defense;
         sed = stat.speed;
+        affect = AffectSkill.Normal;
         ScanExistSkill();
+
+        isBattle = -1;
     }
 
     void ScanExistSkill()
@@ -88,23 +101,84 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
 
     #region Robot Management
     //read only
-    public int ListOfRobots() { return robotsList.Length; }
+    public int AmountOfRobots()
+    {
+        int count = 0;
+        for (int i = 0; i < robotList.Length; i++)
+            if (robotList[i] != null)
+                count++;
+        //result is how many robotcatcher, in human count
+        return count;
+    }
+
     public bool CheckAvailableRobot()
     {
-        for (int i = 0; i < ListOfRobots(); i++)
-            if (robotsList[i] != null && robotsList[i].HPRemain > 0)
+        for (int i = 0; i < AmountOfRobots(); i++)
+            if (robotList[i] != null && robotList[i].health > 0)
                 return true;
 
         return false;
     }
 
-    public RobotStat UsedThatRobot()
+    public StatConfig ChooseRobot(int num) { return robotList[num]; }
+    public StatConfig ChooseRobot(int num, bool inBattle) //use for change into battle
     {
-        /*for (int i = 0; i < ListOfRobots(); i++)
-            if (robotsList[i] != null)
-                return robotsList[i];*/
+        if (inBattle)
+            isBattle = num;
+        return robotList[num];
+    }
 
-        return robotsList[0];
+    public StatConfig RemainOnBattle() //check who in battle, use for ownermenu
+    {
+        if (AmountOfRobots() == 0 || isBattle == -1)
+            return stat;
+        else return robotList[isBattle];
+    }
+
+    //read, only write when meet condition
+    public StatConfig FirstPickRobot
+    {
+        get 
+        {
+            isBattle = 0;
+            return robotList[0]; 
+        }
+        set 
+        {
+            if (value != robotList[0])
+            {
+                StatConfig temp = robotList[0];
+                robotList[0] = value;
+                for (int i = 0; i < AmountOfRobots(); i++)
+                    if (robotList[i] != null && robotList[i].uniqueID == value.uniqueID)
+                    {
+                        robotList[i] = temp;
+                        break;
+                    }
+            }
+        }
+    }
+
+    //write only
+    public void HackRobotSuccess(StatConfig bot)
+    {
+        Debug.Log("into here " + bot.nameChar);
+        for (int i = 0; i < robotList.Length; i++)
+            if (robotList[i] == null)
+            {
+                robotList[i] = bot;
+                break;
+            }
+        string json = JsonUtility.ToJson(bot, true);
+        Manager.AddNewRobot(json);
+        //Debug.Log(json);
+    }
+    #endregion
+
+    #region Unused
+    public StatConfig CreatingNewRobotcatcher() //DO NOT USE THIS
+    {
+        throw new System.NotImplementedException();
     }
     #endregion
 }

@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 5520860570031411305}
   m_Layer: 0
   m_Name: DetectPlayer
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1515,6 +1515,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1d47ac6f609904781a64c78b6d9a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listRobotJson:
+    list: []
 --- !u!114 &5129260080310229673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1527,7 +1529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 741bfb6438f822b438a94df71b7a0db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
 --- !u!114 &98166933109146192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1540,10 +1542,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83e00a8cd094ba448cd371d0e219ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Manager: {fileID: -4457404850168330836}
   stat: {fileID: 11400000, guid: e07a98a3669091e4da60bea8004fed35, type: 2}
-  robotsList:
-  - {fileID: 3989760791159602934, guid: 1f36d936fa7f1f3449448fd26a23f3c4, type: 3}
-  - {fileID: 0}
+  robotList:
+  - {fileID: 11400000, guid: 01c4a3dee1f23854e8c21738280daa61, type: 2}
+  - {fileID: 11400000, guid: 784a2832536f94947b9c17741e3cdb60, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayeeController : MonoBehaviour
 {
-    PlayerInput inputAction;
+    internal PlayerInput inputAction;
     CharacterController charCtrl;
     Animator anim;
 
@@ -38,11 +38,13 @@ public class PlayeeController : MonoBehaviour
             Moving();
             Running();
 
-            if (speed > 2)
+            if (speed > 3)
                 anim.SetFloat("isSpeeding", movementInput.sqrMagnitude + 1);
             else
                 anim.SetFloat("isSpeeding", movementInput.sqrMagnitude); //sqrMag tra lai do dai cua vector
         }
+        else if (!inputAction.Player.enabled)
+            anim.SetFloat("isSpeeding", 0);
     }
 
     void Moving()
@@ -59,7 +61,7 @@ public class PlayeeController : MonoBehaviour
 
             transform.rotation = lookRotation;
 
-            charCtrl.Move(transform.forward * Time.deltaTime * speed);
+            charCtrl.Move(speed * Time.deltaTime * transform.forward);
         }
     }
 
@@ -68,7 +70,7 @@ public class PlayeeController : MonoBehaviour
         if (inputAction.Player.Running.IsPressed())
             speed = 5;
         else
-            speed = 2;
+            speed = 3;
     }
 
     /*void Jumping()
