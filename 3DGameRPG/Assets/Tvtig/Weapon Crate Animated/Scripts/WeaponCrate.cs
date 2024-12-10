@@ -21,7 +21,10 @@ public class WeaponCrate : MonoBehaviour
         if (Input.GetKey(KeyCode.F))
         {
             _animator.SetBool("Open", true);
+            
         }
+
+        
     }
 
     private void OnTriggerExit(Collider other)
