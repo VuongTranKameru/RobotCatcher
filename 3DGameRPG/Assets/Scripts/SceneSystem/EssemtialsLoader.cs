@@ -7,6 +7,7 @@ public class EssemtialsLoader : MonoBehaviour
 {
     static EssemtialsLoader instance;
 
+    [Header("Player")]
     [SerializeField] GameObject Player;
 
     private void Awake()
@@ -24,28 +25,27 @@ public class EssemtialsLoader : MonoBehaviour
 
         //load player
         if (PlayerManager.instance == null)
-        {
-            Instantiate(Player);
-            PlayerStat initialStat = Player.GetComponent<PlayerStat>();
-            BoostPlayerBeginStat(initialStat);
-        }
-
-        SceneManager.activeSceneChanged += OnSceneChange;
+            LoadPlayer();
     }
 
+    //can load each time scene change, fit for dontdestroy. run after awake and onenabled
     private void OnSceneChange(Scene current, Scene next) 
     {
-        //can load each time scene change, fit for dontdestroy. run after awake and onenabled
-        LoadPlayer();
+        
+    }
+
+    private void Start()
+    {
+        //SceneManager.activeSceneChanged += OnSceneChange;
+
+        PlayerStat initialStat = Player.GetComponent<PlayerStat>();
+        BoostPlayerBeginStat(initialStat);
     }
 
     void LoadPlayer()
     {
-        if (PlayerManager.instance == null)
-        {
-            GameObject player = Instantiate(Player);
-            DontDestroyOnLoad(player);
-        }
+        GameObject player = Instantiate(Player);
+        DontDestroyOnLoad(player); //only destroy when finish a battle
     }
 
     #region For TestEditor Only

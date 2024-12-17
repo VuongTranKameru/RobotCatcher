@@ -7,13 +7,18 @@ using UnityEngine.SceneManagement;
 public class SpawnZone : MonoBehaviour
 {
     int randomSpawnRate;
+    [Header("Robot Appear")]
     [SerializeField] Transform spawnAppear;
     [SerializeField] TMP_Text text;
+    [SerializeField] StatConfig[] robotSpawn;
+    [SerializeField] string battleScene;
 
+    [Header("Effect")]
     [SerializeField] Material[] mode;
     [SerializeField] MeshRenderer mesh;
 
-    [SerializeField] StatConfig[] robotSpawn;
+    [Header("PlayerRespawn")]
+    [SerializeField] GameObject respawnLoca;
 
     void Start()
     {
@@ -35,11 +40,20 @@ public class SpawnZone : MonoBehaviour
 
                 if (!FindAnyObjectByType<RobotStat>()) //already exist once
                 {
+                    
+
+                    //creating
                     int i = Random.Range(0, robotSpawn.Length);
                     GameObject robotEngage = Instantiate(robotSpawn[i].Itself(), spawnAppear.position, Quaternion.identity);
                     DontDestroyOnLoad(robotEngage);
 
-                    SceneManager.LoadScene("BattleMechanicCalc");
+                    //pinning
+                    GameObject afterBattleRespawn = Instantiate(respawnLoca, respawnLoca.transform.position, Quaternion.identity);
+                    afterBattleRespawn.tag = "TeleportFromBtl";
+                    DontDestroyOnLoad(afterBattleRespawn);
+
+                    //changing
+                    SceneManager.LoadScene(battleScene);
                 }
             }
         }
