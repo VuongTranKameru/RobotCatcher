@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    [SerializeField] protected GameObject inventoryMenu;
+    [SerializeField] protected GameObject inventoryPanel;
     protected bool menuActivated;
 
     private void Update()
@@ -12,20 +12,20 @@ public class InventoryManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E) && menuActivated)
         {
             Time.timeScale = 1;
-            inventoryMenu.SetActive(false);
+            inventoryPanel.SetActive(false);
             menuActivated = false;
         }
         
         else if(Input.GetKeyDown(KeyCode.E) && !menuActivated)
         {
             Time.timeScale = 0;
-            inventoryMenu.SetActive(true);
+            inventoryPanel.SetActive(true);
             menuActivated = true;
         }
     }
 
     public void AddItem(string itemName, int quantity, Sprite itemSprite)
     {
-        Debug.Log(" itemName = " + itemName + " quantity = " + quantity + " itemSprite = " + itemSprite);
+        Debug.Log(" itemName = " + itemName + " xquantity = " + quantity + " itemSprite = " + itemSprite);
     }
 }

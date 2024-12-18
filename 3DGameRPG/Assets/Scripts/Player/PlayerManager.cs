@@ -2,9 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class SerializableListJson<T>
+{
+    public List<T> list;
+}
+
 public class PlayerManager : MonoBehaviour
 {
     internal static PlayerManager instance;
+
+    [Header("SAVE STATE")]
+    [SerializeField] internal SerializableListJson<string> listRobotJson;
 
     private void Start()
     {
@@ -14,7 +23,12 @@ public class PlayerManager : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
 
-        //ko huy player khi chuyen scene
-        DontDestroyOnLoad(gameObject);
+        //ko huy player khi chuyen scene. nen instantiante player moi thay vi dung
+        //DontDestroyOnLoad(gameObject);
+    }
+
+    public void AddNewRobot(string json)
+    {
+        listRobotJson.list.Add(json);
     }
 }
