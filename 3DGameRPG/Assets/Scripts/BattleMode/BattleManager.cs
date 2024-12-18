@@ -83,7 +83,7 @@ public class BattleManager : MonoBehaviour
         pStats = playerPrefab.GetComponent<PlayerStat>();
 
         enemyPrefab = FindObjectOfType<RobotStat>().gameObject;
-        enemyPrefab.transform.position = enemyStand.position;
+        enemyPrefab.transform.SetPositionAndRotation(enemyStand.position, enemyStand.rotation);
         eStats = enemyPrefab.GetComponent<RobotStat>();
         eStats.CallOutTempStat(); //Call the skill and temp stat
 

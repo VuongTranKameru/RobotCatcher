@@ -2099,7 +2099,7 @@ MonoBehaviour:
   Manager: {fileID: -4457404850168330836}
   stat: {fileID: 11400000, guid: e07a98a3669091e4da60bea8004fed35, type: 2}
   robotList:
-  - {fileID: 11400000, guid: 01c4a3dee1f23854e8c21738280daa61, type: 2}
+  - {fileID: 11400000, guid: eb72ab000f2699a4d8c1afddd1389f1f, type: 2}
   - {fileID: 11400000, guid: 784a2832536f94947b9c17741e3cdb60, type: 2}
   - {fileID: 0}
   - {fileID: 0}
