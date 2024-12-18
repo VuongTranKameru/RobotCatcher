@@ -1,15 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[System.Serializable]
-
-public class SerializableListJson<T>
-{
-    public List<T> list;
-}
 
 public class PlayerStat : MonoBehaviour, IHaveSameStat
 {
+    [SerializeField] PlayerManager Manager;
+
     [SerializeField] StatConfig stat;
     int atk, def, sed;
     AffectSkill affect;
@@ -20,7 +16,6 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
 
     [Header("Robotcatched")]
     [SerializeField] StatConfig[] robotList = new StatConfig[5]; //DO NOT USE PLAYER STAT
-    [SerializeField] SerializableListJson<string> listJson;
 
     #region Callout Stat
     //read only
@@ -175,7 +170,7 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
                 break;
             }
         string json = JsonUtility.ToJson(bot, true);
-        listJson.list.Add(json);
+        Manager.AddNewRobot(json);
         //Debug.Log(json);
     }
     #endregion

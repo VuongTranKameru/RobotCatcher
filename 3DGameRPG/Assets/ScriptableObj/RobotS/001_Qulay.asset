@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e567097cd3e691468f82b71fe19d30d, type: 3}
+  m_Name: 001_Qulay
+  m_EditorClassIdentifier: 
+  itself: {fileID: 6103873533526714482, guid: 006c2012c7890f843b90e54d36de6670, type: 3}
+  portrait: {fileID: 0}
+  charID: 001
+  uniqueID: 
+  nameChar: Qulay
+  description: "Lo\u1EA1i robot l\u1ED7i th\u1EDDi b\u1ECB v\u1EE9t b\u1ECF ngay
+    l\u1EADp t\u1EE9c sau khi nhi\u1EC1u con robot kh\xE1c \u0111\u01B0\u1EE3c t\u1EA1o
+    ra, t\u1EEBng c\xF3 c\xF4ng d\u1EE5ng ch\u0103m s\xF3c v\xE0 ph\u1EE5c v\u1EE5
+    kh\xE1ch h\xE0ng v\xEC c\xE1ch h\xE0nh x\u1EED d\u1EC5 th\u01B0\u01A1ng. Kh\xF4ng
+    c\xF3 l\xF5i t\xEDch t\u1EE5 n\u0103ng l\u01B0\u1EE3ng v\xE0 kh\xF4ng th\u1EADt
+    s\u1EF1 th\xEDch h\u1EE3p trong \u0111\xE1nh nhau l\u1EAFm..."
+  maxHP: 35
+  attack: 3
+  defense: 10
+  speed: 19
+  lv: 1
+  maxSP: 0
+  learnableSkills:
+  - learnableSkill: {fileID: 11400000, guid: dc6194c2d5c37c242bb3429da27ab815, type: 2}
+    atLevel: 0
+  - learnableSkill: {fileID: 11400000, guid: da3d4579d1409f74b8631e6d409e625e, type: 2}
+    atLevel: 0

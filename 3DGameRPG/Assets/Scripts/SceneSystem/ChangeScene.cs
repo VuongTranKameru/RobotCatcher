@@ -5,22 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
+    //[Header("Current Scene")]
+
+    [Header("Next Scene")]
     [SerializeField] int sceneNum;
+    [SerializeField] Transform exitGate;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    public void OnClickChange()
-    {
-        SceneManager.LoadScene(sceneNum);
+        if (other.CompareTag("Player"))
+            SceneManager.LoadScene(sceneNum);
     }
 }
