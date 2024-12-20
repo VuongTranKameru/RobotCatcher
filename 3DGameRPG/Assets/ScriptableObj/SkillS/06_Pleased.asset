@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca3465f4d09c0745aa3d50b1fa149d9, type: 3}
+  m_Name: 06_Pleased
+  m_EditorClassIdentifier: 
+  skillID: 06
+  skillName: Pleased
+  type: 2
+  sDesc: "L\xE0m v\u1EEBa l\xF2ng m\u1ED9t ai kh\xE1c khi\u1EBFn cho h\u1ECD m\u1EC1m
+    l\xF2ng, gi\u1EA3m \u0111i s\u1EF1 ph\xF2ng th\u1EE7, c\u1EA3nh gi\xE1c."
+  power: 5
+  spUsed: 0
+  listBtnClr:
+  - {fileID: 21300000, guid: 442dfe5080264474793f8cf03fd6dc44, type: 3}
+  - {fileID: 21300000, guid: 432e1f052ce5b5146ad91b0394a5be15, type: 3}
+  skillBtn: {fileID: 7314824642156943573, guid: aa6c16142203b6c4c9c96a5642ba8b1e, type: 3}

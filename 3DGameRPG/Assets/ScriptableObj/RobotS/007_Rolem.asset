@@ -18,9 +18,9 @@ MonoBehaviour:
   uniqueID: 
   nameChar: Rolem
   description: ANW
-  maxHP: 20
+  maxHP: 50
   attack: 1
-  defense: 1
+  defense: 5
   speed: 1
   lv: 1
   maxSP: 100
@@ -29,5 +29,5 @@ MonoBehaviour:
     atLevel: 0
   - learnableSkill: {fileID: 11400000, guid: da3d4579d1409f74b8631e6d409e625e, type: 2}
     atLevel: 0
-  - learnableSkill: {fileID: 11400000, guid: cd85659339a68514eb5266816aeec5ab, type: 2}
+  - learnableSkill: {fileID: 11400000, guid: d61ae97da25f89f42ab1b9aa8f8872ed, type: 2}
     atLevel: 0

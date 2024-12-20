@@ -17,6 +17,9 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     [Header("Robotcatched")]
     [SerializeField] StatConfig[] robotList = new StatConfig[5]; //DO NOT USE PLAYER STAT
 
+    [Header("Itemlooted")]
+    [SerializeField] List<ItemConfig> itemList = new();
+
     #region Callout Stat
     //read only
     public StatConfig PlayerStats() { return stat; }
@@ -30,6 +33,7 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     public int SpeedStat() { return stat.speed; }
     public int MaxHPStat() { return stat.maxHP; }
     public int LvStat() { return stat.lv; }
+    public StatusEffect StatusEffectState() { return stat.status; }
 
     //read and write
     public int HPRemain
@@ -48,8 +52,9 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         get { return atk; }
         set
         {
-            if (value + atk != stat.attack)
-                atk += value;
+            if (value < 0)
+                atk = 0;
+            else atk = value;
         }
     }
 
@@ -58,8 +63,9 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         get { return def; }
         set
         {
-            if (value + def != stat.defense)
-                def += value;
+            if (value < 0)
+                def = 0;
+            else def = value;
         }
     }
 
@@ -173,6 +179,20 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         Manager.AddNewRobot(json);
         //Debug.Log(json);
     }
+    #endregion
+
+    #region Item Management
+    public int AmountOfItems()
+    {
+        int calc = 0;
+        for (int i = 0; i < itemList.Count; i++)
+            if (itemList[i] != null)
+                calc++;
+
+        return calc;
+    }
+
+    public ItemConfig ClickOnItem(int num) { return itemList[num]; }
     #endregion
 
     #region Unused

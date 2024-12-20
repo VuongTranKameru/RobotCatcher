@@ -17,7 +17,8 @@ MonoBehaviour:
   type: 2
   sDesc: "M\u1EDF t\u1EEB tr\u01B0\u1EDDng l\xE1 ch\u1EAFn, gi\u1EA3m thi\u1EC7t
     h\u1EA1i khi b\u1ECB va \u0111\u1EADp hay b\u1ECB t\u1EA5n c\xF4ng."
-  power: 1
+  power: 3
+  spUsed: 0
   listBtnClr:
   - {fileID: 21300000, guid: 442dfe5080264474793f8cf03fd6dc44, type: 3}
   - {fileID: 21300000, guid: 432e1f052ce5b5146ad91b0394a5be15, type: 3}
