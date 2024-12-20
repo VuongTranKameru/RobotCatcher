@@ -18,6 +18,7 @@ MonoBehaviour:
   sDesc: "Chi\u1EBFu \xE1nh s\xE1ng ch\xF3i l\xF2a, l\xE0m \u0111\u1ED1i ph\u01B0\u01A1ng
     h\u1EE5t m\u1EA5t 1 l\u01B0\u1EE3t."
   power: 0
+  spUsed: 25
   listBtnClr:
   - {fileID: 21300000, guid: 7df6c8ecd0c44a64eb460d278866a0de, type: 3}
   - {fileID: 21300000, guid: e1e2343522db2cb48b49093882a8655a, type: 3}

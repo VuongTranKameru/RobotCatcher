@@ -40,11 +40,10 @@ public class SpawnZone : MonoBehaviour
 
                 if (!FindAnyObjectByType<RobotStat>()) //already exist once
                 {
-                    
-
                     //creating
                     int i = Random.Range(0, robotSpawn.Length);
                     GameObject robotEngage = Instantiate(robotSpawn[i].Itself(), spawnAppear.position, Quaternion.identity);
+                    robotEngage.tag = "Enemy";
                     DontDestroyOnLoad(robotEngage);
 
                     //pinning

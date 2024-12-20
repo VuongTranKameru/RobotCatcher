@@ -2104,6 +2104,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  itemList:
+  - {fileID: 11400000, guid: ec03c0cc1671a9744bf998512b41074f, type: 2}
 --- !u!114 &6176426234122029672
 MonoBehaviour:
   m_ObjectHideFlags: 0

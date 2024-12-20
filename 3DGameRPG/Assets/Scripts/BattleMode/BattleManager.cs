@@ -43,7 +43,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField] Transform roomSkill;
     List<Toggle> emptySkills = new List<Toggle>();
 
-    public BattleState CurrentState() { return state; }
+    public BattleState CurrentState() { return state; } //for camera
+    public bool RobotOnStage() { return hOr; } //for status
+
     void MessageReceive(string mes) { message.text = mes; }
 
     private void Awake()
@@ -324,6 +326,7 @@ public class BattleManager : MonoBehaviour
     {
         //check if player have robot. if have, stats first update, player robot
         robotPPrefab = Instantiate(pStats.ChooseRobot(num, true).Itself(), rPobotStand.position, rPobotStand.rotation);
+        robotPPrefab.tag = "Ally";
         rPobots = robotPPrefab.GetComponent<RobotStat>();
         rPobots.RobotStats = pStats.ChooseRobot(num);
         rPobots.CallOutTempStat(); //Call the skill and temp stat
@@ -462,7 +465,7 @@ public class BattleManager : MonoBehaviour
     public void CheckSwitchButtonNotWork()
     {
         TurnAnnouceBoard();
-        MessageReceive($"You have to choose someone to confirm it!?");
+        MessageReceive($"You have to choose something to confirm it!?");
     }
     #endregion
 

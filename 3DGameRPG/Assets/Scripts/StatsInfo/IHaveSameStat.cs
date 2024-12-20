@@ -17,6 +17,7 @@ internal interface IHaveSameStat
     public int SpeedStat();
     public int MaxHPStat();
     public int LvStat();
+    public StatusEffect StatusEffectState();
 
     //read and write
     public int HPRemain { get; set; }

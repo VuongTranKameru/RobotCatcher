@@ -16,7 +16,7 @@ public class ItemConfig : ScriptableObject
     [SerializeField] internal string itemID, itemName;
     [SerializeField] internal TypeOfItem type;
     [SerializeField] internal string itDesc;
-    [SerializeField] internal int value, amount;
+    [SerializeField] internal int value;
 
     [Header("Png")]
     [SerializeField] internal Sprite icon;
