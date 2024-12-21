@@ -11,9 +11,7 @@ public class AFlashbangSkillBtn : MonoBehaviour, ICanUseSkill
     [SerializeField] Image actBtnClr, actChk;
     [SerializeField] TMP_Text actName;
 
-    int spPoint = 25;
-
-    public int CostOfSP() { return spPoint; }
+    public int CostOfSP() { return skill.spUsed; }
     public TypeOfSkill Type() { return skill.type; }
 
     private void Awake()

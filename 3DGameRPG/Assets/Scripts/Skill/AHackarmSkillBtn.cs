@@ -16,7 +16,7 @@ public class AHackarmSkillBtn : MonoBehaviour, ICanUseSkill
     [SerializeField] UnityEvent<StatConfig> HackedRobot;
     bool isSuccess;
 
-    public int CostOfSP() { return 0; }
+    public int CostOfSP() { return skill.spUsed; }
     public TypeOfSkill Type() { return skill.type; }
 
     void Awake()
@@ -52,6 +52,8 @@ public class AHackarmSkillBtn : MonoBehaviour, ICanUseSkill
         float hpLost = bot.MaxHPStat() - bot.HPRemain;
         float hitRate = (float)System.Math.Round(Random.Range(0f, 100f), 2) - (hpLost/bot.MaxHPStat())*10f;
         Debug.Log("rate:" + hitRate + " & " + hpLost / bot.MaxHPStat() * 10f);
+        //random chance%, neu mau giam thi ti le se cao hon
+
         if (hitRate <= bot.ChanceToCatch())
         {
             bot.HPRemain = 0;

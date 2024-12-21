@@ -32,6 +32,7 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
     public int MaxHPStat() { return stat.maxHP; }
     public int MaxSPStat() { return stat.maxSP; }
     public int LvStat() { return stat.lv; }
+    public StatusEffect StatusEffectState() { return stat.status; }
     public void LevelUp()
     {
         stat.lv += 1;
@@ -64,8 +65,9 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
         get { return atk; }
         set
         {
-            if (value + atk != stat.attack)
-                atk = atk + value;
+            if (value < 0)
+                atk = 0;
+            else atk = value;
         }
     }
 
@@ -74,8 +76,9 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
         get { return def; }
         set
         {
-            if (value + def != stat.defense)
-                def += value;
+            if (value < 0)
+                def = 0;
+            else def = value;
         }
     }
 

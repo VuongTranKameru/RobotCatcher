@@ -24,13 +24,14 @@ MonoBehaviour:
     c\xF3 l\xF5i t\xEDch t\u1EE5 n\u0103ng l\u01B0\u1EE3ng v\xE0 kh\xF4ng th\u1EADt
     s\u1EF1 th\xEDch h\u1EE3p trong \u0111\xE1nh nhau l\u1EAFm..."
   maxHP: 35
-  attack: 3
-  defense: 10
+  attack: 7
+  defense: 3
   speed: 19
   lv: 1
   maxSP: 0
+  status: 0
   learnableSkills:
   - learnableSkill: {fileID: 11400000, guid: dc6194c2d5c37c242bb3429da27ab815, type: 2}
     atLevel: 0
-  - learnableSkill: {fileID: 11400000, guid: da3d4579d1409f74b8631e6d409e625e, type: 2}
+  - learnableSkill: {fileID: 11400000, guid: 65abd775f87a437438f6de904b6ccfea, type: 2}
     atLevel: 0
