@@ -101,32 +101,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1102 &-4641866318863806233
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: CannonMachine_SpeAtk
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5ede202867063c14a8408d50b4c4429a, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1102 &-965861146620350793
 AnimatorState:
   serializedVersion: 6
@@ -257,7 +231,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 2c85d63f1e8256e418f566a7bcf49b14, type: 2}
+    m_Motion: {fileID: 7400000, guid: 80ded67cc2eead34b91d309c79c1b06b, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -265,7 +239,7 @@ BlendTree:
     m_DirectBlendParameter: Attacked
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: c3b47ceb99942a84f949ab9de09bb73c, type: 2}
+    m_Motion: {fileID: 7400000, guid: b4827890d05ea5b4fba17f51f2a6f988, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -273,7 +247,7 @@ BlendTree:
     m_DirectBlendParameter: Attacked
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 16d96e231ad602d42a38036c7dc6f7e1, type: 2}
+    m_Motion: {fileID: 7400000, guid: 0a5cf577a61a4cb4d9bf134c40ede0da, type: 2}
     m_Threshold: 2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -308,9 +282,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 3974695276334461933}
     m_Position: {x: 560, y: 110, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -4641866318863806233}
-    m_Position: {x: 595, y: 175, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
