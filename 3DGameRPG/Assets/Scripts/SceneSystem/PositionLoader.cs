@@ -7,7 +7,6 @@ public class PositionLoader : MonoBehaviour
 {
     [Header("Player")]
     [SerializeField] GameObject player;
-    [SerializeField] Transform posPlayer;
 
     [Header("Position")]
     [SerializeField] Transform posWarp;
@@ -31,17 +30,11 @@ public class PositionLoader : MonoBehaviour
 
         Debug.Log(previousScene + "; " + next.name);
         if (previousScene != next.name)
-            if (previousScene == "BattleMechanicCalc")
+            if (previousScene.Contains("Battle"))
                 ReturnFromBattleLocation(previousScene, next.name);
             else GoNewLocation(previousScene, next.name);
         //finish changing scene, take name from current scene
         previousScene = SceneManager.GetActiveScene().name;
-    }
-
-    void TrackPlayerLocation()
-    {
-        posPlayer = player.transform;
-        //Debug.Log($"pos: {posPlayer.position}; ro: {posPlayer.rotation}");
     }
 
     void GoNewLocation(string previous, string current)
@@ -66,4 +59,10 @@ public class PositionLoader : MonoBehaviour
     Vector3 SpawnPos() { return new Vector3(-1.5f, 0.5f, 2.5f); }
 
     Vector3 Chap1Pos() { return new Vector3(-33, 4.33279991f, 58); }
+
+    void TrackPlayerLocation()
+    {
+        //posPlayer = player.transform;
+        //Debug.Log($"pos: {posPlayer.position}; ro: {posPlayer.rotation}");
+    }
 }
