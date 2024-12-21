@@ -40,7 +40,8 @@ public class StatConfig : ScriptableObject
     //bool statusEffect;
     /*Overheat: lost hp each turn, defense low
       Shock: lost 1-2 turns
-      Waterlogged: lost hp, got double dmg when eletric*/
+      Waterlogged: lost hp, got double dmg when eletric
+      --decide to fuse shock with waterlogged, receive double char atk when eletric or water. overheat only lost hp*/
     [Header("Status Effect")]
     [SerializeField] internal StatusEffect status;
 
