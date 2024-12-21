@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
@@ -43,6 +43,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField] ToggleGroup groupSkill;
     [SerializeField] Transform roomSkill;
     List<Toggle> emptySkills = new List<Toggle>();
+
+    [Header("Reward")]
+    [SerializeField] UnityEvent sceneWin;
 
     public BattleState CurrentState() { return state; } //for camera
     public bool RobotOnStage() { return hOr; } //for status
@@ -432,6 +435,8 @@ public class BattleManager : MonoBehaviour
         {
             TurnAnnouceBoard();
             MessageReceive($"You can't run away...");
+            if (spUsed && rPobots.SPRemain < rPobots.MaxSPStat())
+                rPobots.SPRemain += 20;
             donePTurn = true;
         }
     }
@@ -461,7 +466,7 @@ public class BattleManager : MonoBehaviour
                 StartCoroutine(IsDeadAnimation(enemyPrefab));
                 Destroy(enemyPrefab);
                 Destroy(playerPrefab);
-                SceneManager.LoadScene("SpawnRoute");
+                sceneWin.Invoke();
             }
     }
 

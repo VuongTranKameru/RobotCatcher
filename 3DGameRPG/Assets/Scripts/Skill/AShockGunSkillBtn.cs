@@ -35,7 +35,7 @@ public class AShockGunSkillBtn : MonoBehaviour, ICanUseSkill
         if (tempDamg > 0)
             opp.HPRemain -= tempDamg;
 
-        if (Random.Range(0, 21) <= 20)
+        if (Random.Range(0, 11) < 6)
         {
             opp.ReceiveStatusE(StatusEffect.Shock);
             isShock = true;
