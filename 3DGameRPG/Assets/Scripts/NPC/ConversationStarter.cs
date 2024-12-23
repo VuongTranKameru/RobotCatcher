@@ -6,7 +6,6 @@ using DialogueEditor;
 public class ConversationStarter : MonoBehaviour
 {
     [SerializeField] private NPCConversation myConversation;
-    PlayerInteractUI playerinteractUI;
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
