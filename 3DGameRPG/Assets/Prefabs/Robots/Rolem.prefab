@@ -337,6 +337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3290479336287524923}
   - component: {fileID: 8207542722831158362}
+  - component: {fileID: 1732726936156876430}
   - component: {fileID: 999915578022204328}
   - component: {fileID: 7502071006025168178}
   - component: {fileID: 184292488138780048}
@@ -380,6 +381,19 @@ MonoBehaviour:
   stat: {fileID: 11400000, guid: eb72ab000f2699a4d8c1afddd1389f1f, type: 2}
   hasSkills: []
   chance: 0
+--- !u!114 &1732726936156876430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094376019909573613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4002c83ff729134c94f77bfdc021679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemList: []
 --- !u!114 &999915578022204328
 MonoBehaviour:
   m_ObjectHideFlags: 0

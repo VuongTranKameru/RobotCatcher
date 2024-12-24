@@ -45,6 +45,8 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         {
             if (value < 0)
                 stat.health = 0;
+            else if (value > stat.maxHP)
+                stat.health = stat.maxHP;
             else stat.health = value;
         }
     }
@@ -189,6 +191,8 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     #endregion
 
     #region Item Management
+    public ItemConfig ClickOnItem(int num) { return itemList[num]; }
+    public void DeleteItem(ItemConfig item) { itemList.Remove(item); }
     public int AmountOfItems()
     {
         int calc = 0;
@@ -199,7 +203,12 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         return calc;
     }
 
-    public ItemConfig ClickOnItem(int num) { return itemList[num]; }
+    public void AddItem(ItemConfig item) //has to put in original, not the clone one
+    {
+        itemList.Add(item);
+        string ison = JsonUtility.ToJson(item, true);
+        Manager.AddNewItem(ison);
+    }
     #endregion
 
     #region Unused

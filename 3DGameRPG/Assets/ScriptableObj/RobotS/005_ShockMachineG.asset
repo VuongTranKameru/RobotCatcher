@@ -16,14 +16,14 @@ MonoBehaviour:
   portrait: {fileID: 0}
   charID: 005
   uniqueID: 
-  nameChar: ANW
+  nameChar: Shock Machine Gun
   description: ANW
   maxHP: 100
-  attack: 1
+  attack: 6
   defense: 1
-  speed: 1
+  speed: 5
   lv: 1
-  maxSP: 100
+  maxSP: 125
   status: 0
   learnableSkills:
   - learnableSkill: {fileID: 11400000, guid: dc6194c2d5c37c242bb3429da27ab815, type: 2}
