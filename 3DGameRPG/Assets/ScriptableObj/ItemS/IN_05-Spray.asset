@@ -16,6 +16,6 @@ MonoBehaviour:
   itemName: Spray
   type: 0
   itDesc: "Gi\u1EA3m thi\u1EC3u v\u1EBFt th\u01B0\u01A1ng tr\xEAn ng\u01B0\u1EDDi,
-    h\u1ED3i 50% l\u01B0\u1EE3ng HP cho con ng\u01B0\u1EDDi."
+    h\u1ED3i 50% HP (d\u1EF1a tr\xEAn HP t\u1ED1i \u0111a) cho con ng\u01B0\u1EDDi."
   value: 50
   icon: {fileID: 21300000, guid: 2e42451057e19ee4c8cc0e62abf24557, type: 3}

@@ -5748,6 +5748,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 5736136756348141057, guid: 515de9bab33ca3a488ce559630c23982, type: 3}
+      propertyPath: previousScene
+      value: SpawnRoute
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -12,7 +12,7 @@ public class BattleManager : MonoBehaviour
 
     [Header("Annoucement")]
     [SerializeField] TMP_Text message;
-    [SerializeField] GameObject annouceBoard, playerBoard, statusBoard, ownerMenu;
+    [SerializeField] GameObject annouceBoard, playerBoard, statusBoard, ownerMenu, rewardBoard;
     bool donePTurn, doneETurn;
 
     [Header("Location Spawn")]
@@ -422,6 +422,14 @@ public class BattleManager : MonoBehaviour
             DetermineTurn();
     }
 
+    public void OnUsingItem()
+    {
+        TurnStatusBoard();
+        UpdatingStatOnScreen();
+
+        StartCoroutine(HealingTurn());
+    }
+
     public void OnRunaway()
     {
         int runawayChance = Random.Range(0, 2);
@@ -461,13 +469,19 @@ public class BattleManager : MonoBehaviour
             annouceBoard.SetActive(false);
 
         if (input.OnBattle.SkipDialogue.triggered)
-            if(state == BattleState.LeaveBattle || state == BattleState.WonBattle)
+        { 
+            if (state == BattleState.LeaveBattle)
             {
-                StartCoroutine(IsDeadAnimation(enemyPrefab));
                 Destroy(enemyPrefab);
                 Destroy(playerPrefab);
                 sceneWin.Invoke();
             }
+            else if (state == BattleState.WonBattle)
+            {
+                StartCoroutine(IsDeadAnimation(enemyPrefab)); 
+                rewardBoard.SetActive(true);
+            }
+        }
     }
 
     void TurnAnnouceBoard()
@@ -505,10 +519,25 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    IEnumerator HealingTurn()
+    {
+        yield return new WaitForSeconds(.8f);
+        TurnAnnouceBoard();
+        MessageReceive($"You has heal up your unit with item!");
+
+        PlayerAction();
+    }
+
     public void CheckSwitchButtonNotWork()
     {
         TurnAnnouceBoard();
         MessageReceive($"You have to choose something to confirm it!?");
+    }
+
+    public void CheckUseItemCorrectly()
+    {
+        TurnAnnouceBoard();
+        MessageReceive($"The item may not work on right unit, or the unit is already full.");
     }
     #endregion
 

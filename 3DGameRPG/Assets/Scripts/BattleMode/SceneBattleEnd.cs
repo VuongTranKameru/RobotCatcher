@@ -7,21 +7,23 @@ public class SceneBattleEnd : MonoBehaviour
 {
     [SerializeField] string sceneToGo;
 
-    [Header("DropFromEnemy")]
-    [SerializeField] GameObject bot;
+    [Header("Previous Scene")]
+    [SerializeField] PositionLoader sceneFromLoader;
+    string previousScene;
 
     private void Awake()
     {
-        bot = GameObject.FindGameObjectWithTag("Enemy").gameObject;
-    }
-
-    public void ChangeSceneDirectly()
-    {
-        SceneManager.LoadScene(sceneToGo);
+        sceneFromLoader = GameObject.FindGameObjectWithTag("GameController").GetComponent<PositionLoader>();
+        previousScene = sceneFromLoader.ReturnToPreviousScene();
     }
 
     public void WinningTutorialScene()
     {
-        ChangeSceneDirectly();
+        SceneManager.LoadScene(sceneToGo); //changeSceneDirectly
+    }
+
+    public void ReturnFromBattle()
+    {
+        SceneManager.LoadScene(previousScene);
     }
 }

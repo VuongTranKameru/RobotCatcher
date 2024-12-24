@@ -63,6 +63,8 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
         {
             if (value < 0)
                 stat.health = 0;
+            else if (value > stat.maxHP)
+                stat.health = stat.maxHP;
             else stat.health = value;
         }
     }

@@ -12,7 +12,7 @@ public class PositionLoader : MonoBehaviour
     [SerializeField] Transform posWarp;
     [SerializeField] string previousScene;
 
-    //public Transform PlayerPosition() { return posPlayer; }
+    public string ReturnToPreviousScene() { return previousScene; }
 
     private void Start()
     {

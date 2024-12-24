@@ -2071,6 +2071,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listRobotJson:
     list: []
+  listItemJson:
+    list: []
 --- !u!114 &5129260080310229673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2107,6 +2109,13 @@ MonoBehaviour:
   - {fileID: 0}
   itemList:
   - {fileID: 11400000, guid: ec03c0cc1671a9744bf998512b41074f, type: 2}
+  - {fileID: 11400000, guid: ec03c0cc1671a9744bf998512b41074f, type: 2}
+  - {fileID: 11400000, guid: 8d98054e9751cc1439e1c85496096958, type: 2}
+  - {fileID: 11400000, guid: 8fb985509bdae854584317df7c18a488, type: 2}
+  - {fileID: 11400000, guid: 8fb985509bdae854584317df7c18a488, type: 2}
+  - {fileID: 11400000, guid: eec3cd9dec8c5c1489173c1f7d1da4bc, type: 2}
+  - {fileID: 11400000, guid: 22a6e5d7d4ec40341a4368e0330c7630, type: 2}
+  - {fileID: 11400000, guid: 181f1f0491fae444caa9d5fd981dd05d, type: 2}
 --- !u!114 &6176426234122029672
 MonoBehaviour:
   m_ObjectHideFlags: 0

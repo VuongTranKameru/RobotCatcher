@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("SAVE STATE")]
     [SerializeField] internal SerializableListJson<string> listRobotJson;
+    [SerializeField] internal SerializableListJson<string> listItemJson;
 
     private void Start()
     {
@@ -30,5 +31,10 @@ public class PlayerManager : MonoBehaviour
     public void AddNewRobot(string json)
     {
         listRobotJson.list.Add(json);
+    }
+
+    public void AddNewItem(string json)
+    {
+        listItemJson.list.Add(json);
     }
 }
