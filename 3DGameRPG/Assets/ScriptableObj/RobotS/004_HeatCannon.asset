@@ -13,21 +13,27 @@ MonoBehaviour:
   m_Name: 004_HeatCannon
   m_EditorClassIdentifier: 
   itself: {fileID: 5004540227045442526, guid: 4beb55e40004d2e4791857f4a97884b7, type: 3}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 71a6522dd307b744f9689066e7a2bd1a, type: 3}
   charID: 004
   uniqueID: 
-  nameChar: ANW
-  description: ANW
-  maxHP: 100
-  attack: 1
-  defense: 1
-  speed: 1
+  nameChar: Heat Cannon
+  description: "Thi\u1EBFt k\u1EBF b\u1EDFi m\u1ED9t k\u1EBB \u1EA9n danh n\xE0o
+    \u0111\xF3 trong th\u1EBF gi\u1EDBi ng\u1EA7m, d\u1EF1ng l\xEAn t\u1EEB \u0111\u1ED1ng
+    r\u1EC9 s\xE9t v\xE0 m\u1ED9t t\xED nhi\u1EC7t l\u1EEDa. Th\u01B0\u1EDDng hay
+    th\u1EA5y robot n\xE0y \u1EDF c\xE1c tr\u1EADn \u0111\u1EA5u c\xE1 c\u01B0\u1EE3c,
+    v\u1ED1n l\xE0 ho\u1EA1t \u0111\u1ED9ng n\u1EB1m ngo\xE0i ph\xE1p lu\u1EADt.
+    Nh\u01B0ng \u0111\xF4i l\xFAc ng\u01B0\u1EDDi d\xE2n c\u0169ng x\xE0i ch\xFAng
+    nh\u01B0 ngu\u1ED3n s\u01B0\u1EDFi \u1EA5m v\xE0 \u0111un n\xF3ng, d\xF9 vi\u1EC7c
+    l\xE0m n\xE0y r\u1EA5t nguy hi\u1EC3m."
+  maxHP: 85
+  attack: 6
+  defense: 11
+  speed: 13
   lv: 1
-  maxSP: 100
+  maxSP: 115
+  status: 0
   learnableSkills:
   - learnableSkill: {fileID: 11400000, guid: dc6194c2d5c37c242bb3429da27ab815, type: 2}
     atLevel: 0
-  - learnableSkill: {fileID: 11400000, guid: da3d4579d1409f74b8631e6d409e625e, type: 2}
-    atLevel: 0
-  - learnableSkill: {fileID: 11400000, guid: cd85659339a68514eb5266816aeec5ab, type: 2}
+  - learnableSkill: {fileID: 11400000, guid: 75e4c3e48b4b1594fb8e2bf5ec1bc6af, type: 2}
     atLevel: 0

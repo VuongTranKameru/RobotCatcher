@@ -53,7 +53,7 @@ public class EssemtialsLoader : MonoBehaviour
     {
         initialStat.HPRemain = initialStat.MaxHPStat();
 
-        FullHPRobotOwned(initialStat);
+        //FullHPRobotOwned(initialStat);
     }
 
     void FullHPRobotOwned(PlayerStat stat)

@@ -46,6 +46,7 @@ public class BattleManager : MonoBehaviour
 
     [Header("Reward")]
     [SerializeField] UnityEvent sceneWin;
+    [SerializeField] UnityEvent sceneLost;
 
     public BattleState CurrentState() { return state; } //for camera
     public bool RobotOnStage() { return hOr; } //for status
@@ -166,9 +167,9 @@ public class BattleManager : MonoBehaviour
             for (int i = 0; i < emptySkills.Count; i++)
                 if (emptySkills[i].isOn)
                 {
-                    if (rPobots.SPRemain >= emptySkills[i].GetComponent<ICanUseSkill>().CostOfSP())
+                    if (chosen.SPRemain >= emptySkills[i].GetComponent<ICanUseSkill>().CostOfSP())
                     {
-                        rPobots.SPRemain -= emptySkills[i].GetComponent<ICanUseSkill>().CostOfSP();
+                        chosen.SPRemain -= emptySkills[i].GetComponent<ICanUseSkill>().CostOfSP();
 
                         if (chosen.AFF == AffectSkill.Normal)
                         {
@@ -296,7 +297,6 @@ public class BattleManager : MonoBehaviour
 
                 yield return new WaitForSeconds(0.3f);
                 StartCoroutine(IsDeadAnimation(playerPrefab));
-                Destroy(playerPrefab);
             }
             else if (chosen.HPRemain <= 0)
             {
@@ -481,6 +481,13 @@ public class BattleManager : MonoBehaviour
                 StartCoroutine(IsDeadAnimation(enemyPrefab)); 
                 rewardBoard.SetActive(true);
             }
+        }
+
+        if (state == BattleState.LoseBattle)
+        {
+            Destroy(playerPrefab);
+            Destroy(enemyPrefab);
+            sceneLost?.Invoke();
         }
     }
 

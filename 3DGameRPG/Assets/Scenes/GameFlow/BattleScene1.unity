@@ -308,7 +308,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403947781}
-  m_LocalRotation: {x: -0.0056580943, y: 0.9789524, z: -0.20216216, w: -0.027398825}
+  m_LocalRotation: {x: -0.0056580873, y: 0.9789524, z: -0.20216216, w: -0.02739879}
   m_LocalPosition: {x: 5.672146, y: 5.265464, z: -5.38033}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1155,7 +1155,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.0056580943, y: 0.9789524, z: -0.20216216, w: -0.027398825}
+  m_LocalRotation: {x: -0.0056580873, y: 0.9789524, z: -0.20216216, w: -0.02739879}
   m_LocalPosition: {x: 0.5192333, y: 4.004961, z: 9.268772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2142,7 +2142,7 @@ PrefabInstance:
       objectReference: {fileID: 4614238354427222174}
     - target: {fileID: 7670294767860891755, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
       propertyPath: sceneWin.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: ReturnFromBattle
       objectReference: {fileID: 0}
     - target: {fileID: 7670294767860891755, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
       propertyPath: sceneWin.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2161,11 +2161,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
---- !u!1 &4614238354427222174 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7137260079090548760, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
+--- !u!114 &4614238354427222174 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3800532250852847997, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
   m_PrefabInstance: {fileID: 4614238354427222173}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a5f9e7d9b27e64fb242aee65301c76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!64 &5470650645538623311
 MeshCollider:
   m_ObjectHideFlags: 0

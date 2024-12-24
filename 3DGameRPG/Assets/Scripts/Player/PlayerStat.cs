@@ -83,6 +83,12 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         }
     }
 
+    public int SPRemain
+    {
+        get { return 0; }
+        set { stat.specialPoint = 0; }
+    }
+
     public AffectSkill AFF { get => affect; set => affect = value; }
 
     public void ReceiveStatusE(StatusEffect status)
