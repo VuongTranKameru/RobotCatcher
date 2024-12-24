@@ -25,6 +25,7 @@ internal interface IHaveSameStat
     public int ATKTemp { get; set; }
     public int DEFTemp { get; set; }
     public int SPETemp { get; set; }
+    public int SPRemain { get; set; }
     public AffectSkill AFF { get; set; }
     public void ReceiveStatusE(StatusEffect status);
     #endregion

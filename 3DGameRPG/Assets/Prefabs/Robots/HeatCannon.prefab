@@ -10177,7 +10177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: {fileID: 11400000, guid: 7e31200774f6a274d9c07b6814e1b2af, type: 2}
   hasSkills: []
-  chance: 0
+  chance: 50
 --- !u!114 &2965462062603253324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10190,7 +10190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4002c83ff729134c94f77bfdc021679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemList: []
+  itemList:
+  - {fileID: 11400000, guid: d29abf9a52398474bae49bc66d03067f, type: 2}
+  - {fileID: 11400000, guid: 181f1f0491fae444caa9d5fd981dd05d, type: 2}
+  - {fileID: 11400000, guid: 22a6e5d7d4ec40341a4368e0330c7630, type: 2}
 --- !u!114 &9172130104126299419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10345,7 +10348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1751869893634596241
 Transform:
   m_ObjectHideFlags: 0
@@ -15059,7 +15062,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: fed665eb592f66c4c8ab674d70185458, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -26,4 +26,15 @@ public class SceneBattleEnd : MonoBehaviour
     {
         SceneManager.LoadScene(previousScene);
     }
+
+    public void GameOverScreen()
+    {
+        Destroy(sceneFromLoader.gameObject);
+        SceneManager.LoadScene("GameOverScene");
+    }
+
+    public void WinningScreen()
+    {
+        SceneManager.LoadScene("WinScene");
+    }
 }

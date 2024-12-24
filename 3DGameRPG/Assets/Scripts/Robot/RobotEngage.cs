@@ -7,7 +7,6 @@ public class RobotEngage : MonoBehaviour
 {
     [SerializeField] string spawnLocation;
     [SerializeField] GameObject robot;
-    [SerializeField] StatConfig robotSpawn;
 
     //either load only one scene, or making two scenes with a bunch of it
     //https://stackoverflow.com/questions/38668569/object-resetting-after-loading-a-scene-for-the-second-time-in-unity
