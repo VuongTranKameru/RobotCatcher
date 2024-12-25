@@ -13,21 +13,28 @@ MonoBehaviour:
   m_Name: 003_TrisootDr
   m_EditorClassIdentifier: 
   itself: {fileID: 6542462552979740534, guid: 621c26912970f314ea9dbd2b87393ce7, type: 3}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: e0a8aef489d1d7042915a211dc785e89, type: 3}
   charID: 002
   uniqueID: 
-  nameChar: ANW
-  description: ANW
-  maxHP: 100
-  attack: 1
-  defense: 1
-  speed: 1
+  nameChar: Trisoot Dr
+  description: "Drone bay \u0111\u01B0\u1EE3c s\u1EED d\u1EE5ng \u0111\u1EC3 tu\u1EA7n
+    tra, c\xF3 t\u1ED1c \u0111\u1ED9 b\u1EAFn t\u1EC9a \u0111\xE1ng kinh ng\u1EA1c
+    n\xEAn th\u01B0\u1EDDng d\xF9ng \u0111\u1EC3 c\u1EA3nh b\xE1o v\xE0 gi\u1EA3i
+    quy\u1EBFt m\u1ED1i nguy h\u1EA1i khi r\xE0 so\xE1t \u0111\u01B0\u1EDDng ph\u1ED1.
+    V\u1ED1n \u0111\u01B0\u1EE3c thi\u1EBFt k\u1EBF d\u1EF1a tr\xEAn CoreGrdn v\xEC
+    c\xF9ng m\u1EE5c \u0111\xEDch, nh\u01B0ng \u0111\xE3 b\u1ECB gi\u1EA3m \u0111i
+    \u0111\u1ED9 b\u1EC1n ch\u1EAFc."
+  maxHP: 35
+  attack: 12
+  defense: 5
+  speed: 10
   lv: 1
-  maxSP: 100
+  maxSP: 75
+  status: 0
   learnableSkills:
   - learnableSkill: {fileID: 11400000, guid: dc6194c2d5c37c242bb3429da27ab815, type: 2}
     atLevel: 0
-  - learnableSkill: {fileID: 11400000, guid: da3d4579d1409f74b8631e6d409e625e, type: 2}
+  - learnableSkill: {fileID: 11400000, guid: 3e6644024c0b6a846a73199ebd4a569c, type: 2}
     atLevel: 0
   - learnableSkill: {fileID: 11400000, guid: cd85659339a68514eb5266816aeec5ab, type: 2}
     atLevel: 0

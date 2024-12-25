@@ -797,6 +797,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8231696770109285075}
   - component: {fileID: 919837518419114321}
+  - component: {fileID: 6455149173888518304}
   - component: {fileID: 8940091548696637113}
   - component: {fileID: 8368416054471242521}
   m_Layer: 0
@@ -837,6 +838,19 @@ MonoBehaviour:
   stat: {fileID: 11400000, guid: 2b374952c134c5c4abc286c07cb0dd5b, type: 2}
   hasSkills: []
   chance: 0
+--- !u!114 &6455149173888518304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8904359421138671320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4002c83ff729134c94f77bfdc021679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemList: []
 --- !u!114 &8940091548696637113
 MonoBehaviour:
   m_ObjectHideFlags: 0

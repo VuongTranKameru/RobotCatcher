@@ -16,7 +16,8 @@ MonoBehaviour:
   skillName: Hit
   type: 0
   sDesc: Hurting opposite in a basic way with anything on hand
-  power: 5
+  power: 7
+  spUsed: 0
   listBtnClr:
   - {fileID: 21300000, guid: 48b31682022be67489476db0f3027cd6, type: 3}
   - {fileID: 21300000, guid: 1d869a07ae57b804f806ca05d8053e54, type: 3}

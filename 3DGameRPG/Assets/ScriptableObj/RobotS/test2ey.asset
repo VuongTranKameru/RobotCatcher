@@ -18,12 +18,13 @@ MonoBehaviour:
   uniqueID: 
   nameChar: ShortPlug
   description: enemy_sampl
-  maxHP: 10
-  attack: 3
+  maxHP: 100
+  attack: 100
   defense: 1
   speed: 5
   lv: 1
   maxSP: 0
+  status: 0
   learnableSkills:
   - learnableSkill: {fileID: 11400000, guid: dc6194c2d5c37c242bb3429da27ab815, type: 2}
     atLevel: 1

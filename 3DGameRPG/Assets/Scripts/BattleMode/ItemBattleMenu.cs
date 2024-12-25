@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ItemBattleMenu : MonoBehaviour
@@ -14,7 +15,21 @@ public class ItemBattleMenu : MonoBehaviour
     [SerializeField] GameObject itemHolder;
     PaneltemBattle itemPanel;
     List<Toggle> itemToggle = new();
+    ItemConfig chosenI;
     bool isDupplicant;
+
+    [Header("Select Robots")]
+    [SerializeField] Transform contentRobotLocation;
+    [SerializeField] GameObject buttonHolder;
+    PanelOfOwnedRobot robotPanel;
+    List<Button> robotButton = new();
+    [SerializeField] Sprite unplayable;
+
+    [Header("Active The Function")]
+    [SerializeField] GameObject itemMenu;
+    [SerializeField] GameObject itemBoard, robotSelectBoard, firstChooseBoard;
+    [SerializeField] UnityEvent notChooseYet, notCorrectItem, finishItemFunction;
+    bool isChoose;
 
     void Awake()
     {
@@ -24,6 +39,7 @@ public class ItemBattleMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        isChoose = false;
         InsertItem();
     }
 
@@ -66,6 +82,7 @@ public class ItemBattleMenu : MonoBehaviour
         itemPanel = newPanel.GetComponent<PaneltemBattle>();
         itemToggle.Add(newPanel.GetComponent<Toggle>());
 
+        itemPanel.Item = item;
         itemPanel.NameItem.text = item.itemName;
         itemPanel.ItemDes.text = item.itDesc;
         itemPanel.ItemImage.sprite = item.icon;
@@ -80,21 +97,82 @@ public class ItemBattleMenu : MonoBehaviour
         itemCount.NumCountAmount();
     }
 
-    /*public void OnConfirmUsingItem()
+    public void OnConfirmUsingItem()
     {
         for (int i = 0; i < itemToggle.Count; i++)
         {
             if (itemToggle[i].isOn)
             {
-                switchPlayer?.Invoke(i); //pull variable onto battlemanager
-                ownerBoard.SetActive(false);
-                playerBoard.SetActive(true);
+                //disable first menu to open second menu
+                itemBoard.SetActive(false);
+                firstChooseBoard.SetActive(false);
+                robotSelectBoard.SetActive(true);
                 isChoose = true;
+
+                //call robot out to choose
+                InsertRobotToUsedItem();
+                chosenI = itemToggle[i].GetComponent<PaneltemBattle>().Item;
+                //switchPlayer?.Invoke(i);
+
                 break;
             }
         }
 
         if (!isChoose)
             notChooseYet?.Invoke();
-    }*/
+    }
+
+    void UseItemOn()
+    {
+        owner.DeleteItem(chosenI);
+
+        //restore item menu to begin state
+        DeleteRobotToUsedItem();
+        robotSelectBoard.SetActive(false);
+        itemBoard.SetActive(true);
+        itemMenu.SetActive(false);
+
+        finishItemFunction?.Invoke();
+    }
+
+    #region Summon Robotcatcher to Select
+    void InsertRobotToUsedItem()
+    {
+        CallCharInfoIntoPanel(owner.PlayerStats());
+
+        for (int i = 0; i < owner.AmountOfRobots(); i++)
+            CallCharInfoIntoPanel(owner.ChooseRobot(i));
+    }
+
+    public void DeleteRobotToUsedItem()
+    {
+        for (int i = 0; i <= owner.AmountOfRobots(); i++) //with player
+            Destroy(robotButton[i].gameObject);
+
+        robotButton.Clear();
+    }
+
+    void CallCharInfoIntoPanel(StatConfig robot)
+    {
+        GameObject newBtn = Instantiate(buttonHolder, contentRobotLocation);
+        newBtn.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            if (chosenI.Healing(robot, chosenI))
+                UseItemOn();
+            else notCorrectItem?.Invoke();
+        });
+
+        robotPanel = newBtn.GetComponent<PanelOfOwnedRobot>();
+        robotButton.Add(newBtn.GetComponent<Button>());
+
+        robotPanel.NameTag.text = robot.nameChar;
+        robotPanel.LevelHolder.text = robot.lv.ToString();
+        robotPanel.HPNum.text = robot.health.ToString() + "/" + robot.maxHP.ToString();
+        robotPanel.SPNum.text = robot.specialPoint.ToString() + "/" + robot.maxSP.ToString();
+        robotPanel.CharAva.sprite = robot.Avatar();
+
+        if (robot.health <= 0)
+            robotPanel.DeadStatus(unplayable);
+    }
+    #endregion
 }

@@ -337,13 +337,14 @@ GameObject:
   m_Component:
   - component: {fileID: 3290479336287524923}
   - component: {fileID: 8207542722831158362}
+  - component: {fileID: 1732726936156876430}
   - component: {fileID: 999915578022204328}
   - component: {fileID: 7502071006025168178}
   - component: {fileID: 184292488138780048}
   - component: {fileID: 2741645960542406983}
   m_Layer: 0
   m_Name: Rolem
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -363,7 +364,7 @@ Transform:
   - {fileID: 3885213527740471146}
   - {fileID: 3919004142159672590}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8207542722831158362
 MonoBehaviour:
@@ -379,7 +380,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: {fileID: 11400000, guid: eb72ab000f2699a4d8c1afddd1389f1f, type: 2}
   hasSkills: []
-  chance: 0
+  chance: 20
+--- !u!114 &1732726936156876430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094376019909573613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4002c83ff729134c94f77bfdc021679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemList:
+  - {fileID: 11400000, guid: d29abf9a52398474bae49bc66d03067f, type: 2}
+  - {fileID: 11400000, guid: eec3cd9dec8c5c1489173c1f7d1da4bc, type: 2}
 --- !u!114 &999915578022204328
 MonoBehaviour:
   m_ObjectHideFlags: 0

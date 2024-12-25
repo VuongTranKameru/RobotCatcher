@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class RobotEngage : MonoBehaviour
 {
     [SerializeField] string spawnLocation;
-    [SerializeField] GameObject dis;
+    [SerializeField] GameObject robot;
 
     //either load only one scene, or making two scenes with a bunch of it
     //https://stackoverflow.com/questions/38668569/object-resetting-after-loading-a-scene-for-the-second-time-in-unity
@@ -15,9 +15,10 @@ public class RobotEngage : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            DontDestroyOnLoad(dis);
+            robot.tag = "Enemy";
+            DontDestroyOnLoad(robot);
+
             SceneManager.LoadScene(spawnLocation);
-            gameObject.SetActive(false);
         }
     }
 }

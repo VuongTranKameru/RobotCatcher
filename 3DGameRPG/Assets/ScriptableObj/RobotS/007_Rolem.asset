@@ -13,17 +13,26 @@ MonoBehaviour:
   m_Name: 007_Rolem
   m_EditorClassIdentifier: 
   itself: {fileID: 2094376019909573613, guid: 727a59a82e48f7040998179c7ae37665, type: 3}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: aebe28ecef1efa64ea026548b6119260, type: 3}
   charID: 007
   uniqueID: 
   nameChar: Rolem
-  description: ANW
-  maxHP: 50
-  attack: 1
-  defense: 5
-  speed: 1
+  description: "Nh\u1EEFng con robot \u0111\u01B0\u1EE3c \u0111em th\u1EA3 ra m\xF4i
+    tr\u01B0\u1EDDng \u0111\u1EC3 t\u1EA1o n\xEAn n\u1EC1n m\xF3ng v\xE0 quan c\u1EA3nh
+    \"thi\xEAn nhi\xEAn\", v\u1EDBi hi v\u1ECDng s\u1EBD kh\xF4i ph\u1EE5c \u0111\u01B0\u1EE3c
+    thi\xEAn nhi\xEAn l\u1EABn vi\u1EC7c c\u1ECF c\xE2y hay sinh v\u1EADt c\xF3 th\u1EC3
+    sinh s\xF4i n\u1EA3y n\u1EDF tr\xEAn l\u01B0ng ch\xFAng. B\u1EDFi v\xEC  ho\u1EA1t
+    \u0111\u1ED9ng c\u1EE7a con ng\u01B0\u1EDDi \u0111\xE3 ph\xE1 ho\u1EA1i h\u1EBFt
+    g\u1EA7n nh\u01B0 m\u1ECDi n\xFAi r\u1EEBng t\u1EF1 nhi\xEAn, v\xE0 con ng\u01B0\u1EDDi
+    th\xEC \u0111ang ch\xE1n vi\u1EC7c ch\u1EC9 th\u1EA5y m\u1ED7i s\u1EF1 hoang
+    t\xE0n v\xE0 nh\xE0 c\u1EEDa nh\xE2n t\u1EA1o."
+  maxHP: 111
+  attack: 9
+  defense: 15
+  speed: 3
   lv: 1
-  maxSP: 100
+  maxSP: 75
+  status: 0
   learnableSkills:
   - learnableSkill: {fileID: 11400000, guid: dc6194c2d5c37c242bb3429da27ab815, type: 2}
     atLevel: 0

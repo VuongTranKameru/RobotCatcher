@@ -15,6 +15,6 @@ MonoBehaviour:
   itemID: IN03
   itemName: Green Core Gem
   type: 0
-  itDesc: "N\u1EA1p 50% l\u01B0\u1EE3ng SP cho robot."
-  value: 50
+  itDesc: "N\u1EA1p 30% l\u01B0\u1EE3ng SP cho robot."
+  value: 30
   icon: {fileID: 21300000, guid: 3673614ef2e3f0342a298a084ac491e6, type: 3}
