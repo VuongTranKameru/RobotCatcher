@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
             Vector3 temp = Vector3.MoveTowards(transform.position, target.position, currentSpeed * Time.deltaTime);
             rb.MovePosition(temp);
             
-            if (Vector3.Distance(target.position, transform.position) <= attackRadius)
+            if (Vector3.Distance(target.position, transform.position) >= attackRadius)
             { 
                 if (Time.time - lastAttackTime > attackRate)
                 {
