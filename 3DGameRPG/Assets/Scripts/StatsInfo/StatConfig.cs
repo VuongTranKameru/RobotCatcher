@@ -11,6 +11,13 @@ public class LearnableSkills
     [SerializeField] internal int atLevel;
 }
 
+public enum StatusEffect
+{
+    None,
+    Overheat,
+    Shock
+}
+
 [CreateAssetMenu(fileName = "StatScriptData", menuName = "ScriptableObjects/StatData", order = 1)]
 public class StatConfig : ScriptableObject
 {
@@ -30,13 +37,16 @@ public class StatConfig : ScriptableObject
     internal int health, specialPoint;
     internal float exp;
 
+    //bool statusEffect;
+    /*Overheat: lost hp each turn, defense low
+      Shock: lost 1-2 turns
+      Waterlogged: lost hp, got double dmg when eletric
+      --decide to fuse shock with waterlogged, receive double char atk when eletric or water. overheat only lost hp*/
+    [Header("Status Effect")]
+    [SerializeField] internal StatusEffect status;
+
     [Header("Can Used Skill")]
     [SerializeField] internal LearnableSkills[] learnableSkills;
-
-    //bool statusEffect;
-    /*Burn: lost hp each turn, defense low
-      Shock: lost 1-2 turns
-      Waterlogged: lost hp, got double dmg when eletric*/
 
     public void SaveRobotcatcher(GameObject prefab, Sprite image, string id, string name, string des, int mHP, int mSP,
         int atk, int def, int spe, int level, LearnableSkills[] learnSkils, int learnSkiLimit)

@@ -15,7 +15,7 @@ public class SkillConfig : ScriptableObject
     [SerializeField] internal string skillID, skillName;
     [SerializeField] internal TypeOfSkill type;
     [SerializeField] internal string sDesc;
-    [SerializeField] internal int power;
+    [SerializeField] internal int power, spUsed;
 
     [Header("Png")]
     [SerializeField] internal Sprite[] listBtnClr;

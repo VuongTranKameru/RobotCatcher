@@ -9,6 +9,7 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     [SerializeField] StatConfig stat;
     int atk, def, sed;
     AffectSkill affect;
+    internal int seCooldown, cooldownStack; //status effect has max 5 turn cooldown
     int isBattle; //check who in battle
 
     [Header("Skill Set")]
@@ -16,6 +17,9 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
 
     [Header("Robotcatched")]
     [SerializeField] StatConfig[] robotList = new StatConfig[5]; //DO NOT USE PLAYER STAT
+
+    [Header("Itemlooted")]
+    [SerializeField] List<ItemConfig> itemList = new();
 
     #region Callout Stat
     //read only
@@ -30,6 +34,8 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     public int SpeedStat() { return stat.speed; }
     public int MaxHPStat() { return stat.maxHP; }
     public int LvStat() { return stat.lv; }
+    public StatusEffect StatusEffectState() { return stat.status; }
+    public void StatusCooldown() { seCooldown -= 1; }
 
     //read and write
     public int HPRemain
@@ -39,6 +45,8 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         {
             if (value < 0)
                 stat.health = 0;
+            else if (value > stat.maxHP)
+                stat.health = stat.maxHP;
             else stat.health = value;
         }
     }
@@ -48,8 +56,9 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         get { return atk; }
         set
         {
-            if (value + atk != stat.attack)
-                atk += value;
+            if (value < 0)
+                atk = 0;
+            else atk = value;
         }
     }
 
@@ -58,8 +67,9 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         get { return def; }
         set
         {
-            if (value + def != stat.defense)
-                def += value;
+            if (value < 0)
+                def = 0;
+            else def = value;
         }
     }
 
@@ -73,7 +83,18 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         }
     }
 
+    public int SPRemain
+    {
+        get { return 0; }
+        set { stat.specialPoint = 0; }
+    }
+
     public AffectSkill AFF { get => affect; set => affect = value; }
+
+    public void ReceiveStatusE(StatusEffect status)
+    {
+        throw new System.NotImplementedException();
+    }
 
     public void IsInBattle() { isBattle = -1; }
     #endregion
@@ -172,6 +193,27 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         string json = JsonUtility.ToJson(bot, true);
         Manager.AddNewRobot(json);
         //Debug.Log(json);
+    }
+    #endregion
+
+    #region Item Management
+    public ItemConfig ClickOnItem(int num) { return itemList[num]; }
+    public void DeleteItem(ItemConfig item) { itemList.Remove(item); }
+    public int AmountOfItems()
+    {
+        int calc = 0;
+        for (int i = 0; i < itemList.Count; i++)
+            if (itemList[i] != null)
+                calc++;
+
+        return calc;
+    }
+
+    public void AddItem(ItemConfig item) //has to put in original, not the clone one
+    {
+        itemList.Add(item);
+        string ison = JsonUtility.ToJson(item, true);
+        Manager.AddNewItem(ison);
     }
     #endregion
 

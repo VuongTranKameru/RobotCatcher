@@ -8,7 +8,7 @@ public class PlayeeController : MonoBehaviour
     CharacterController charCtrl;
     Animator anim;
 
-    [SerializeField] int speed;
+    [SerializeField] int speed, runSpeed;
     Vector2 movementInput;
 
     void Awake()
@@ -38,7 +38,7 @@ public class PlayeeController : MonoBehaviour
             Moving();
             Running();
 
-            if (speed > 3)
+            if (speed > 6)
                 anim.SetFloat("isSpeeding", movementInput.sqrMagnitude + 1);
             else
                 anim.SetFloat("isSpeeding", movementInput.sqrMagnitude); //sqrMag tra lai do dai cua vector
@@ -68,9 +68,9 @@ public class PlayeeController : MonoBehaviour
     void Running()
     {
         if (inputAction.Player.Running.IsPressed())
-            speed = 5;
+            speed = runSpeed;
         else
-            speed = 3;
+            speed = 6;
     }
 
     /*void Jumping()

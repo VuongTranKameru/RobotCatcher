@@ -8,17 +8,12 @@ public class ChangeScene : MonoBehaviour
     //[Header("Current Scene")]
 
     [Header("Next Scene")]
-    [SerializeField] int sceneNum;
+    [SerializeField] string sceneName;
     [SerializeField] Transform exitGate;
-
-    private void Awake()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-            SceneManager.LoadScene(sceneNum);
+            SceneManager.LoadScene(sceneName);
     }
 }

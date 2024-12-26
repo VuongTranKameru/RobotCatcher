@@ -50,4 +50,10 @@ public class PanelOfOwnedRobot : MonoBehaviour
         playableStatus.GetComponent<Toggle>().transition = Selectable.Transition.None;
         playableStatus.GetComponent<Toggle>().interactable = false;
     }
+
+    public void DeadStatus(Sprite spriteField)
+    {
+        playableStatus.GetComponent<Image>().sprite = spriteField;
+        playableStatus.GetComponent<Button>().transition = Selectable.Transition.None;
+    }
 }

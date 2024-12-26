@@ -13,21 +13,27 @@ MonoBehaviour:
   m_Name: 005_ShockMachineG
   m_EditorClassIdentifier: 
   itself: {fileID: 2813184181902190906, guid: 56866e67f72f5c24c96e522a46c4f987, type: 3}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 24be9da2734503c4186d76a1b3c86129, type: 3}
   charID: 005
   uniqueID: 
-  nameChar: ANW
-  description: ANW
-  maxHP: 100
-  attack: 1
-  defense: 1
-  speed: 1
+  nameChar: Shock Machine Gun
+  description: "Thi\u1EBFt k\u1EBF b\u1EDFi m\u1ED9t k\u1EBB \u1EA9n danh n\xE0o
+    \u0111\xF3 trong th\u1EBF gi\u1EDBi ng\u1EA7m, d\u1EF1ng l\xEAn t\u1EEB \u0111\u1ED1ng
+    r\u1EC9 s\xE9t v\xE0 m\u1ED9t t\xED lu\u1ED3ng \u0111i\u1EC7n. Th\u01B0\u1EDDng
+    hay th\u1EA5y robot n\xE0y \u1EDF c\xE1c tr\u1EADn \u0111\u1EA5u c\xE1 c\u01B0\u1EE3c,
+    v\u1ED1n l\xE0 ho\u1EA1t \u0111\u1ED9ng n\u1EB1m ngo\xE0i ph\xE1p lu\u1EADt.
+    Nh\u01B0ng \u0111\xF4i l\xFAc ng\u01B0\u1EDDi d\xE2n c\u0169ng x\xE0i ch\xFAng
+    nh\u01B0 ngu\u1ED3n t\u1EA1o \u0111i\u1EC7n kh\u1EA9n c\u1EA5p, d\xF9 vi\u1EC7c
+    l\xE0m n\xE0y r\u1EA5t nguy hi\u1EC3m."
+  maxHP: 67
+  attack: 10
+  defense: 7
+  speed: 13
   lv: 1
-  maxSP: 100
+  maxSP: 115
+  status: 0
   learnableSkills:
   - learnableSkill: {fileID: 11400000, guid: dc6194c2d5c37c242bb3429da27ab815, type: 2}
     atLevel: 0
-  - learnableSkill: {fileID: 11400000, guid: da3d4579d1409f74b8631e6d409e625e, type: 2}
-    atLevel: 0
-  - learnableSkill: {fileID: 11400000, guid: cd85659339a68514eb5266816aeec5ab, type: 2}
+  - learnableSkill: {fileID: 11400000, guid: 9de4876948665034b879ce80eaceb5b4, type: 2}
     atLevel: 0

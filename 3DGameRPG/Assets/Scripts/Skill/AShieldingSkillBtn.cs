@@ -11,7 +11,7 @@ public class AShieldingSkillBtn : MonoBehaviour, ICanUseSkill
     [SerializeField] Image actBtnClr, actChk;
     [SerializeField] TMP_Text actName;
 
-    public int CostOfSP() { return 0; }
+    public int CostOfSP() { return skill.spUsed; }
     public TypeOfSkill Type() { return skill.type; }
 
     void Awake()
@@ -24,7 +24,7 @@ public class AShieldingSkillBtn : MonoBehaviour, ICanUseSkill
     void ICanUseSkill.SkillUsed(IHaveSameStat user, IHaveSameStat opp)
     {
         //buff defense tam thoi len
-        user.DEFTemp = skill.power;
+        user.DEFTemp += skill.power;
     }
 
     string ICanUseSkill.MessageUsedSkill(IHaveSameStat user, IHaveSameStat opp)
