@@ -152,7 +152,7 @@ TextureImporter:
         width: 221
         height: 218
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,7 +173,7 @@ TextureImporter:
         width: 358
         height: 92
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -194,7 +194,7 @@ TextureImporter:
         width: 884
         height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,6 +202,27 @@ TextureImporter:
       bones: []
       spriteID: edde5c8caa0b9004aa851e1d37907705
       internalID: -947214803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoardPopUp
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 3556
+        width: 1014
+        height: 424
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f734ea18b35b474f95892ac5a4fe0a5
+      internalID: -560776151
       vertices: []
       indices: 
       edges: []
@@ -217,6 +238,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      BoardPopUp: -560776151
       BottomRightCorner: -1035394107
       HPBar_0: -1681485934
       HPBar_1: -947214803
