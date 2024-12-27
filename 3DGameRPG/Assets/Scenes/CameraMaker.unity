@@ -881,11 +881,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 738396899356864982, guid: b2ef63db107668249b80e3bcdc285cf5, type: 3}
       propertyPath: m_FollowOffset.y
-      value: 4.999979
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 738396899356864982, guid: b2ef63db107668249b80e3bcdc285cf5, type: 3}
       propertyPath: m_FollowOffset.z
-      value: -5.000016
+      value: -6.9
       objectReference: {fileID: 0}
     - target: {fileID: 2551552195099810771, guid: b2ef63db107668249b80e3bcdc285cf5, type: 3}
       propertyPath: m_Name
@@ -985,19 +985,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6948873225992525822, guid: b2ef63db107668249b80e3bcdc285cf5, type: 3}
       propertyPath: m_FollowOffset.y
-      value: 4.999979
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6948873225992525822, guid: b2ef63db107668249b80e3bcdc285cf5, type: 3}
       propertyPath: m_FollowOffset.z
-      value: -5.000016
+      value: -6.9
       objectReference: {fileID: 0}
     - target: {fileID: 7073659142132115999, guid: b2ef63db107668249b80e3bcdc285cf5, type: 3}
       propertyPath: m_FollowOffset.y
-      value: 4.999979
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7073659142132115999, guid: b2ef63db107668249b80e3bcdc285cf5, type: 3}
       propertyPath: m_FollowOffset.z
-      value: -5.000016
+      value: -6.9
       objectReference: {fileID: 0}
     - target: {fileID: 8983786762816767107, guid: b2ef63db107668249b80e3bcdc285cf5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1017,11 +1017,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8983786762816767107, guid: b2ef63db107668249b80e3bcdc285cf5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.010960747
+      value: 0.010960748
       objectReference: {fileID: 0}
     - target: {fileID: 8983786762816767107, guid: b2ef63db107668249b80e3bcdc285cf5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.010614557
+      value: -0.010614559
       objectReference: {fileID: 0}
     - target: {fileID: 9116615705146977184, guid: b2ef63db107668249b80e3bcdc285cf5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2065,6 +2065,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listRobotJson:
     list: []
+  listItemJson:
+    list: []
 --- !u!1 &4781716742575780430
 GameObject:
   m_ObjectHideFlags: 0
@@ -2142,6 +2144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  runSpeed: 0
 --- !u!4 &5150669958447156350
 Transform:
   m_ObjectHideFlags: 0
