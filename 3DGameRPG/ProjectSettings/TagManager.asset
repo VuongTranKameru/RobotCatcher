@@ -9,7 +9,6 @@ TagManager:
   - PlayerModel
   - TeleportPoint
   - TeleportFromBtl
-  - Loading
   - Ally
   layers:
   - Default
