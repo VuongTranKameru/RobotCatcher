@@ -23,4 +23,9 @@ public class MenuManager : MonoBehaviour
             menuActivated = true;
         }
     }
+
+    public void AddItem(string itemName, int value, Sprite itemSprite)
+    {
+        Debug.Log("itemName: " + itemName + "value: " + value + "itemSprite: " + itemSprite);
+    }
 }

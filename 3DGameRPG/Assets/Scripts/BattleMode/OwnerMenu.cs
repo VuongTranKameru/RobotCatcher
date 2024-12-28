@@ -12,7 +12,7 @@ public class OwnerMenu : MonoBehaviour
     [Header("Call Robotcatcher")]
     [SerializeField] Transform contentOwnLocation;
     [SerializeField] ToggleGroup grpOwned;
-    [SerializeField] GameObject panelHolder;
+    [SerializeField] GameObject panelHolder;    
     PanelOfOwnedRobot robotPanel;
     List<Toggle> emptyPanel = new List<Toggle>();
     [SerializeField] Sprite unplayable, isPlaying;
