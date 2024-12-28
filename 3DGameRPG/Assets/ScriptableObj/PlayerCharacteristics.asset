@@ -24,6 +24,7 @@ MonoBehaviour:
   speed: 99
   lv: 1
   maxSP: 0
+  status: 0
   learnableSkills:
   - learnableSkill: {fileID: 11400000, guid: ffa590249bd5be94eb90733898f93861, type: 2}
     atLevel: 0

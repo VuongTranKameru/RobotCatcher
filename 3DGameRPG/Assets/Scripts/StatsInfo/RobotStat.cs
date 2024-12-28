@@ -8,6 +8,7 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
     [SerializeField] StatConfig stat;
     int atk, def, sed;
     AffectSkill affect;
+    internal int seCooldown, cooldownStack; //status effect has max 5 turn cooldown
 
     [Header("Skill Set")]
     [SerializeField] List<SkillConfig> hasSkills;
@@ -33,6 +34,12 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
     public int MaxSPStat() { return stat.maxSP; }
     public int LvStat() { return stat.lv; }
     public StatusEffect StatusEffectState() { return stat.status; }
+    public void StatusCooldown() 
+    { 
+        Debug.Log("bef cooldown" + seCooldown); 
+        seCooldown -= 1; 
+        Debug.Log("aft low cooldown a bit" + seCooldown); 
+    }
     public void LevelUp()
     {
         stat.lv += 1;
@@ -56,6 +63,8 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
         {
             if (value < 0)
                 stat.health = 0;
+            else if (value > stat.maxHP)
+                stat.health = stat.maxHP;
             else stat.health = value;
         }
     }
@@ -108,12 +117,26 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
         get => affect;
         set => affect = value;
     }
+
+    public void ReceiveStatusE(StatusEffect status)
+    {
+        if (stat.status != status)
+            seCooldown = 0;
+
+        stat.status = status;
+        
+        cooldownStack = Random.Range(1, 4);
+        seCooldown += cooldownStack;
+        if (seCooldown > 5)
+            seCooldown = 5;
+    }
     #endregion
 
-    /*private void Awake()
+    private void Update()
     {
-        
-    }*/
+        if (seCooldown == 0)
+            stat.status = StatusEffect.None;
+    }
 
     public void CallOutTempStat() //only in battle
     {

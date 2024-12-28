@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
@@ -12,7 +12,7 @@ public class BattleManager : MonoBehaviour
 
     [Header("Annoucement")]
     [SerializeField] TMP_Text message;
-    [SerializeField] GameObject annouceBoard, playerBoard, statusBoard, ownerMenu;
+    [SerializeField] GameObject annouceBoard, playerBoard, statusBoard, ownerMenu, rewardBoard;
     bool donePTurn, doneETurn;
 
     [Header("Location Spawn")]
@@ -38,10 +38,14 @@ public class BattleManager : MonoBehaviour
     [SerializeField] Image eHpBar;
     List<SkillConfig> eUsedSkill = new();
 
+    int tempBurnDamg;
     [Header("Skill")]
     [SerializeField] ToggleGroup groupSkill;
     [SerializeField] Transform roomSkill;
     List<Toggle> emptySkills = new List<Toggle>();
+
+    [Header("Reward")]
+    [SerializeField] UnityEvent sceneWin;
 
     public BattleState CurrentState() { return state; } //for camera
     public bool RobotOnStage() { return hOr; } //for status
@@ -213,7 +217,26 @@ public class BattleManager : MonoBehaviour
 
         MessageReceive(skill.MessageUsedSkill(user, opp));
         TurnAnnouceBoard();
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(1f);
+
+        if (user.StatusEffectState() != StatusEffect.None)
+        {
+            input.OnBattle.Disable();
+            StatusEffectAction(user.StatusEffectState(), user);
+            if (state == BattleState.PlayerTurn)
+            {
+                if (robotPPrefab != null)
+                    StartCoroutine(BeingHitAnimation(robotPPrefab));
+                else StartCoroutine(BeingHitAnimation(playerPrefab));
+            }
+            user.StatusCooldown();
+            yield return new WaitForSeconds(1.7f);
+
+            if (user.StatusEffectState() == StatusEffect.None)
+                MessageReceive($"{user.NameStat()}'s status is better. {user.NameStat()}'s recover to normal status.");
+
+            input.OnBattle.Enable();
+        }
 
         if (state == BattleState.PlayerTurn)
             PlayerAction();
@@ -317,8 +340,26 @@ public class BattleManager : MonoBehaviour
                 input.OnBattle.Enable();
                 break;
             default:
-                Debug.Log("no skill was use, suppose to run the normal one");
+                Debug.Log("no skill was used, suppose to run the normal one");
                 break;
+        }
+    }
+
+    void StatusEffectAction(StatusEffect status, IHaveSameStat affecter)
+    {
+        switch(status)
+        {
+            case StatusEffect.Overheat:
+                tempBurnDamg = Random.Range(1, 9); affecter.HPRemain -= tempBurnDamg;
+                MessageReceive($"{affecter.NameStat()} got burnt!!! Its part may break down. " +
+                    $"{affecter.NameStat()} take {tempBurnDamg} damage.");
+                break;
+            case StatusEffect.Shock:
+                MessageReceive($"{affecter.NameStat()} got electrocuted!!! Its may take more damage from opponent.");
+                break;
+            default:
+                Debug.Log("no status was added, suppose to run the normal one");
+            break;
         }
     }
 
@@ -381,6 +422,14 @@ public class BattleManager : MonoBehaviour
             DetermineTurn();
     }
 
+    public void OnUsingItem()
+    {
+        TurnStatusBoard();
+        UpdatingStatOnScreen();
+
+        StartCoroutine(HealingTurn());
+    }
+
     public void OnRunaway()
     {
         int runawayChance = Random.Range(0, 2);
@@ -394,6 +443,8 @@ public class BattleManager : MonoBehaviour
         {
             TurnAnnouceBoard();
             MessageReceive($"You can't run away...");
+            if (spUsed && rPobots.SPRemain < rPobots.MaxSPStat())
+                rPobots.SPRemain += 20;
             donePTurn = true;
         }
     }
@@ -418,13 +469,19 @@ public class BattleManager : MonoBehaviour
             annouceBoard.SetActive(false);
 
         if (input.OnBattle.SkipDialogue.triggered)
-            if(state == BattleState.LeaveBattle || state == BattleState.WonBattle)
+        { 
+            if (state == BattleState.LeaveBattle)
             {
-                StartCoroutine(IsDeadAnimation(enemyPrefab));
                 Destroy(enemyPrefab);
                 Destroy(playerPrefab);
-                SceneManager.LoadScene("SpawnRoute");
+                sceneWin.Invoke();
             }
+            else if (state == BattleState.WonBattle)
+            {
+                StartCoroutine(IsDeadAnimation(enemyPrefab)); 
+                rewardBoard.SetActive(true);
+            }
+        }
     }
 
     void TurnAnnouceBoard()
@@ -462,10 +519,25 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    IEnumerator HealingTurn()
+    {
+        yield return new WaitForSeconds(.8f);
+        TurnAnnouceBoard();
+        MessageReceive($"You has heal up your unit with item!");
+
+        PlayerAction();
+    }
+
     public void CheckSwitchButtonNotWork()
     {
         TurnAnnouceBoard();
         MessageReceive($"You have to choose something to confirm it!?");
+    }
+
+    public void CheckUseItemCorrectly()
+    {
+        TurnAnnouceBoard();
+        MessageReceive($"The item may not work on right unit, or the unit is already full.");
     }
     #endregion
 

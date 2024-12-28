@@ -9,6 +9,7 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     [SerializeField] StatConfig stat;
     int atk, def, sed;
     AffectSkill affect;
+    internal int seCooldown, cooldownStack; //status effect has max 5 turn cooldown
     int isBattle; //check who in battle
 
     [Header("Skill Set")]
@@ -34,6 +35,7 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     public int MaxHPStat() { return stat.maxHP; }
     public int LvStat() { return stat.lv; }
     public StatusEffect StatusEffectState() { return stat.status; }
+    public void StatusCooldown() { seCooldown -= 1; }
 
     //read and write
     public int HPRemain
@@ -43,6 +45,8 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         {
             if (value < 0)
                 stat.health = 0;
+            else if (value > stat.maxHP)
+                stat.health = stat.maxHP;
             else stat.health = value;
         }
     }
@@ -80,6 +84,11 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     }
 
     public AffectSkill AFF { get => affect; set => affect = value; }
+
+    public void ReceiveStatusE(StatusEffect status)
+    {
+        throw new System.NotImplementedException();
+    }
 
     public void IsInBattle() { isBattle = -1; }
     #endregion
@@ -182,6 +191,8 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
     #endregion
 
     #region Item Management
+    public ItemConfig ClickOnItem(int num) { return itemList[num]; }
+    public void DeleteItem(ItemConfig item) { itemList.Remove(item); }
     public int AmountOfItems()
     {
         int calc = 0;
@@ -192,7 +203,12 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         return calc;
     }
 
-    public ItemConfig ClickOnItem(int num) { return itemList[num]; }
+    public void AddItem(ItemConfig item) //has to put in original, not the clone one
+    {
+        itemList.Add(item);
+        string ison = JsonUtility.ToJson(item, true);
+        Manager.AddNewItem(ison);
+    }
     #endregion
 
     #region Unused

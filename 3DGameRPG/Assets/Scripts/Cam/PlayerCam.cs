@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
-    public Transform mRotateLookAt;
+    [SerializeField] Transform mRotateLookAt;
     [Header("References")]
-    public Transform orientation;
-    public Transform player;
-    public Transform playerObj;
+    [SerializeField] Transform orientation;
+    [SerializeField] Transform player;
+    [SerializeField] Transform playerObj;
 
     private void OnEnable()
     {
@@ -17,7 +17,7 @@ public class PlayerCam : MonoBehaviour
         //player = FindFirstObjectByType<PlayerManager>().gameObject.transform;
         orientation = GameObject.FindGameObjectWithTag("Respawn")?.transform;
         orientation = GameObject.FindGameObjectWithTag("Player").transform;
-        playerObj = GameObject.FindGameObjectWithTag("PlayerModel").transform;
+        playerObj = FindObjectOfType<PlayerManager>().transform;
         player = playerObj;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -32,6 +32,12 @@ public class PlayerCam : MonoBehaviour
 
     private void Update()
     {
+        if (playerObj == null) //fix bug
+        {
+            playerObj = GameObject.FindGameObjectWithTag("PlayerModel").transform;
+            player = playerObj;
+        }
+
         // rotate orientation
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDir.normalized;

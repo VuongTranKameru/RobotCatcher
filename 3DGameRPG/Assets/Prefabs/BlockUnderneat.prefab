@@ -126,7 +126,7 @@ MonoBehaviour:
   robotSpawn:
   - {fileID: 11400000, guid: dc821389159784b48aa7fcd8e008bb87, type: 2}
   - {fileID: 11400000, guid: 74f47b87f1aba2c49a707f1c23605a14, type: 2}
-  battleScene: BattleScene1
+  battleScene: BattleSceneTutorial
   mode:
   - {fileID: 2100000, guid: 508275198f73813478f8a8e428c37df5, type: 2}
   - {fileID: 2100000, guid: 7b4c3f85b6634204a98779952d52c029, type: 2}
