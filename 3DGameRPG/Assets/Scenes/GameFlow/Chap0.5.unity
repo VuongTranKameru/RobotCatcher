@@ -348,7 +348,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnLocation: BattleSceneTutorial
   robot: {fileID: 692646170}
-  robotSpawn: {fileID: 11400000, guid: 01c4a3dee1f23854e8c21738280daa61, type: 2}
 --- !u!1 &105922217
 GameObject:
   m_ObjectHideFlags: 0
@@ -4545,7 +4544,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.57
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

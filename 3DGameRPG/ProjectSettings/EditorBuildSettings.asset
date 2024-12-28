@@ -28,7 +28,7 @@ EditorBuildSettings:
     guid: a124a241c3e8e2849b5bb5202f94c5cd
   - enabled: 1
     path: Assets/Scenes/GameFlow/BattleSceneBoss.unity
-    guid: 128d2c2137b1fb74d8a9338e37bc7b12
+    guid: 0fda96785a5020b4ba44a4fa0d120e28
   - enabled: 1
     path: Assets/Scenes/GameFlow/GameOverScene.unity
     guid: 733fd310c649f184bb4af368a186d7f8

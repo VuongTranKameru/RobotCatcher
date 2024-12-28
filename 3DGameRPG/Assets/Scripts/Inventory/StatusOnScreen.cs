@@ -25,9 +25,9 @@ public class StatusOnScreen : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("PlayerModel").gameObject;
             stat = player.GetComponent<PlayerStat>();
 
-            ShowHP();
             ShowRobot();
         }
+        ShowHP();
     }
 
     void ShowHP()
