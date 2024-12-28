@@ -18,8 +18,8 @@ MonoBehaviour:
   uniqueID: 
   nameChar: ShortPlug
   description: enemy_sampl
-  maxHP: 10
-  attack: 20
+  maxHP: 100
+  attack: 100
   defense: 1
   speed: 5
   lv: 1

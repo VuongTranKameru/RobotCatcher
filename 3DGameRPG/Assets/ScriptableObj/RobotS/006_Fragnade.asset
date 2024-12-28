@@ -19,11 +19,12 @@ MonoBehaviour:
   nameChar: ANW
   description: ANW
   maxHP: 20
-  attack: 1
+  attack: 100
   defense: 1
   speed: 1
   lv: 1
   maxSP: 100
+  status: 0
   learnableSkills:
   - learnableSkill: {fileID: 11400000, guid: dc6194c2d5c37c242bb3429da27ab815, type: 2}
     atLevel: 0

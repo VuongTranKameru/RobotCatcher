@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 001_Qulay
   m_EditorClassIdentifier: 
   itself: {fileID: 6103873533526714482, guid: 006c2012c7890f843b90e54d36de6670, type: 3}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 49d2085b3dc14974482196d3893c7a84, type: 3}
   charID: 001
   uniqueID: 
   nameChar: Qulay
@@ -23,7 +23,7 @@ MonoBehaviour:
     kh\xE1ch h\xE0ng v\xEC c\xE1ch h\xE0nh x\u1EED d\u1EC5 th\u01B0\u01A1ng. Kh\xF4ng
     c\xF3 l\xF5i t\xEDch t\u1EE5 n\u0103ng l\u01B0\u1EE3ng v\xE0 kh\xF4ng th\u1EADt
     s\u1EF1 th\xEDch h\u1EE3p trong \u0111\xE1nh nhau l\u1EAFm..."
-  maxHP: 35
+  maxHP: 47
   attack: 7
   defense: 3
   speed: 19

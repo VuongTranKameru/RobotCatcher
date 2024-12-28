@@ -55,7 +55,19 @@ public class RewardBattleItem : MonoBehaviour
         itemRwToggle.Clear();
     }
 
+    public void RewardForTutorial()
+    {
+        Reward();
+        scene.WinningTutorialScene();
+    }
+
     public void RewardForBattle()
+    {
+        Reward();
+        scene.ReturnFromBattle();
+    }
+
+    void Reward()
     {
         for (int i = 0; i < drop.itemList.Count; i++)
         {
@@ -64,7 +76,6 @@ public class RewardBattleItem : MonoBehaviour
 
         Destroy(robotEnemy);
         Destroy(playerPrefab);
-        scene.ReturnFromBattle();
     }
     #region UI
     void PutItemRewardUI(ItemConfig item)
