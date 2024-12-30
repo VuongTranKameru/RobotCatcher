@@ -5,7 +5,7 @@ using UnityEngine;
 public class TextBoxMenu : MonoBehaviour
 {
     [SerializeField] PlayerInput input;
-    [SerializeField] GameObject popUpBox;
+    [SerializeField] GameObject popUpBox, emptyLootBox;
 
     void Start()
     {
@@ -17,6 +17,12 @@ public class TextBoxMenu : MonoBehaviour
         if (popUpBox.activeInHierarchy && input.Player.SkipDialogue.triggered)
         {
             popUpBox.SetActive(false);
+            EnabledMoving();
+        }
+
+        if (emptyLootBox.activeInHierarchy && input.Player.SkipDialogue.triggered)
+        {
+            emptyLootBox.SetActive(false);
             EnabledMoving();
         }
     }
