@@ -16,12 +16,12 @@ MonoBehaviour:
   portrait: {fileID: 0}
   charID: 006
   uniqueID: 
-  nameChar: ANW
+  nameChar: Fragnade
   description: ANW
-  maxHP: 20
-  attack: 100
-  defense: 1
-  speed: 1
+  maxHP: 50
+  attack: 4
+  defense: 3
+  speed: 11
   lv: 1
   maxSP: 100
   status: 0
@@ -29,6 +29,4 @@ MonoBehaviour:
   - learnableSkill: {fileID: 11400000, guid: dc6194c2d5c37c242bb3429da27ab815, type: 2}
     atLevel: 0
   - learnableSkill: {fileID: 11400000, guid: da3d4579d1409f74b8631e6d409e625e, type: 2}
-    atLevel: 0
-  - learnableSkill: {fileID: 11400000, guid: cd85659339a68514eb5266816aeec5ab, type: 2}
     atLevel: 0
