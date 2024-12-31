@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 3424124682065180701}
   - component: {fileID: 4018366611518778160}
   - component: {fileID: 7814938382699959490}
+  - component: {fileID: 6857654384920943056}
   m_Layer: 5
   m_Name: BoxPartySlot
   m_TagString: Untagged
@@ -339,7 +340,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 811562427, guid: 582a92328cd7d8648a3f3634a5f4186d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -349,6 +350,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6857654384920943056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5664056123178396358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870d9fde1d97ffc4c8851df58a1fdd09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5904641587323537016
 GameObject:
   m_ObjectHideFlags: 0
