@@ -15544,7 +15544,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4002c83ff729134c94f77bfdc021679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemList: []
+  itemList:
+  - {fileID: 11400000, guid: eec3cd9dec8c5c1489173c1f7d1da4bc, type: 2}
+  PutItemToPlayer:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3514192123841125240
 MonoBehaviour:
   m_ObjectHideFlags: 0

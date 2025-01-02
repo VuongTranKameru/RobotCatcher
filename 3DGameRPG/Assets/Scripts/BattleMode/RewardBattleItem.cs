@@ -63,6 +63,7 @@ public class RewardBattleItem : MonoBehaviour
 
     public void RewardForBattle()
     {
+        LevelingUpWhenWin();
         Reward();
         scene.ReturnFromBattle();
     }
@@ -76,6 +77,18 @@ public class RewardBattleItem : MonoBehaviour
 
         Destroy(robotEnemy);
         Destroy(playerPrefab);
+    }
+
+    void LevelingUpWhenWin()
+    {
+        if (playerPrefab.GetComponent<PlayerStat>().AmountOfRobots() > 0)
+        {
+
+            for (int i = 0; i < playerPrefab.GetComponent<PlayerStat>().AmountOfRobots(); i++)
+            {
+                playerPrefab.GetComponent<PlayerStat>().ChooseRobot(i).AddingExp(75);
+            }
+        }
     }
     #region UI
     void PutItemRewardUI(ItemConfig item)

@@ -2150,10 +2150,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemList:
-  - {fileID: 11400000, guid: d29abf9a52398474bae49bc66d03067f, type: 2}
   - {fileID: 11400000, guid: ec03c0cc1671a9744bf998512b41074f, type: 2}
   - {fileID: 11400000, guid: eec3cd9dec8c5c1489173c1f7d1da4bc, type: 2}
   - {fileID: 11400000, guid: 22a6e5d7d4ec40341a4368e0330c7630, type: 2}
+  PutItemToPlayer:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7021230322850567403
 MonoBehaviour:
   m_ObjectHideFlags: 0
