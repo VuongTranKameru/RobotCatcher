@@ -93,7 +93,15 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
 
     public void ReceiveStatusE(StatusEffect status)
     {
-        throw new System.NotImplementedException();
+        if (stat.status != status)
+            seCooldown = 0;
+
+        stat.status = status;
+
+        cooldownStack = Random.Range(1, 4);
+        seCooldown += cooldownStack;
+        if (seCooldown > 5)
+            seCooldown = 5;
     }
 
     public void IsInBattle() { isBattle = -1; }
@@ -108,6 +116,12 @@ public class PlayerStat : MonoBehaviour, IHaveSameStat
         ScanExistSkill();
 
         isBattle = -1;
+    }
+
+    private void Update()
+    {
+        if (seCooldown == 0)
+            stat.status = StatusEffect.None;
     }
 
     void ScanExistSkill()

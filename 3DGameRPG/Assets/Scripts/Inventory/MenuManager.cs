@@ -14,6 +14,9 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1;
             inventoryPanel.SetActive(false);
             menuActivated = false;
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         
         else if(Input.GetKeyDown(KeyCode.U) && !menuActivated)
@@ -21,6 +24,9 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 0;
             inventoryPanel.SetActive(true);
             menuActivated = true;
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
