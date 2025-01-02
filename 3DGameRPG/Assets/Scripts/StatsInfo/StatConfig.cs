@@ -34,8 +34,8 @@ public class StatConfig : ScriptableObject
     [Header("Stats Number")]
     [SerializeField] internal int maxHP;
     [SerializeField] internal int attack, defense, speed, lv, maxSP;
-    internal int health, specialPoint;
-    internal float exp;
+    [SerializeField] internal float expStandard;
+    internal int health, specialPoint, expProgress;
 
     //bool statusEffect;
     /*Overheat: lost hp each turn, defense low
@@ -67,8 +67,31 @@ public class StatConfig : ScriptableObject
         uniqueID = id + "-" + catchTime.Year.ToString() + catchTime.Month.ToString() + catchTime.Day.ToString() + "-" +
             catchTime.Hour.ToString() + catchTime.Minute.ToString() + catchTime.Second.ToString();
 
+        expStandard = 50;
+
         learnableSkills = new LearnableSkills[learnSkiLimit];
         for (int i = 0; i < learnSkiLimit; i++)
             learnableSkills[i] = learnSkils[i];
+    }
+
+    public void AddingExp(int expPoint)
+    {
+        expProgress += expPoint;
+        if (expProgress >= (expStandard * lv))
+            LevelUp();
+    }
+
+    void LevelUp()
+    {
+        lv += 1;
+        //random stat bonus when leveling
+        maxHP += UnityEngine.Random.Range(0, 5);
+        maxSP += (UnityEngine.Random.Range(0, 5) * 5);
+        attack += UnityEngine.Random.Range(0, 5);
+        defense += UnityEngine.Random.Range(0, 5);
+        speed += UnityEngine.Random.Range(0, 5);
+        //heal when leveling
+        health = maxHP;
+        specialPoint = maxSP;
     }
 }

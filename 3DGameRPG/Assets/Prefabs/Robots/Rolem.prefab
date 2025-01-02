@@ -394,8 +394,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemList:
-  - {fileID: 11400000, guid: d29abf9a52398474bae49bc66d03067f, type: 2}
   - {fileID: 11400000, guid: eec3cd9dec8c5c1489173c1f7d1da4bc, type: 2}
+  - {fileID: 11400000, guid: 8d98054e9751cc1439e1c85496096958, type: 2}
+  PutItemToPlayer:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &999915578022204328
 MonoBehaviour:
   m_ObjectHideFlags: 0

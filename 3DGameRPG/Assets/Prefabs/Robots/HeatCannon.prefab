@@ -10140,6 +10140,7 @@ GameObject:
   - component: {fileID: 9172130104126299419}
   - component: {fileID: 3957637202407229379}
   - component: {fileID: 8718937106799050696}
+  - component: {fileID: 9042911807762060216}
   m_Layer: 0
   m_Name: HeatCannon
   m_TagString: Untagged
@@ -10191,9 +10192,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemList:
-  - {fileID: 11400000, guid: d29abf9a52398474bae49bc66d03067f, type: 2}
   - {fileID: 11400000, guid: 181f1f0491fae444caa9d5fd981dd05d, type: 2}
   - {fileID: 11400000, guid: 22a6e5d7d4ec40341a4368e0330c7630, type: 2}
+  PutItemToPlayer:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &9172130104126299419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10246,8 +10249,35 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.7797241, y: 0.7233237, z: 1}
+  m_Center: {x: 0.025152445, y: 0.13833815, z: 0}
+--- !u!54 &9042911807762060216
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004540227045442526}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5176044493183540178
 GameObject:
   m_ObjectHideFlags: 0
@@ -10381,7 +10411,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

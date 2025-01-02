@@ -296,8 +296,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemList:
-  - {fileID: 11400000, guid: d29abf9a52398474bae49bc66d03067f, type: 2}
   - {fileID: 11400000, guid: 181f1f0491fae444caa9d5fd981dd05d, type: 2}
+  - {fileID: 11400000, guid: ec03c0cc1671a9744bf998512b41074f, type: 2}
+  PutItemToPlayer:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2955723077348183339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +323,7 @@ Animator:
   m_GameObject: {fileID: 2813184181902190906}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ee7c08f04a9337b408b0bb4c2af748f3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9cce58be0fa1bd740a5e13daf1daf871, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1

@@ -112,7 +112,6 @@ public class ItemBattleMenu : MonoBehaviour
                 //call robot out to choose
                 InsertRobotToUsedItem();
                 chosenI = itemToggle[i].GetComponent<PaneltemBattle>().Item;
-                //switchPlayer?.Invoke(i);
 
                 break;
             }
@@ -157,7 +156,7 @@ public class ItemBattleMenu : MonoBehaviour
         GameObject newBtn = Instantiate(buttonHolder, contentRobotLocation);
         newBtn.GetComponent<Button>().onClick.AddListener(() =>
         {
-            if (chosenI.Healing(robot, chosenI))
+            if (chosenI.Healing(robot, chosenI)) //the item function will run while checking bool
                 UseItemOn();
             else notCorrectItem?.Invoke();
         });

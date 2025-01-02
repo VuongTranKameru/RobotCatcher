@@ -40,7 +40,7 @@ public class RobotStat : MonoBehaviour, IHaveSameStat
         seCooldown -= 1; 
         Debug.Log("aft low cooldown a bit" + seCooldown); 
     }
-    public void LevelUp()
+    public void RobotLevelUp()
     {
         stat.lv += 1;
         //random stat bonus when leveling
