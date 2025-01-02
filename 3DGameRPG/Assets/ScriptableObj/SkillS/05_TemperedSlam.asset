@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillID: 05
   skillName: Tempered Slam
-  type: 0
+  type: 1
   sDesc: "D\u1ED3n h\u1EBFt to\xE0n b\u1ED9 tr\u1ECDng l\u01B0\u1EE3ng c\u01A1 th\u1EC3
     \u0111\u1EC3 \u0111\u1EADp m\u1EA1nh v\xE0o \u0111\u1ED1i ph\u01B0\u01A1ng. D\u1EF1a
     v\xE0o \u0111\u1ED9 ph\xF2ng th\u1EE7 c\u1EE7a robot, c\xE0ng ki\xEAn c\u01B0\u1EDDng
