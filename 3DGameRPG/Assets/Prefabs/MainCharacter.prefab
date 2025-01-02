@@ -2197,9 +2197,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listRobotJson:
-    list: []
+    list:
+    - "{\n    \"itself\": {\n        \"instanceID\": 36284\n    },\n    \"portrait\":
+      {\n        \"instanceID\": 36490\n    },\n    \"charID\": \"001\",\n    \"uniqueID\":
+      \"001-20241228-191454\",\n    \"nameChar\": \"Qulay\",\n    \"description\":
+      \"Lo\u1EA1i robot l\u1ED7i th\u1EDDi b\u1ECB v\u1EE9t b\u1ECF ngay l\u1EADp
+      t\u1EE9c sau khi nhi\u1EC1u con robot kh\xE1c \u0111\u01B0\u1EE3c t\u1EA1o
+      ra, t\u1EEBng c\xF3 c\xF4ng d\u1EE5ng ch\u0103m s\xF3c v\xE0 ph\u1EE5c v\u1EE5
+      kh\xE1ch h\xE0ng v\xEC c\xE1ch h\xE0nh x\u1EED d\u1EC5 th\u01B0\u01A1ng. Kh\xF4ng
+      c\xF3 l\xF5i t\xEDch t\u1EE5 n\u0103ng l\u01B0\u1EE3ng v\xE0 kh\xF4ng th\u1EADt
+      s\u1EF1 th\xEDch h\u1EE3p trong \u0111\xE1nh nhau l\u1EAFm...\",\n    \"maxHP\":
+      47,\n    \"attack\": 7,\n    \"defense\": 3,\n    \"speed\": 19,\n    \"lv\":
+      1,\n    \"maxSP\": 0,\n    \"status\": 0,\n    \"learnableSkills\": [\n       
+      {\n            \"learnableSkill\": {\n                \"instanceID\": 28074\n           
+      },\n            \"atLevel\": 0\n        },\n        {\n            \"learnableSkill\":
+      {\n                \"instanceID\": 28156\n            },\n            \"atLevel\":
+      0\n        }\n    ]\n}"
   listItemJson:
-    list: []
+    list:
+    - "{\n    \"itemID\": \"IN04\",\n    \"itemName\": \"Fixing Gear\",\n    \"type\":
+      0,\n    \"itDesc\": \"Ch\u1EC9nh s\u1EEDa robot tr\u1EDF v\u1EC1 tr\u1EA1ng
+      th\xE1i g\u1EA7n nh\u01B0 m\u1EDBi, kh\xF4i ph\u1EE5c ho\xE0n to\xE0n HP.\",\n   
+      \"value\": 200,\n    \"icon\": {\n        \"instanceID\": 36482\n    }\n}"
+    - "{\n    \"itemID\": \"IN02\",\n    \"itemName\": \"Big Battery\",\n    \"type\":
+      0,\n    \"itDesc\": \"H\u1ED3i ph\u1EE5c 50HP l\u01B0\u1EE3ng m\xE1u cho robot.\",\n   
+      \"value\": 50,\n    \"icon\": {\n        \"instanceID\": 39518\n    }\n}"
 --- !u!114 &5129260080310229673
 MonoBehaviour:
   m_ObjectHideFlags: 0
