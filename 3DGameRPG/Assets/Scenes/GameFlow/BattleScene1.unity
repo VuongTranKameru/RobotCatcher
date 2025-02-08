@@ -2036,6 +2036,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2716713569808877413, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
+      propertyPath: PutItemToPlayer.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716713569808877413, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
+      propertyPath: PutItemToPlayer.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1660775138924586817, guid: 577a66f2b88ee394e83c1a98364d3d9f, type: 3}
+    - target: {fileID: 2716713569808877413, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
+      propertyPath: PutItemToPlayer.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716713569808877413, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
+      propertyPath: PutItemToPlayer.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerStat, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4294209767588907607, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
