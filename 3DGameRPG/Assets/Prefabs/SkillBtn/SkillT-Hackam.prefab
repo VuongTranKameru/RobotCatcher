@@ -358,7 +358,7 @@ MonoBehaviour:
   HackedRobot:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 98166933109146192, guid: 577a66f2b88ee394e83c1a98364d3d9f, type: 3}
+      - m_Target: {fileID: 1660775138924586817, guid: 577a66f2b88ee394e83c1a98364d3d9f, type: 3}
         m_TargetAssemblyTypeName: PlayerStat, Assembly-CSharp
         m_MethodName: HackRobotSuccess
         m_Mode: 0

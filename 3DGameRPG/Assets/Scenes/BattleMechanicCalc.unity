@@ -2322,6 +2322,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2716713569808877413, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
+      propertyPath: PutItemToPlayer.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716713569808877413, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
+      propertyPath: PutItemToPlayer.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 432105775}
+    - target: {fileID: 2716713569808877413, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
+      propertyPath: PutItemToPlayer.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RewardForBattle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716713569808877413, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
+      propertyPath: PutItemToPlayer.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RewardBattleItem, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716713569808877413, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
+      propertyPath: PutItemToPlayer.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4294209767588907607, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2427,6 +2447,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
+--- !u!114 &432105775 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2716713569808877413, guid: 783e014e296f0c94798f374c50352ec2, type: 3}
+  m_PrefabInstance: {fileID: 432105774}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9937f48135de08047b25e468e490db3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &443023473
 PrefabInstance:
   m_ObjectHideFlags: 0
